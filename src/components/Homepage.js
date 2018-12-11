@@ -21,7 +21,7 @@ class Homepage extends Component {
       <div className="row ">
       <div className="logo">
      <a href="/">
-     <img src={require('./images/home_logo.png')} alt="ENER YOU" className="blink-image"/>
+     <img src={require('./images/home_logo.png')} alt="ENER YOU" className=""/>
      </a> 
       
       </div>

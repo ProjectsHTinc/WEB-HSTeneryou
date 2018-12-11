@@ -1,16 +1,78 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import NormalCompass from './images/n_compass.png';
+import { Line } from 'rc-progress';
+
+
+import compass from './images/n_compass.png';
+import east from './images/east.png';
+import west from './images/west.png';
+import south from './images/south.png';
+import south_west from './images/south_west.png';
+import south_east from './images/south_east.png';
+
 import imgUrl from './images/house_1.png';
 import house_year from './images/house_year.png';
 import postbox from './images/postbox.png';
 import Character from './images/character_fields.png';
 import progress_img from './images/progress_home.png';
-import { Line } from 'rc-progress';
+
 
 class Homedetails extends Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            step :1,
+            NormalCompass:compass,
+            // direction:'',           
+            // fields: {},
+            // errors: {}
+           
+        };
+      
+       
+    }
+
+
+    continue = e => {
+        // let fields = this.state.fields;
+        // let direction=this.direction.value; 
+        e.preventDefault();
+        // if(this.handleValidation()){ 
+           // localStorage.setItem("direction",direction);
+            this.props.nextStep();
+        //  }else{           
+           
+        //  }        
+       
+    }
+
+    directionChange = (event) => {
+        let directionval=event.target.value;
+        if(directionval==='east'){
+            this.setState({ NormalCompass: east });
+        }else if(directionval==='west'){
+            this.setState({ NormalCompass: west });
+        }else if(directionval==='south_west'){
+            this.setState({ NormalCompass: south_west });
+        }else if(directionval==='south_east'){
+            this.setState({ NormalCompass: south_east });
+        }else if(directionval==='south'){
+            this.setState({ NormalCompass: south });
+        }else{
+            this.setState({ NormalCompass: compass });
+        }
+       
+      
+    };
+
+
+
     render() {
+
+        const { options, NormalCompass } = this.state;
+
     return (
       
         <div className="container-fluid wrapper">
@@ -83,6 +145,7 @@ class Homedetails extends Component {
                         <p className="img_compass">
                         {/* <img src={require('./images/n_compass.png')} alt="" className=""/> */}
                         <img src={NormalCompass} className="" circle  />
+                       
                         </p>
 
                     </div>
@@ -96,12 +159,12 @@ class Homedetails extends Component {
                  <div className="col-md-2 " style={ { backgroundImage: 'url(' + house_year + ')',
                  backgroundPosition: 'center',
                 marginTop:'50px',
-                 height:'111px',
+                 height:'127px',
                  backgroundRepeat: 'no-repeat' } }>
                  <div className="year_box">
                  <label className="year_label">Construction Year</label>
-                  <select className="house_year_drop_box ">
-                        <option>Select-Year</option>
+                  <select className="house_year_drop_box " name="year" >
+                        <option value=" ">Select-Year</option>
                         <option value="B">Banana</option>
                         <option value="C">Cranberry</option>
                 </select>
@@ -125,10 +188,13 @@ class Homedetails extends Component {
                  </div>
                  <div className="col-md-2">
                  <div className="direction_box">
-                    <select className="direction_drop_box ">
+                    <select className="direction_drop_box " onChange={this.directionChange} value={this.state.value}>
                             <option>Select-Direction</option>
-                            <option value="B">Banana</option>
-                            <option value="C">Cranberry</option>
+                            <option value="east">East</option>
+                            <option value="west">West</option>
+                            <option value="south">South</option>
+                            <option value="south_east">South-East</option>
+                            <option value="south_west">South-West</option>
                     </select>
                  </div>
 
@@ -162,21 +228,17 @@ class Homedetails extends Component {
                 <div className="col-md-8">
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                 
                     <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'25%'}} />
                      <Line percent="28" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
                      <p style={{color:'#000',marginLeft:'25%'}}>25%</p>
                 </div>
-               
                 </div>
                 <div className="col-md-2 text-center">    
                 <div className="next_section">
                 <button onClick={this.continue} className="btn btn_next pull_right">Next  </button>
                 </div>                 
                
-                </div>
-                
-                
+                </div> 
                 </div>
                
                 {/* Progress Bar section Ends here */}

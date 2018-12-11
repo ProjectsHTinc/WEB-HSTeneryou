@@ -29,7 +29,6 @@ export class Mainform extends Component{
             step :step - 1
         })
     }
-
  
     handleChange = input => event => {
         this.setState({ [input] : event.target.value })
@@ -56,6 +55,7 @@ export class Mainform extends Component{
                 return(
                     <Person
                 nextStep={this.nextStep}
+                prevStep={this.prevStep}
                 handleChange ={this.handleChange}  
                 // values={values}            
                 />

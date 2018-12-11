@@ -47,13 +47,14 @@
     color:#000;
 }
 .img_compass{
-    margin-left: 80px;
+    margin-left: 90px;
 }
 .direction_drop_box{
     background-color: #2171b9;
     color:#fff;
     padding: 5px;
     width: 100%;
+    border-radius:5px;
 }
 .year_label{
     color:#000;
@@ -62,7 +63,7 @@
    margin-right: 25px;  
 }
 .year_box{
-    margin-top: 40px;
+    margin-top: 50px;
 }
 .house_year_drop_box{
    color:#000;
@@ -124,9 +125,7 @@ input[type='radio']:checked:before {
 }
 
 /* Radio button */
-.direction_box{
-    
-}
+
 
 .postbox_img{
     text-align: center;
@@ -139,6 +138,7 @@ input[type='radio']:checked:before {
     background-color: #fbc417;
     margin-top: 100px;
     margin-bottom: 40px;
+    border-radius: 5px;
 }
 
 .post_textbox{
@@ -160,16 +160,28 @@ input[type='radio']:checked:before {
     background-color: #fff;
     padding: 20px;
     border: 1px solid grey;
+    border-radius: 10px;
 }
 .living_label{
     color: #000;
     font-weight: 600;
     font-size: 14px;
-    margin-left: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .living_textbox{
     margin-left: 10px;
+    background-color: transparent;
+    color: #000;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #000 1px;
+    width: 100px;
+    
 
 }
 
@@ -182,7 +194,7 @@ input[type='radio']:checked:before {
     margin-top:10px;
 }
 .character_img{
-    margin-top: 121px;
+    margin-top: 112px;
     margin-left: -60px;
 }
 
@@ -190,7 +202,155 @@ input[type='radio']:checked:before {
 .next_section{
     margin: auto;
     width: 50%;
+    float: left;
 }
+
+.rating_div{
+   padding: 10px 10px 0px 0px;
+   background-color: #fff;
+
+}
+.person_form{
+    display: inline-flex;
+    margin-top: 340px;
+    border: 1px solid grey;
+}
+.person_box{
+    margin: auto;
+    width: 50%;
+   
+}
+.person_ic{
+    font-size: 18px;
+   
+}
+.dv-star-rating-full-star{
+    color:  blue !important;
+}
+
+.label_box_person{
+    background-color: #2171b9;
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.person_icon{
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.p_box{
+    margin: auto;
+    width: 50%;
+    border: 1px solid;
+    display: inline-flex;
+    height: 35px;
+    margin-top: 350px;
+}
+.p_form_label{
+    padding: 5px 10px 5px 10px;
+    color: #fff;
+    font-weight: 500;
+    background-color: #2171b9;
+}
+.person_count{   
+    background-color: #2171b9;
+}
+
+.p_icon{
+       margin-top: 10px;
+}
+
+.form_char_img{
+   margin-left: -50px;
+   margin-top:-149px;
+}
+.back_btn_form_2{
+    margin-top: -90px;
+    position: relative;
+    z-index: 99999;
+}
+.power_consumption{
+     width: 100%;
+    font-size: 20px;
+    letter-spacing: 13px;
+    font-weight: 600;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.power_meter_box{
+    background-color: #000;
+    padding: 6px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.electric_symbol_class{
+    text-align: center;
+   
+}
+.blink-image{   
+    margin-top: 150px;
+}
+/* Firefox old*/
+@-moz-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+
+@-webkit-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* IE */
+@-ms-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+/* Opera and prob css3 final iteration */
+@keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+.blink-image {
+    -moz-animation: blink normal 2s infinite ease-in-out; /* Firefox */
+    -webkit-animation: blink normal 2s infinite ease-in-out; /* Webkit */
+    -ms-animation: blink normal 2s infinite ease-in-out; /* IE */
+    animation: blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
+}
+
+
+
+
+
 
 .footer_section{
     background-color: #2171b9;
@@ -203,9 +363,11 @@ input[type='radio']:checked:before {
 }
 .pull_right{
     float: right;
+    border-radius: 5px;
 }
 .pull_left{
     float: left;
+    border-radius: 5px;
 }
 .footer_links a{
     color:#fff;
