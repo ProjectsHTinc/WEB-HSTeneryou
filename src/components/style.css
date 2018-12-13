@@ -2,6 +2,14 @@
     margin: 0px;
     padding: 0px;
 }
+.error_font{
+    font-size: 18px;
+    color:red;
+    font-weight: 600;
+}
+.energy_demand_text{
+    width: 100%;
+}
 .logo p{
     color:red;
     font-size: 50px;
@@ -22,7 +30,7 @@
 }
 
 .logo_section{
-    height:85px;
+    height:70px;
 }
 .heading_border{
     border-bottom: 3px solid #b1afaf36;
@@ -221,11 +229,14 @@ input[type='radio']:checked:before {
    
 }
 .person_ic{
-    font-size: 18px;
+    font-size: 20px;
    
 }
 .dv-star-rating-full-star{
     color:  blue !important;
+}
+.dv-star-rating-star{
+    color:red ;
 }
 
 .label_box_person{
@@ -236,7 +247,7 @@ input[type='radio']:checked:before {
     margin-bottom: 0px;
 }
 .person_icon{
-    margin-left: 20px;
+    margin-left: 18px;
     margin-top: 5px;
 }
 
@@ -263,34 +274,48 @@ input[type='radio']:checked:before {
 }
 
 .form_char_img{
-   margin-left: -50px;
-   margin-top:-149px;
+    margin-left: -50px;
+    position: relative;
+    top: 75px;
 }
 .back_btn_form_2{
-    margin-top: -90px;
+    margin-top: 0px;
     position: relative;
     z-index: 99999;
 }
 .power_consumption{
-     width: 100%;
-    font-size: 20px;
-    letter-spacing: 13px;
+    width: 100%;
+    font-size: 14px;
+    letter-spacing: 11px;
     font-weight: 600;
     padding-left: 5px;
     padding-right: 5px;
+    background-color: #000;
+    color: #fff;
 }
 .power_meter_box{
-    background-color: #000;
-    padding: 6px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 5px;
+    margin-left: 12px;
+    width: 110px;
+    position: relative;
+    top: 50px;
 }
 .electric_symbol_class{
     text-align: center;
    
 }
+.red_number{
+    float: right;
+    margin-right: 16px;
+    background-color: red;
+    padding: 7px;
+    margin-top: -11px;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 30px;
+}
 .blink-image{   
-    margin-top: 150px;
+    margin-top: 120px;
 }
 /* Firefox old*/
 @-moz-keyframes blink {
@@ -347,10 +372,98 @@ input[type='radio']:checked:before {
     animation: blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
 }
 
+.energy_form{
+    background-color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 50px;
+    border: 1px solid #000;
+    box-shadow: 0px 1px 3px 3px #888888;
+
+}
+.enery_heading{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.radio_value{
+    text-align: left;
+}
+.label_demand{
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+}
+.label_demand_value_label{
+    font-size: 12px;
+    color: #000;
+    
+}
+.character_3{
+    margin-top: 120px;
+    margin-left: 80px;
+}
+.character_4{
+    margin-top: 100px;
+    margin-left: 80px;
+}
+.budget_font{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.budget_icon{
+    width:100%;
+}
+
+.coin_img{
+    -webkit-animation: coin 5s infinite linear;
+    animation: coin 5s infinite linear;
+}
+
+@-webkit-keyframes coin {
+    from {-webkit-transform: rotateY(0deg);}
+    to {-webkit-transform: rotateY(360deg);}
+}
+
+@keyframes coin {
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(360deg);}
+}
+
+.budget_price{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    text-align: center
+}
 
 
+.budget_box{
+    width:100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
+.form_btn{
+    width:100%;
+    margin-top: 20px;
+    margin-bottom: 40px;
 
+}
+.btn_submit{
+    background-color: #2171b9;
+    color:#fff;
+}
 
 .footer_section{
     background-color: #2171b9;

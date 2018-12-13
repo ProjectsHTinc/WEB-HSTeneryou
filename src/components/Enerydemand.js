@@ -1,0 +1,206 @@
+import React, { Component } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import { Line } from 'rc-progress';
+import 'font-awesome/css/font-awesome.min.css'
+
+import progress_img from './images/progress_home.png';
+import character_3 from './images/character_form_3.png';
+import con_year from './images/con_year.png';
+import gas_bill from './images/gas_bill.png';
+import certificate from './images/certificate.png';
+
+import form_bg_3 from './images/form_3_bg.png';
+
+
+
+
+class Enerydemand extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            step :3,
+            energy_demand:'',
+            energy_val:'', 
+          
+                    
+            // fields: {},
+            // errors: {}
+           
+        };
+    }
+
+    
+
+    handleValidation(){
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+       
+       
+        var enery_val=this.refs.yearlyGasDemand.value;
+      
+
+        this.setState({errors: errors});
+        return formIsValid;
+    }
+
+    continue = e => {
+        e.preventDefault();
+        var selected=this.state.energy_demand;
+        if(this.handleValidation()){        
+            this.props.nextStep();    
+               
+        }else{
+            
+        }
+        
+    }
+    
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
+ 
+
+    render() {
+        // const { job,validate } = this.state;
+        const { values } = this.props
+
+    return (
+        <div className="container-fluid wrapper">
+        <Header/>
+        <div className="container">
+        <h4 className="form_heading">My Heating Demand </h4>
+       
+        <form onSubmit={this.continue}>
+
+                {/* Form section starts here */}
+                <div className="row" >
+                    <div className="col-md-2">
+                    <img src={character_3} className="character_3"/>
+                    </div>
+                    <div className="col-md-8 text-center" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
+                 backgroundPosition: 'center',
+                 backgroundSize: 'cover',
+                 height:'417px',
+                 backgroundRepeat: 'no-repeat' } }>
+
+                  <div className="">
+                  <div className="row">
+                
+                  </div>
+                    <div className="row energy_form"  onClick={this.props.handleChange('enery_demand')}>
+                        <p className="enery_heading">To Determine your heating demand, choose either one of the three options below based on your available data</p>
+                        <div className="col-md-4">
+                            <div className="enery_group">
+                                  <div className="radio_value">
+                                        <input type="radio" name="enery_demand" ref="enery_demand"  value="CONSTRUCTION_YEAR"/>
+                                  </div>
+                                  <div className="enery_icon">
+                                         <img src={con_year} circle className=""/>
+                                  </div>  
+                                  <div className="enery_label">
+                                  <p className="label_demand">Construction Year or latest modernisation year</p>
+                                  </div> 
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                        <div className="enery_group">
+                                  <div className="radio_value">
+                                        <input type="radio" name="enery_demand" ref="enery_demand" value="GAS_OR_OIL_BILL" />
+                                  </div>  
+                                  <div className="enery_icon">
+                                     <img src={gas_bill} circle className=""/>
+                                  </div>  
+                                  <div className="enery_label">
+                                  <p className="label_demand">Gas Bill or Oil bill</p>
+                                  </div> 
+                                  <div className="gas_oil_section">
+                                    <p className="label_demand_value_label">Yearly Gas/Oil Consumption  <br></br> (kWh/a)</p>
+                                    <p><input type="text" ref="yearlyGasDemand" name="yearlyGasDemand" /></p>
+                                  </div>
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                        <div className="enery_group">
+                                  <div className="radio_value">
+                                        <input type="radio" name="enery_demand" value="ENERGY_CERTIFICATE" />
+                                  </div>
+                                  <div className="enery_icon">
+                                  <img src={certificate} circle className=""/>
+                                  </div>  
+                                  <div className="enery_label">
+                                  <p className="label_demand">Energy Certificate</p>
+                                  </div>  
+                                  <div className="gas_oil_section">
+                                    <p className="label_demand_value_label">Energy Consumption <br></br> (kWh/a)</p>
+                                    <p><input type="text" name="yearlyEnergyDemand"/></p>
+                                    <p className="label_demand_value_label">Hot Water Share <br></br> (kWh/a)</p>
+                                    <p><input type="text" name="yearlyEnergyDemandOnWater"/></p>
+                                  </div> 
+                            </div>
+                        </div>
+                        <p className="energy_demand_text error_font">{this.state.enery_demand_error}</p>
+                    </div>
+                  </div>
+
+
+                       
+                            
+                    </div>
+                    <div className="col-md-2">
+                 
+                    
+                   
+                    </div>
+                </div>
+                {/* Form section Ends here */}
+
+
+
+                {/* Progress Bar section Starts here */}
+                <div className="row progress_section" style={{marginTop:'70px'}}>
+                <div className="col-md-2">
+                    <div className="char_next_btn_section">
+                            <div className="">
+                               
+                                <div className="back_btn_form_2">
+                                <button onClick={this.back} className="btn btn_next pull_right">Back  </button>
+                                </div>
+                        </div>              
+
+                
+                      
+                     
+                    </div>
+                        
+                </div>
+                <div className="col-md-8">
+                <div className="progress_bar">                   
+                    {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
+                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'72%'}} />
+                     <Line percent="75" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
+                     <p style={{color:'#000',marginLeft:'75%'}}>75%</p>
+                </div>
+                </div>
+                <div className="col-md-2 text-center">    
+                <div className="next_section">
+                        {/* <button onClick={this.continue} className="btn btn_next pull_right">Next  </button> */}
+                        <button  className="btn btn_next pull_right">Next  </button>
+                </div>                 
+               
+                </div> 
+                </div>
+               
+                {/* Progress Bar section Ends here */}
+
+         </form>
+         </div>
+        <Footer/>
+        </div>
+    );
+}
+}
+
+export default Enerydemand;

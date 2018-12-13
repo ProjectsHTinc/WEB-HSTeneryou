@@ -18,8 +18,8 @@ class App extends Component {
         <BrowserRouter>
         <div>       
         <Switch>
-          <Route path="/" component={Homepage} exact />
-          <Route path="/Form" component={Form}  />
+          {/* <Route path="/" component={Homepage} exact /> */}
+          <Route path="/" component={Form}  />
           <Route path="/Homedetails" component={Homedetails}  />
           <Route path="/Person" component={Person}  />
           <Route  component={Error} />

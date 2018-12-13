@@ -1,18 +1,26 @@
 import React, {Component} from "react";
 import Homedetails from './Homedetails';
 import Person from './Persondetail';
-
+import Enerydemand from './Enerydemand';
+import Budget from './Budget';
 
 export class Mainform extends Component{
 
     state = {
-        step: 1,
-        // direction :'',
+        step: 3,
+        roof_inclination :'',
+        living_area:'',
+        post_code:'',
+        directionChange:'',
+        construction_year:'',
+        person_count:'',
+        power_consumption:'',
+        enery_demand:'',
+        yearlyGasDemand:'',
+        yearlyEnergyDemand:'',
+        yearlyEnergyDemandOnWater:'',
         // roof :'',
-        // occupation :'',
-        // pincode :'',
-        // budget :'',
-        // demandtype:''
+
     }
  
 
@@ -33,14 +41,17 @@ export class Mainform extends Component{
     handleChange = input => event => {
         this.setState({ [input] : event.target.value })
     }
-
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({rating: nextValue});
+       
+      }
 
     render(){
 
       
         const {step} = this.state;
-        // const { direction, roof, occupation, pincode, budget, demandtype } = this.state;
-        // const values = { direction, roof, occupation, pincode, budget, demandtype };
+        const { roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption } = this.state;
+        const values = { roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption};
        
         switch(step){
             case 1:
@@ -48,7 +59,7 @@ export class Mainform extends Component{
                 <Homedetails
                 nextStep={this.nextStep}
                 handleChange ={this.handleChange}  
-                // values={values}            
+                values={values}            
                 />
                 )
             case 2:
@@ -57,14 +68,28 @@ export class Mainform extends Component{
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
                 handleChange ={this.handleChange}  
-                // values={values}            
+                values={values}            
                 />
                 )
                 
             case 3:
-                 return <div>Enerydemand</div>
+                 return (
+                    <Enerydemand
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange ={this.handleChange}  
+                values={values}            
+                />
+                )
             case 4:
-                return <div>Budget</div>
+                return (
+                    <Budget
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange ={this.handleChange}  
+                values={values}            
+                />
+                )
         }
     }
 }
