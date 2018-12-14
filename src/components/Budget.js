@@ -15,34 +15,37 @@ class Budget extends Component {
     constructor(props){
         super(props)
         this.state = {
-            step :2,
-            rating: 0,
-            // direction:'',           
-            // fields: {},
-            // errors: {}
+            step :3,
+                   
            
         };
     }
+   
+ 
 
-    onStarClick(nextValue, prevValue, name) {
-        this.setState({rating: nextValue});
-      }
-
-      continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    }
+ 
 
     back = e => {
         e.preventDefault();
         this.props.prevStep();
     }
-      
-    render() {
-        const { rating } = this.state;
-     
+    
+    continue = e => {
+        e.preventDefault();
+        this.props.nextStep();    
+       
+        
+    }
+  
 
-    return (
+    render() {
+        // const { rating } = this.state;
+        const { values } = this.props
+       
+   
+
+
+        return (
         <div className="container-fluid wrapper">
         <Header/>
         <div className="container">
@@ -67,11 +70,12 @@ class Budget extends Component {
                             <img src={euro_icon} circle className="coin_img" id="coin_spin"/>   
                         </div>
                         <div className="budget_box">
-                            <input type="text" name="budget_value" className="budget_price" placeholder='Price'/>
+                            <input type="text" name="budget_value" onChange={this.props.handleChange('budget_value')} className="budget_price" placeholder='Price' />
                         </div>
                         <div className="form_btn">
-                            <input type="button" name="budget_value" className="btn btn_submit" value='Submit'/>
+                            <button  onClick={this.continue}  className="btn btn_submit">Submit Here</button>
                         </div>
+                      
 
                        
                        

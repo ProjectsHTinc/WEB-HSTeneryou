@@ -38,7 +38,7 @@ class Enerydemand extends Component {
         let formIsValid = true;
        
        
-        var enery_val=this.refs.yearlyGasDemand.value;
+        
       
 
         this.setState({errors: errors});
@@ -47,13 +47,13 @@ class Enerydemand extends Component {
 
     continue = e => {
         e.preventDefault();
-        var selected=this.state.energy_demand;
-        if(this.handleValidation()){        
-            this.props.nextStep();    
+        this.props.nextStep();    
+        // if(this.handleValidation()){        
+        //     this.props.nextStep();    
                
-        }else{
+        // }else{
             
-        }
+        // }
         
     }
     
@@ -90,12 +90,12 @@ class Enerydemand extends Component {
                   <div className="row">
                 
                   </div>
-                    <div className="row energy_form"  onClick={this.props.handleChange('enery_demand')}>
+                    <div className="row energy_form" >
                         <p className="enery_heading">To Determine your heating demand, choose either one of the three options below based on your available data</p>
                         <div className="col-md-4">
                             <div className="enery_group">
                                   <div className="radio_value">
-                                        <input type="radio" name="enery_demand" ref="enery_demand"  value="CONSTRUCTION_YEAR"/>
+                                        <input type="radio" name="energy_demand"  value="CONSTRUCTION_YEAR" onChange={this.props.handleChange('energy_demand')}/>
                                   </div>
                                   <div className="enery_icon">
                                          <img src={con_year} circle className=""/>
@@ -108,24 +108,24 @@ class Enerydemand extends Component {
                         <div className="col-md-4">
                         <div className="enery_group">
                                   <div className="radio_value">
-                                        <input type="radio" name="enery_demand" ref="enery_demand" value="GAS_OR_OIL_BILL" />
+                                        <input type="radio" name="energy_demand" value="GAS_OR_OIL_BILL" onChange={this.props.handleChange('energy_demand')}  />
                                   </div>  
                                   <div className="enery_icon">
                                      <img src={gas_bill} circle className=""/>
                                   </div>  
                                   <div className="enery_label">
                                   <p className="label_demand">Gas Bill or Oil bill</p>
-                                  </div> 
+                                  </div>    
                                   <div className="gas_oil_section">
                                     <p className="label_demand_value_label">Yearly Gas/Oil Consumption  <br></br> (kWh/a)</p>
-                                    <p><input type="text" ref="yearlyGasDemand" name="yearlyGasDemand" /></p>
+                                    <p><input type="text" name="yearlyGasDemand"  onChange={this.props.handleChange('yearlyGasDemand')} defaultValue={values.yearlyGasDemand} /></p>
                                   </div>
                             </div>
                         </div>
                         <div className="col-md-4">
                         <div className="enery_group">
                                   <div className="radio_value">
-                                        <input type="radio" name="enery_demand" value="ENERGY_CERTIFICATE" />
+                                        <input type="radio" name="energy_demand" value="ENERGY_CERTIFICATE" onChange={this.props.handleChange('energy_demand')}/>
                                   </div>
                                   <div className="enery_icon">
                                   <img src={certificate} circle className=""/>
@@ -135,9 +135,11 @@ class Enerydemand extends Component {
                                   </div>  
                                   <div className="gas_oil_section">
                                     <p className="label_demand_value_label">Energy Consumption <br></br> (kWh/a)</p>
-                                    <p><input type="text" name="yearlyEnergyDemand"/></p>
+                                    <p><input type="text" name="yearlyEnergyDemand" onChange={this.props.handleChange('yearlyEnergyDemand')}
+                        defaultValue={values.yearlyEnergyDemand}/></p>
                                     <p className="label_demand_value_label">Hot Water Share <br></br> (kWh/a)</p>
-                                    <p><input type="text" name="yearlyEnergyDemandOnWater"/></p>
+                                    <p><input type="text" name="yearlyEnergyDemandOnWater" onChange={this.props.handleChange('yearlyEnergyDemandOnWater')}
+                        defaultValue={values.yearlyEnergyDemandOnWater}/></p>
                                   </div> 
                             </div>
                         </div>

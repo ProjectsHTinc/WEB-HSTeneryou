@@ -6,6 +6,14 @@ import Footer from './components/Footer'
 import Form from './components/Mainform'
 import Homedetails from './components/Homedetails'
 import Person from './components/Persondetail'
+import Product from './components/Product'
+import Graphmenu from './components/Graphmenu'
+import Economicgraph from './components/Economicgraph'
+
+
+import Graph_1 from './components/Graph_1'
+
+
 import Error from './components/Error'
 import '../src/components/style.css'
 
@@ -19,9 +27,14 @@ class App extends Component {
         <div>       
         <Switch>
           {/* <Route path="/" component={Homepage} exact /> */}
-          <Route path="/" component={Form}  />
+          <Route path="/Form" component={Form}  />
           <Route path="/Homedetails" component={Homedetails}  />
           <Route path="/Person" component={Person}  />
+          <Route path="/Product" component={Product}  />
+          <Route path="/Graphmenu" component={Graphmenu}  />
+          <Route path="/" component={Economicgraph}  />
+
+          <Route path="/Graph_1" component={Graph_1}  />
           <Route  component={Error} />
 
         </Switch>

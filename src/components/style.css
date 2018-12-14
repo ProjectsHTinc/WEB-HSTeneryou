@@ -482,6 +482,158 @@ input[type='radio']:checked:before {
     float: left;
     border-radius: 5px;
 }
+
+.product_heading{
+    display: inline-flex;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 10px;
+}
+.product_heading .row{
+    width: 100%;
+
+}
+.product_img{
+    height: 127px;
+}
+
+.product_box_1_1{
+    background-color: #efbcbe;
+    margin-top: -1px;
+    margin-left: 4px;
+    margin-right: 3px;
+    border-bottom: 2px solid #000;
+}
+.product_box_1_2{
+    background-color: #efbcbe;
+    margin-left: 4px;
+    margin-right: 3px;   
+}
+.product_box_1_3{
+    background-color: #fae7e7;
+    margin-left: 4px;
+    margin-right: 3px;   
+}
+
+
+.product_box_2_1{
+    background-color: #a9e0ba;
+    margin-top: -1px;
+    margin-left: 4px;
+    margin-right: 3px;
+    border-bottom: 2px solid #000;
+}
+.product_box_2_2{
+    background-color: #a9e0ba;
+    margin-left: 4px;
+    margin-right: 3px;   
+}
+.product_box_2_3{
+    background-color: #dbf1e0;
+    margin-left: 4px;
+    margin-right: 3px;   
+}
+
+.product_box_3_1{
+    background-color: #fad3bc;
+    margin-top: -1px;
+    margin-left: 4px;
+    margin-right: 3px;
+    border-bottom: 2px solid #000;
+}
+.product_box_3_2{
+    background-color: #fad3bc;
+    margin-left: 4px;
+    margin-right: 3px;   
+}
+.product_box_3_3{
+    background-color: #ffeade;
+    margin-left: 4px;
+    margin-right: 3px;   
+}
+.graph_img{
+    text-align: center;
+    position: relative;
+    top:20px;
+}
+.product_recommendation{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.tab_box_1{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: #d05761;
+}
+.tab_box_2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: #94cda8;
+}
+.tab_box_3{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: #eeb593;
+}
+.tab_box_1 p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.tab_box_2 p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.tab_box_3 p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.tab_box_1 p a{
+    color: #fff;
+  }
+
+.tab_box_2 p a{
+    color: #fff;
+  }
+
+.tab_box_3 p a{
+  color: #fff;
+}
+
+.graph_box{
+    width: 100%;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #fff;
+    box-shadow:0 0 5px 0px gray inset;
+}
+.graph_example{
+    margin: 30px;
+}
+
+.graph_pic{
+    margin:20px 20px 20px 20px;
+}
+
+.react-tabs__tab--selected{
+    border-bottom:3px solid #2171b9;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+
+.react-tabs__tab-list{
+    border-bottom:2px solid #dad9d9;
+}
+.react-tabs__tab{
+    margin-left: 150px;
+}
+
+
 .footer_links a{
     color:#fff;
     margin-left: 20px;

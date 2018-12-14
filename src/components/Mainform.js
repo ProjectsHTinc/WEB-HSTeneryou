@@ -3,33 +3,38 @@ import Homedetails from './Homedetails';
 import Person from './Persondetail';
 import Enerydemand from './Enerydemand';
 import Budget from './Budget';
+import Product from './Product';
 
 export class Mainform extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            step:1,
+            roof_inclination :'',
+            living_area:'',
+            post_code:'',
+            directionChange:'',
+            construction_year:'',
+            person_count:'',
+            power_consumption:'',
+            energy_demand:'',
+            yearlyGasDemand:'',
+            yearlyEnergyDemand:'',
+            yearlyEnergyDemandOnWater:'',
+            budget_value:'',
+                    
+            // roof :'',
 
-    state = {
-        step: 3,
-        roof_inclination :'',
-        living_area:'',
-        post_code:'',
-        directionChange:'',
-        construction_year:'',
-        person_count:'',
-        power_consumption:'',
-        enery_demand:'',
-        yearlyGasDemand:'',
-        yearlyEnergyDemand:'',
-        yearlyEnergyDemandOnWater:'',
-        // roof :'',
-
+        }
     }
- 
+    
 
-    nextStep = () =>{
-        const   { step } = this.state;
-        this.setState ({
-            step :step + 1
-        })
-    }
+        nextStep = () =>{
+            const   { step } = this.state;
+            this.setState ({
+                step :step + 1
+            })
+        }
 
     prevStep = () =>{
         const   { step } = this.state;
@@ -40,18 +45,23 @@ export class Mainform extends Component{
  
     handleChange = input => event => {
         this.setState({ [input] : event.target.value })
+             
+        
+
     }
     onStarClick(nextValue, prevValue, name) {
         this.setState({rating: nextValue});
        
       }
 
+    
+
     render(){
 
       
         const {step} = this.state;
-        const { roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption } = this.state;
-        const values = { roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption};
+        const { roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value} = this.state;
+        const values = { roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value};
        
         switch(step){
             case 1:
@@ -84,6 +94,15 @@ export class Mainform extends Component{
             case 4:
                 return (
                     <Budget
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange ={this.handleChange}  
+                values={values}            
+                />
+                )
+            case 5:
+                return (
+                    <Product
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
                 handleChange ={this.handleChange}  
