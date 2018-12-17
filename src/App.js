@@ -9,7 +9,8 @@ import Person from './components/Persondetail'
 import Product from './components/Product'
 import Graphmenu from './components/Graphmenu'
 import Economicgraph from './components/Economicgraph'
-
+import Emission from './components/Emission'
+import Energetic from './components/Energetic'
 
 import Graph_1 from './components/Graph_1'
 
@@ -27,12 +28,14 @@ class App extends Component {
         <div>       
         <Switch>
           {/* <Route path="/" component={Homepage} exact /> */}
-          <Route path="/Form" component={Form}  />
+          <Route path="/" component={Form}  />
           <Route path="/Homedetails" component={Homedetails}  />
           <Route path="/Person" component={Person}  />
           <Route path="/Product" component={Product}  />
           <Route path="/Graphmenu" component={Graphmenu}  />
-          <Route path="/" component={Economicgraph}  />
+          <Route path="/Economicgraph" component={Economicgraph}  />
+          <Route path="/Emission" component={Emission} />
+          <Route Path="/Energetic" component={Energetic} />
 
           <Route path="/Graph_1" component={Graph_1}  />
           <Route  component={Error} />

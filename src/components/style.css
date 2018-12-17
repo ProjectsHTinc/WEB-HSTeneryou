@@ -3,7 +3,7 @@
     padding: 0px;
 }
 .error_font{
-    font-size: 18px;
+    font-size: 13px;
     color:red;
     font-weight: 600;
 }
@@ -252,8 +252,8 @@ input[type='radio']:checked:before {
 }
 
 .p_box{
-    margin: auto;
-    width: 50%;
+    /* margin: auto;
+    width: 50%; */
     border: 1px solid;
     display: inline-flex;
     height: 35px;

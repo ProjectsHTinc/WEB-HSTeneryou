@@ -34,15 +34,15 @@ class Persondetail extends Component {
         let star_val=this.state.rating_half_star;        
         let power_val=this.power_consumption.value;  
        
-        if(star_val=='0'){
-            formIsValid = false;
-            this.setState({ star_errors: "Select the Person" });         
-         } 
+        // if(star_val=='0'){
+        //     formIsValid = false;
+        //     this.setState({ star_errors: "Select the Person" });         
+        //  } 
 
-         if(power_val==''){
-            formIsValid = false;
-            this.setState({ power_error: "Power Error" }); 
-         }
+        //  if(power_val==''){
+        //     formIsValid = false;
+        //     this.setState({ power_error: "Power Error" }); 
+        //  }
 
 
         this.setState({errors: errors});
@@ -73,14 +73,14 @@ class Persondetail extends Component {
    
       
     render() {
-        const { rating_half_star } = this.state;
+        const { rating_half_star,selectedOption } = this.state;
            const { values } = this.props
 
     return (
         <div className="container-fluid wrapper">
         <Header/>
         <div className="container">
-        <h4 className="form_heading">My Electricity Demand </h4>
+        <h4 className="form_heading">My Electricity Demand  {selectedOption} </h4>
         <form>
 
                 {/* Form section starts here */}

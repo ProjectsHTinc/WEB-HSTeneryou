@@ -20,6 +20,14 @@ class Product extends Component {
         };
     }
 
+    componentDidMount(){
+        const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
+        let var_1=roof_inclination;
+        alert(var_1);
+        
+       
+    }
+
     render(){
 
         // const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
@@ -85,7 +93,7 @@ class Product extends Component {
                                     </div>                                  
                                 </div>
                                 <div className="graph_img">
-                                     <a href=""><img src={graph_img_1} circle/></a>
+                                     <a href="/Economicgraph"><img src={graph_img_1} circle/></a>
                                 </div>
                                
 
@@ -145,7 +153,7 @@ class Product extends Component {
                                     </div>                                  
                                 </div>
                                 <div className="graph_img">
-                                <a href=""><img src={graph_img_2} circle/></a>
+                                <a href="/Emission"><img src={graph_img_2} circle/></a>
                                 </div>
                                
 
@@ -205,7 +213,7 @@ class Product extends Component {
                                     </div>                                  
                                 </div>
                                 <div className="graph_img">
-                                <a href=""><img src={graph_img_3} circle/></a>
+                                <a href="/Energetic"><img src={graph_img_3} circle/></a>
                                 </div>
                                
 

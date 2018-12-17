@@ -26,6 +26,8 @@ export class Mainform extends Component{
             // roof :'',
 
         }
+       
+      
     }
     
 
@@ -43,12 +45,24 @@ export class Mainform extends Component{
         })
     }
  
+
+
+  
+
     handleChange = input => event => {
-        this.setState({ [input] : event.target.value })
+       
+        // this.setState({ [input] : event.target.value });
+        // this.props.onChange({ [event.target.name] : event.target.value });
+        this.setState({ [input] : event.target.value });
+        localStorage.setItem( [input] , event.target.value);
+    
              
         
 
     }
+
+
+
     onStarClick(nextValue, prevValue, name) {
         this.setState({rating: nextValue});
        

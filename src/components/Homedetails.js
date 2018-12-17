@@ -24,16 +24,20 @@ class Homedetails extends Component {
         this.state = {
             step :1,
             NormalCompass:east,
-            roof_inclination:'', 
+            roof_inclination:'DEGREES_30',
             living_area:'',
             post_code:'',
+            roof_error:'',
             direction:'',
             fields: {},
             errors: {},
            
         };
+      
              
     }
+    
+  
 
     handleValidation(){
         let fields = this.state.fields;
@@ -43,14 +47,19 @@ class Homedetails extends Component {
         let living_area=this.living_area.value;   
         // let directionChange=this.directionChange.value;         
        
-        if(!post_code){
-           formIsValid = false;
-           errors["post_code"] = "Enter Post Code";           
-        } 
-        if(!living_area){
-            formIsValid = false;
-            errors["living_area"] = "Enter living Area";           
-         }  
+        // if(this.state.roof_inclination){
+        //     formIsValid = false;
+        //     errors["roof_error"] = "Select Roof Direction";
+        // }
+
+        // if(!post_code){
+        //    formIsValid = false;
+        //    errors["post_code"] = "Enter Post Code";           
+        // } 
+        // if(!living_area){
+        //     formIsValid = false;
+        //     errors["living_area"] = "Enter living Area";           
+        //  }  
     
         //  if(!directionChange){
         //     formIsValid = false;
@@ -66,16 +75,21 @@ class Homedetails extends Component {
     continue = e => {
         let fields = this.state.fields;
          e.preventDefault();
+         this.props.nextStep();
         // alert(this.state.roof_inclination);
         // this.props.nextStep();
-        if(this.handleValidation()){ 
+      
+        // if(this.handleValidation()){ 
          
-            this.props.nextStep();
-         }else{           
-           alert("error");
-         }        
-       
+        //     this.props.nextStep();
+        //  }else{           
+        //    alert("error");
+        //  }        
     }
+
+ 
+ 
+
 
     direction_call = (event) => {
         let directionval=event.target.value;  
@@ -118,11 +132,19 @@ class Homedetails extends Component {
        
     }
 
+ 
+
+ 
+
+
 
     render() {
 
         const { options, NormalCompass } = this.state;
         const { values } = this.props
+
+   
+
 
     return (
       
@@ -131,7 +153,7 @@ class Homedetails extends Component {
           <div className="container">
         <h4 className="form_heading">Building Details</h4>
         <h4 className="text-center small_heading">Roof Inclination</h4>
-        <form>
+        <form onSubmit={this.continue}>
 
                 {/* First section start Here */}
                 <div className="row">
@@ -142,8 +164,16 @@ class Homedetails extends Component {
                    
                     <div className="col-md-2 col-sm-6">
                     {/* <label for="female">Female</label> */}
-                    <div className="radio_box inputGroup" for="female">
-                            <input type="radio" value="0" id ="0"  ref="roof_inclination"  name="roof_inclination"  onChange={this.props.handleChange('roof_inclination')}  /> 
+                    <div className="radio_box inputGroup" for="0">
+                            <input type="radio" 
+                            value="DEGREES_0" 
+                            id ="0"
+                            name="roof_inclination"  
+                            onChange={this.props.handleChange('roof_inclination')} 
+                            // onChange={this.radioChange} 
+                            
+                            // checked={this.state.roof_inclination === "DEGREES_0"}
+                             /> 
                             <span className="radio_label"> 0</span>
                             <p className="radio_image">
                                 <img src={require('./images/0.png')} alt="" className=""/>
@@ -152,7 +182,13 @@ class Homedetails extends Component {
                     </div>
                     <div className="col-md-2 col-sm-6">
                         <div className="radio_box inputGroup" for="15">
-                            <input type="radio" value="15" name="roof_inclination"  id="15"  ref="roof_inclination"  onChange={this.props.handleChange('roof_inclination')}  /> 
+                            <input type="radio"
+                             value="DEGREES_15" 
+                             name="roof_inclination"  
+                             id="15"    
+                             onChange={this.props.handleChange('roof_inclination')} 
+                            //  checked={this.state.roof_inclination === "DEGREES_15"}
+                              /> 
                             <span className="radio_label">15</span>
                             <p className="radio_image">
                                 <img src={require('./images/15.png')} alt="" className=""/>
@@ -160,8 +196,16 @@ class Homedetails extends Component {
                         </div>
                     </div>
                     <div className="col-md-2 col-sm-6">
-                        <div className="radio_box inputGroup" for="25">
-                            <input type="radio" value="25" id="25" name="roof_inclination"  ref="roof_inclination" onChange={this.props.handleChange('roof_inclination')}  />
+                        <div className="radio_box inputGroup" >
+                            <input type="radio" 
+                            value="DEGREES_25" 
+                            id="25" 
+                            refs="roof_inclination"
+                            name="roof_inclination"   
+                            onChange={this.props.handleChange('roof_inclination')} 
+                            // checked={this.state.roof_inclination === "DEGREES_25"} 
+                          
+                            />
                             <span className="radio_label">25</span>
                             <p className="radio_image">
                                 <img src={require('./images/25.png')} alt="" className=""/>
@@ -169,8 +213,15 @@ class Homedetails extends Component {
                     </div>
                     </div>
                     <div className="col-md-2 col-sm-6">
-                        <div className="radio_box inputGroup" for="30"> 
-                            <input type="radio" value="30" id="30" name="roof_inclination"  ref="roof_inclination"  onChange={this.props.handleChange('roof_inclination')} />
+                        <div className="radio_box inputGroup" > 
+                            <input type="radio"
+                             value="DEGREES_30" 
+                             id="30" 
+                             name="roof_inclination"  
+                             onChange={this.props.handleChange('roof_inclination')}
+                            //  checked={this.state.roof_inclination === "DEGREES_30"}                          
+                          
+                              />
                             <span className="radio_label">30</span>
                             <p className="radio_image">
                                 <img src={require('./images/30.png')} alt="" className=""/>
@@ -178,8 +229,15 @@ class Homedetails extends Component {
                     </div>
                     </div>
                     <div className="col-md-2 col-sm-6"> 
-                        <div className="radio_box inputGroup" for="35">
-                            <input type="radio" value="35" id="35" name="roof_inclination"  ref="roof_inclination" onChange={this.props.handleChange('roof_inclination')}/>
+                        <div className="radio_box inputGroup">
+                            <input type="radio" 
+                            value="DEGREES_35" 
+                            id="35" 
+                            name="roof_inclination"   
+                            onChange={this.props.handleChange('roof_inclination')}
+                            // checked={this.state.roof_inclination === "DEGREES_35"}                          
+                          
+                            />
                              <span className="radio_label">35</span>
                             <p className="radio_image">
                                 <img src={require('./images/35.png')} alt="" className=""/>
@@ -187,8 +245,15 @@ class Homedetails extends Component {
                     </div>
                     </div>
                     <div className="col-md-2 col-sm-6">
-                        <div className=" radio_box inputGroup" for="45">
-                            <input type="radio" value="45" id="45" name="roof_inclination"  ref="roof_inclination"  onChange={this.props.handleChange('roof_inclination')}  />
+                        <div className=" radio_box inputGroup">
+                            <input type="radio" 
+                            value="DEGREES_45 " 
+                            id="45"
+                             name="roof_inclination"    
+                             onChange={this.props.handleChange('roof_inclination')}                              
+                             checked={localStorage.getItem('roof_inclination')==="DEGREES_45"}                          
+                          
+                              />
                             <span className="radio_label">45</span>
                             <p className="radio_image">
                                 <img src={require('./images/45.png')} alt="" className=""/>
@@ -196,12 +261,12 @@ class Homedetails extends Component {
                     </div>
                     </div>
                     </div>
-
+                    <p className="error_font" style={{textAlign:'right'}}>{this.state.errors["roof_error"]}</p>
                     </div>
                     <div className="col-md-3">
                         <p className="img_compass">
                         {/* <img src={require('./images/n_compass.png')} alt="" className=""/> */}
-                        <img src={NormalCompass} className="" circle  />
+                        <img src={NormalCompass} circle />
                        
                         </p>
 
@@ -308,7 +373,10 @@ class Homedetails extends Component {
                 </div>
                 <div className="col-md-2 text-center">    
                 <div className="next_section">
-                <button onClick={this.continue} className="btn btn_next pull_right">Next  </button>
+                <button type="submit"
+                // onClick={this.continue} 
+                className="btn btn_next pull_right">Next  </button>
+               
                 </div>                 
                
                 </div> 

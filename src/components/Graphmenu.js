@@ -9,18 +9,18 @@ class Graphmenu extends Component {
                     <div className="row" style={{marginTop:'10px'}}>
                         <div className="col-md-4">
                             <div className="tab_box_1">
-                                <p><a href="#">Economic Analysis</a></p>
+                                <p><a href="/Economicgraph">Economic Analysis</a></p>
                             </div>
                             
                         </div>
                         <div className="col-md-4">
                         <div className="tab_box_2">
-                                <p><a href="#">Emission Analysis</a></p>
+                                <p><a href="/Emission">Emission Analysis</a></p>
                             </div>
                         </div>
                         <div className="col-md-4">
                         <div className="tab_box_3">
-                                <p><a href="#">Energetic Analysis</a></p>
+                                <p><a href="/Energetic">Energetic Analysis</a></p>
                             </div>
                         </div>
                     </div>
