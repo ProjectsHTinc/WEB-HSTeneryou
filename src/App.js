@@ -27,8 +27,8 @@ class App extends Component {
         <BrowserRouter>
         <div>       
         <Switch>
-          {/* <Route path="/" component={Homepage} exact /> */}
-          <Route path="/" component={Form}  />
+          <Route path="/" component={Homepage} exact />
+          <Route path="/Form" component={Form}  />
           <Route path="/Homedetails" component={Homedetails}  />
           <Route path="/Person" component={Person}  />
           <Route path="/Product" component={Product}  />
@@ -36,7 +36,6 @@ class App extends Component {
           <Route path="/Economicgraph" component={Economicgraph}  />
           <Route path="/Emission" component={Emission} />
           <Route Path="/Energetic" component={Energetic} />
-
           <Route path="/Graph_1" component={Graph_1}  />
           <Route  component={Error} />
 
