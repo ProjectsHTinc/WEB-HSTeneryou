@@ -30,14 +30,14 @@ class Product extends Component {
 
     render(){
 
-        // const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
+        const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
 
         return(
             <div className="container-fluid wrapper">
             <Header/>
 
                 <div className="container">
-                  {/* {roof_inclination}{living_area}{post_code}{directionChange}{construction_year}{person_count}{power_consumption}{energy_demand}{yearlyGasDemand}{yearlyEnergyDemand}{yearlyEnergyDemandOnWater}{budget_value} */}
+                  {roof_inclination}{living_area}{post_code}{directionChange}{construction_year}{person_count}{power_consumption}{energy_demand}{yearlyGasDemand}{yearlyEnergyDemand}{yearlyEnergyDemandOnWater}{budget_value}
                   <h4 className="form_heading">Product Recommendation  </h4>
                   <div className="row product_recommendation">
                         <div className="col-md-4 col-sm-12">
