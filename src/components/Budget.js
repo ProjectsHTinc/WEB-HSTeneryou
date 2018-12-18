@@ -65,7 +65,7 @@ class Budget extends Component {
 
                   <div className="">
                     <div className="row energy_form">
-                        <p className="budget_font">Budget</p>
+                        <p className="budget_font">Budgetobergrenze (€)</p>
                         <div className="budget_icon">
                             <img src={euro_icon} circle className="coin_img" id="coin_spin"/>   
                         </div>
@@ -73,7 +73,7 @@ class Budget extends Component {
                             <input type="text" name="budget_value" onChange={this.props.handleChange('budget_value')} className="budget_price" placeholder='Price' />
                         </div>
                         <div className="form_btn">
-                            <button  onClick={this.continue}  className="btn btn_submit">Submit Here</button>
+                            <button  onClick={this.continue}  className="btn btn_submit">Speichern</button>
                         </div>
                       
 

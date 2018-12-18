@@ -9,22 +9,20 @@ export class Mainform extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            step:1,
-            roof_inclination :'',
+            step:3,
+            roof_inclination :'DEGREES_0',
             living_area:'',
             post_code:'',
             directionChange:'',
             construction_year:'',
             person_count:'',
             power_consumption:'',
-            energy_demand:'',
+            energy_demand:'CONSTRUCTION_YEAR',
             yearlyGasDemand:'',
             yearlyEnergyDemand:'',
             yearlyEnergyDemandOnWater:'',
             budget_value:'',
-                    
-            // roof :'',
-
+  
         }
        
       
@@ -51,22 +49,19 @@ export class Mainform extends Component{
 
     handleChange = input => event => {
        
-        // this.setState({ [input] : event.target.value });
-        // this.props.onChange({ [event.target.name] : event.target.value });
+      
         this.setState({ [input] : event.target.value });
         localStorage.setItem( [input] , event.target.value);
-    
+       
              
         
 
     }
+   
 
 
 
-    onStarClick(nextValue, prevValue, name) {
-        this.setState({rating: nextValue});
-       
-      }
+ 
 
     
 

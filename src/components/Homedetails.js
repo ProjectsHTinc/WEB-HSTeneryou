@@ -24,16 +24,17 @@ class Homedetails extends Component {
         this.state = {
             step :1,
             NormalCompass:east,
-            roof_inclination:'DEGREES_30',
+            roof_inclination:'',
             living_area:'',
             post_code:'',
             roof_error:'',
-            direction:'',
+            directionChange:'',
+            house_con_year:'',          
             fields: {},
             errors: {},
            
         };
-      
+       
              
     }
     
@@ -45,26 +46,27 @@ class Homedetails extends Component {
         let formIsValid = true;
         let post_code=this.post_code.value; 
         let living_area=this.living_area.value;   
-        // let directionChange=this.directionChange.value;         
-       
-        // if(this.state.roof_inclination){
-        //     formIsValid = false;
-        //     errors["roof_error"] = "Select Roof Direction";
-        // }
+        let directionChange=this.refs.direction_compass.value;       
+        let house_con_year=this.refs.house_construction_year.value;
+   
 
-        // if(!post_code){
-        //    formIsValid = false;
-        //    errors["post_code"] = "Enter Post Code";           
-        // } 
-        // if(!living_area){
-        //     formIsValid = false;
-        //     errors["living_area"] = "Enter living Area";           
-        //  }  
+        if(!post_code){
+           formIsValid = false;
+           errors["post_code"] = "Enter Post Code";           
+        } 
+        if(!living_area){
+            formIsValid = false;
+            errors["living_area"] = "Enter living Area";           
+         }  
     
-        //  if(!directionChange){
-        //     formIsValid = false;
-        //     errors["directionChange"] = "Select Direction";           
-        //  }  
+         if(!directionChange){
+            formIsValid = false;
+            errors["directionChange"] = "Select Direction";           
+         } 
+         if(!house_con_year){
+            formIsValid = false;
+            errors["house_con_year"] = "Select Year";           
+         }  
     
     
        this.setState({errors: errors});
@@ -74,17 +76,13 @@ class Homedetails extends Component {
 
     continue = e => {
         let fields = this.state.fields;
-         e.preventDefault();
-         this.props.nextStep();
-        // alert(this.state.roof_inclination);
-        // this.props.nextStep();
-      
-        // if(this.handleValidation()){ 
-         
-        //     this.props.nextStep();
-        //  }else{           
-        //    alert("error");
-        //  }        
+         e.preventDefault();   
+        
+        if(this.handleValidation()){          
+            this.props.nextStep();
+         }else{           
+           alert("error");
+         }        
     }
 
  
@@ -93,7 +91,8 @@ class Homedetails extends Component {
 
     direction_call = (event) => {
         let directionval=event.target.value;  
-        // alert(directionval)     
+        // alert(directionval)   
+    
         localStorage.setItem('direct',directionval)
         if(directionval==='east'){            
             this.setState({ NormalCompass: east });
@@ -115,7 +114,9 @@ class Homedetails extends Component {
 
     componentDidMount(){
         // Direction function
-        let directionval=localStorage.getItem('direct');
+        // let directionval=localStorage.getItem('direct');
+        const {values: {directionChange }} = this.props;
+        let directionval=directionChange;
         if(directionval==='east'){            
             this.setState({ NormalCompass: east });
         }else if(directionval==='west'){
@@ -141,9 +142,9 @@ class Homedetails extends Component {
     render() {
 
         const { options, NormalCompass } = this.state;
-        const { values } = this.props
-
-   
+        const { values } = this.props      
+       
+        const {roof} = this.state
 
 
     return (
@@ -170,9 +171,8 @@ class Homedetails extends Component {
                             id ="0"
                             name="roof_inclination"  
                             onChange={this.props.handleChange('roof_inclination')} 
-                            // onChange={this.radioChange} 
-                            
-                            // checked={this.state.roof_inclination === "DEGREES_0"}
+                            checked={values.roof_inclination == "DEGREES_0"}
+                           
                              /> 
                             <span className="radio_label"> 0</span>
                             <p className="radio_image">
@@ -187,7 +187,7 @@ class Homedetails extends Component {
                              name="roof_inclination"  
                              id="15"    
                              onChange={this.props.handleChange('roof_inclination')} 
-                            //  checked={this.state.roof_inclination === "DEGREES_15"}
+                             checked={values.roof_inclination == "DEGREES_15"}
                               /> 
                             <span className="radio_label">15</span>
                             <p className="radio_image">
@@ -199,12 +199,11 @@ class Homedetails extends Component {
                         <div className="radio_box inputGroup" >
                             <input type="radio" 
                             value="DEGREES_25" 
-                            id="25" 
+                           
                             refs="roof_inclination"
                             name="roof_inclination"   
                             onChange={this.props.handleChange('roof_inclination')} 
-                            // checked={this.state.roof_inclination === "DEGREES_25"} 
-                          
+                            checked={values.roof_inclination == "DEGREES_25"}
                             />
                             <span className="radio_label">25</span>
                             <p className="radio_image">
@@ -219,8 +218,8 @@ class Homedetails extends Component {
                              id="30" 
                              name="roof_inclination"  
                              onChange={this.props.handleChange('roof_inclination')}
-                            //  checked={this.state.roof_inclination === "DEGREES_30"}                          
-                          
+                                             
+                             checked={values.roof_inclination == "DEGREES_30"}
                               />
                             <span className="radio_label">30</span>
                             <p className="radio_image">
@@ -235,8 +234,7 @@ class Homedetails extends Component {
                             id="35" 
                             name="roof_inclination"   
                             onChange={this.props.handleChange('roof_inclination')}
-                            // checked={this.state.roof_inclination === "DEGREES_35"}                          
-                          
+                            checked={values.roof_inclination == "DEGREES_35"}
                             />
                              <span className="radio_label">35</span>
                             <p className="radio_image">
@@ -247,12 +245,12 @@ class Homedetails extends Component {
                     <div className="col-md-2 col-sm-6">
                         <div className=" radio_box inputGroup">
                             <input type="radio" 
-                            value="DEGREES_45 " 
+                            value="DEGREES_45" 
                             id="45"
                              name="roof_inclination"    
                              onChange={this.props.handleChange('roof_inclination')}                              
-                             checked={localStorage.getItem('roof_inclination')==="DEGREES_45"}                          
-                          
+                                                  
+                             checked={values.roof_inclination == "DEGREES_45"}
                               />
                             <span className="radio_label">45</span>
                             <p className="radio_image">
@@ -289,12 +287,24 @@ class Homedetails extends Component {
                    onChange={this.construction_year} 
                    onClick={this.props.handleChange('construction_year')}                    
                    defaultValue={values.construction_year} 
+                   ref="house_construction_year" 
                   >
-                        <option value=" ">Select-Year</option>
-                        <option value="B">Banana</option>
-                        <option value="C">Cranberry</option>
+                        <option value="">Bitte auswählen</option>
+                        <option value="UP_TO1859">bis 1859</option>
+                        <option value="CFROM_1860_TO1918">von 1860 bis 1918</option>
+                        <option value="FROM1919_TO1948">von 1919 bis 1948</option>
+                        <option value="FROM1949_TO1957">von 1949 bis 1957</option>
+                        <option value="FROM1958_TO1968">von 1958 bis 1968</option>
+                        <option value="FROM1969_TO1978">von 1969 bis 1978</option>
+                        <option value="FROM_1979_TO1983">von 1979 bis 1983</option>
+                        <option value="FROM1984_TO1994">von 1984 bis 1994</option>
+                        <option value="FROM1995_TO2001">von 1995 bis 2001</option>
+                        <option value="FROM2002_TONOW ">seit 2002</option>
+                       
                 </select>
+                
                 </div>
+                <p className="error_font" style={{textAlign:'center'}}>{this.state.errors["house_con_year"]}</p>
                 <div className="character_img">
                     <p> <img src={Character} className="" circle  /></p>
                  </div>
@@ -307,7 +317,8 @@ class Homedetails extends Component {
                  backgroundRepeat: 'no-repeat' } }>
                  <div className="living_box">
                  <label className="living_label">Living Area</label>
-                        <input type="text" name="living_area" className="living_textbox" placeholder='living_area' ref={(living_area) => this.living_area = living_area}
+                        <input type="text" name="living_area" className="living_textbox" 
+                        placeholder='' ref={(living_area) => this.living_area = living_area}
                         onChange={this.props.handleChange('living_area')}
                         defaultValue={values.living_area}/>
                           <p className="error_font" style={{textAlign:'right'}}>{this.state.errors["living_area"]}</p>
@@ -320,7 +331,8 @@ class Homedetails extends Component {
                     <select className="direction_drop_box " name="directionChange"
                     onChange={this.direction_call} 
                     onClick={this.props.handleChange('directionChange')}                    
-                    defaultValue={values.directionChange}               
+                    defaultValue={values.directionChange} 
+                    ref="direction_compass"              
                      >
                             <option value="">Select-Direction</option>
                             <option value="east">East</option>
@@ -340,7 +352,8 @@ class Homedetails extends Component {
                  </div>
                  <div className="post_text_box">
                  <label className="post_code_text">Post Code</label>
-                        <input type="text" name="post_code" className="post_textbox"  placeholder='post_code' ref={(post_code) => this.post_code = post_code}
+                        <input type="text" name="post_code" className="post_textbox"  maxlength='5' minLength='5'  
+                         placeholder='' ref={(post_code) => this.post_code = post_code}
                         onChange={this.props.handleChange('post_code')}
                         defaultValue={values.post_code}/>
                         <p className="error_font">{this.state.errors["post_code"]}</p>

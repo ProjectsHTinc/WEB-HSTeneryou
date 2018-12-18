@@ -3,6 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { Line } from 'rc-progress';
 import StarRatingComponent from 'react-star-rating-component';
+
+import Rating  from 'react-rating';
 import 'font-awesome/css/font-awesome.min.css'
 
 import progress_img from './images/progress_home.png';
@@ -11,17 +13,18 @@ import electric_img from './images/house_int.png';
 import electric_board from './images/electric_board.png';
 import electric_symbol from './images/electric_symbol.png';
 
+import select from './images/select.png';
+import unselect from './images/unselect.png';
 
 class Persondetail extends Component {
     constructor(props){
         super(props)
         this.state = {
             step :2,
-            rating: 0,
-            rating_half_star:0,
-            person_count:'',
+            person:localStorage.getItem('person_count'),
             power_consumption:'',
             power_val:'',
+            star_errors:'',
       
            
         };
@@ -31,18 +34,18 @@ class Persondetail extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        let star_val=this.state.rating_half_star;        
+        let star_val=localStorage.getItem('person_count');        
         let power_val=this.power_consumption.value;  
        
-        // if(star_val=='0'){
-        //     formIsValid = false;
-        //     this.setState({ star_errors: "Select the Person" });         
-        //  } 
+        if(star_val=='0' || star_val==null){
+            formIsValid = false;
+            this.setState({ star_errors: "Select the Person" });         
+         } 
 
-        //  if(power_val==''){
-        //     formIsValid = false;
-        //     this.setState({ power_error: "Power Error" }); 
-        //  }
+         if(power_val==''){
+            formIsValid = false;
+            this.setState({ power_error: "Power Error" }); 
+         }
 
 
         this.setState({errors: errors});
@@ -50,13 +53,9 @@ class Persondetail extends Component {
 
     }
 
-    onStarClick(nextValue, prevValue, name) {
-        this.setState({rating_half_star: nextValue});
-        localStorage.setItem('no_of_person',this.state.rating_half_star);
-      }
 
       continue = e => {
-        e.preventDefault();
+        e.preventDefault();       
         if(this.handleValidation()){        
             this.props.nextStep();         
            
@@ -71,16 +70,20 @@ class Persondetail extends Component {
         this.props.prevStep();
     }
    
-      
+    handleRate (rate) {
+        this.setState({ person: rate });
+        localStorage.setItem("person_count",rate);
+      }
+  
     render() {
-        const { rating_half_star,selectedOption } = this.state;
-           const { values } = this.props
+        const { rating_half_star,person } = this.state;
+        const { values } = this.props
 
     return (
         <div className="container-fluid wrapper">
         <Header/>
         <div className="container">
-        <h4 className="form_heading">My Electricity Demand  {selectedOption} </h4>
+        <h4 className="form_heading">My Electricity Demand  </h4>
         <form>
 
                 {/* Form section starts here */}
@@ -98,33 +101,19 @@ class Persondetail extends Component {
 
                     <div className="p_box">
                         <div className="p_form_label">
-                         No.Of.Person
+                        Personenanzahl
                         
                         </div>
-                        <span className="p_icon">  
-                        <StarRatingComponent 
-                                            name="person_count"
-                                            className=""                                                                                  
-                                            onStarClick={this.props.handleChange('person_count')}
-                                            starCount={6}
-                                            starColor='#2171b9'
-                                            emptyStarColor="#a7a9ac"
-                                            // value={rating}
-                                            value={this.state.rating_half_star}
-                                            renderStarIcon={(index, value) => {
-                                                return (
-                                                  <span>
-                                                    <i className={index <= value ? 'fa fa-user person_ic' : 'fa fa-user person_ic'} />
-                                                  </span>
-                                                );
-                                              }}                                        
-                                            renderStarIcon={() => <span className="person_icon">
-                                            
-                                             <i class="fa fa-user person_ic"></i>
-                                             </span>}
-                                            onStarClick={this.onStarClick.bind(this)}
-                                        /></span>
-                    <div className="p_form_label" style={{marginLeft:'20px',borderLeft:'3px solid #2171b9'}}>{rating_half_star}</div>
+                        <span className="p_icon"> 
+                       
+<Rating name="person"  stop={6} initialRating={localStorage.getItem('person_count')}
+ emptySymbol={<img src={unselect} className="icon" />}
+ fullSymbol={<img src={select} className="icon" />}
+  onChange={rate => this.handleRate(rate)}
+/>
+                    
+                                        </span>
+                    <div className="p_form_label" style={{borderLeft:'3px solid #2171b9'}}>{person}</div>
                     
                     </div>
                     <p style={{marginTop:'20px'}} className="error_font">{this.state.star_errors}</p>

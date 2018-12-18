@@ -22,10 +22,13 @@ class Enerydemand extends Component {
             step :3,
             energy_demand:'',
             energy_val:'', 
-          
-                    
-            // fields: {},
-            // errors: {}
+            gas_section:'disable_gas',
+            energy_section: "disable_gas",
+            yearlyEnergyDemand:'',
+            yearlyGasDemand:'',
+            yearlyGasDemand_error:'', 
+            fields: {},
+            errors: {},
            
         };
     }
@@ -36,8 +39,27 @@ class Enerydemand extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-       
-       
+        const {values: {energy_demand }} = this.props;
+        if(energy_demand=='GAS_OR_OIL_BILL'){
+            let yearlyGasDemand=this.yearlyGasDemand.value;
+            if(!yearlyGasDemand){
+            formIsValid = false;
+            errors["yearlyGasDemand"] = "Enter yearlyGasDemand";
+           }
+           
+        }
+        if(energy_demand=='ENERGY_CERTIFICATE'){
+            let yearlyEnergyDemand=this.yearlyEnergyDemand.value;
+            let yearlyEnergyDemandOnWater=this.yearlyEnergyDemandOnWater.value;
+            if(!yearlyEnergyDemand){
+            formIsValid = false;
+            errors["yearlyEnergyDemand"] = "Enter yearlyEnergyDemand";
+           }
+           if(!yearlyEnergyDemandOnWater){
+            formIsValid = false;
+            errors["yearlyEnergyDemandOnWater"] = "Enter yearlyEnergyDemandOnWater";
+           }
+        }
         
       
 
@@ -46,14 +68,13 @@ class Enerydemand extends Component {
     }
 
     continue = e => {
-        e.preventDefault();
-        this.props.nextStep();    
-        // if(this.handleValidation()){        
-        //     this.props.nextStep();    
+        e.preventDefault();       
+        if(this.handleValidation()){        
+            this.props.nextStep();    
                
-        // }else{
+        }else{
             
-        // }
+        }
         
     }
     
@@ -62,10 +83,43 @@ class Enerydemand extends Component {
         this.props.prevStep();
     }
  
+    Gasfunction(){
+      
+        this.setState({ gas_section: "" });
+        this.setState({ energy_section: "disable_gas" });
+    }
 
+    energyFunction(){
+          
+        this.setState({ energy_section: "" });
+        this.setState({ gas_section: "disable_gas" });
+    }
+    conYear(){
+        this.setState({ gas_section: "disable_gas" });
+        this.setState({ energy_section: "disable_gas" });
+    }
+
+    componentDidMount(){
+        const {values: {energy_demand }} = this.props;
+        
+        if(energy_demand=='CONSTRUCTION_YEAR'){
+            this.setState({ gas_section: "disable_gas" });
+            this.setState({ energy_section: "disable_gas" });
+        }else if(energy_demand=='GAS_OR_OIL_BILL'){
+            this.setState({ gas_section: "" });
+            this.setState({ energy_section: "disable_gas" });
+        }else if(energy_demand=='ENERGY_CERTIFICATE'){
+            this.setState({ energy_section: "" });
+            this.setState({ gas_section: "disable_gas" });
+        }else{
+            this.setState({ gas_section: "disable_gas" });
+            this.setState({ energy_section: "disable_gas" });
+        }
+    }
     render() {
         // const { job,validate } = this.state;
         const { values } = this.props
+       
 
     return (
         <div className="container-fluid wrapper">
@@ -95,7 +149,13 @@ class Enerydemand extends Component {
                         <div className="col-md-4">
                             <div className="enery_group">
                                   <div className="radio_value">
-                                        <input type="radio" name="energy_demand"  value="CONSTRUCTION_YEAR" onChange={this.props.handleChange('energy_demand')}/>
+                                                <input type="radio"
+                                                    name="energy_demand"
+                                                    value="CONSTRUCTION_YEAR"
+                                                    onChange={this.props.handleChange('energy_demand')}
+                                                    checked={values.energy_demand == "CONSTRUCTION_YEAR"}
+                                                    onClick={this.conYear.bind(this)}
+                                                />
                                   </div>
                                   <div className="enery_icon">
                                          <img src={con_year} circle className=""/>
@@ -108,42 +168,69 @@ class Enerydemand extends Component {
                         <div className="col-md-4">
                         <div className="enery_group">
                                   <div className="radio_value">
-                                        <input type="radio" name="energy_demand" value="GAS_OR_OIL_BILL" onChange={this.props.handleChange('energy_demand')}  />
-                                  </div>  
+                                                <input type="radio" 
+                                                name="energy_demand"
+                                                 value="GAS_OR_OIL_BILL"
+                                                  onChange={this.props.handleChange('energy_demand')} 
+                                                  checked={values.energy_demand == "GAS_OR_OIL_BILL"}
+                                                  onClick={this.Gasfunction.bind(this)}
+                                                  />
+                                  </div>
                                   <div className="enery_icon">
                                      <img src={gas_bill} circle className=""/>
                                   </div>  
                                   <div className="enery_label">
                                   <p className="label_demand">Gas Bill or Oil bill</p>
                                   </div>    
-                                  <div className="gas_oil_section">
+                                  <div className="gas_oil_section" id={this.state.gas_section}>
                                     <p className="label_demand_value_label">Yearly Gas/Oil Consumption  <br></br> (kWh/a)</p>
-                                    <p><input type="text" name="yearlyGasDemand"  onChange={this.props.handleChange('yearlyGasDemand')} defaultValue={values.yearlyGasDemand} /></p>
+                                    <p><input type="text" 
+                                    name="yearlyGasDemand" 
+                                    ref={(yearlyGasDemand) => this.yearlyGasDemand = yearlyGasDemand}
+                                    onChange={this.props.handleChange('yearlyGasDemand')} 
+                                    defaultValue={values.yearlyGasDemand} /></p>
                                   </div>
+                                  <p  className="error_font">{this.state.errors["yearlyGasDemand"]}</p>
                             </div>
                         </div>
                         <div className="col-md-4">
-                        <div className="enery_group">
-                                  <div className="radio_value">
-                                        <input type="radio" name="energy_demand" value="ENERGY_CERTIFICATE" onChange={this.props.handleChange('energy_demand')}/>
-                                  </div>
-                                  <div className="enery_icon">
-                                  <img src={certificate} circle className=""/>
-                                  </div>  
-                                  <div className="enery_label">
-                                  <p className="label_demand">Energy Certificate</p>
-                                  </div>  
-                                  <div className="gas_oil_section">
-                                    <p className="label_demand_value_label">Energy Consumption <br></br> (kWh/a)</p>
-                                    <p><input type="text" name="yearlyEnergyDemand" onChange={this.props.handleChange('yearlyEnergyDemand')}
-                        defaultValue={values.yearlyEnergyDemand}/></p>
-                                    <p className="label_demand_value_label">Hot Water Share <br></br> (kWh/a)</p>
-                                    <p><input type="text" name="yearlyEnergyDemandOnWater" onChange={this.props.handleChange('yearlyEnergyDemandOnWater')}
-                        defaultValue={values.yearlyEnergyDemandOnWater}/></p>
-                                  </div> 
-                            </div>
+                                        <div className="enery_group">
+                                            <div className="radio_value">
+                                                <input type="radio"
+                                                    name="energy_demand"
+                                                    value="ENERGY_CERTIFICATE"
+                                                    onChange={this.props.handleChange('energy_demand')}
+                                                    checked={values.energy_demand == "ENERGY_CERTIFICATE"}
+                                                    onClick={this.energyFunction.bind(this)}
+                                                />
+                                            </div>
+                                            <div className="enery_icon">
+                                                <img src={certificate} circle className="" />
+                                            </div>
+                                            <div className="enery_label">
+                                                <p className="label_demand">Energy Certificate</p>
+                                            </div>
+                                            <div className="energy_section" id={this.state.energy_section}>
+                                                <p className="label_demand_value_label">Energy Consumption <br></br> (kWh/a)</p>
+                                                <p><input type="text" 
+                                                name="yearlyEnergyDemand" 
+                                                onChange={this.props.handleChange('yearlyEnergyDemand')}
+                                                defaultValue={values.yearlyEnergyDemand} 
+                                                ref={(yearlyEnergyDemand) => this.yearlyEnergyDemand = yearlyEnergyDemand}                                             
+                                                    /></p>
+                                             <p  className="error_font">{this.state.errors["yearlyEnergyDemand"]}</p>
+                                                <p className="label_demand_value_label">Hot Water Share <br></br> (kWh/a)</p>
+                                                <p><input type="text"
+                                                 name="yearlyEnergyDemandOnWater"
+                                                 ref={(yearlyEnergyDemandOnWater) => this.yearlyEnergyDemandOnWater = yearlyEnergyDemandOnWater}
+                                                  onChange={this.props.handleChange('yearlyEnergyDemandOnWater')}
+                                                    defaultValue={values.yearlyEnergyDemandOnWater}
+                                                 /></p>
+                                                  <p  className="error_font">{this.state.errors["yearlyEnergyDemandOnWater"]}</p>
+                                            </div>
+                                        </div>
                         </div>
-                        <p className="energy_demand_text error_font">{this.state.enery_demand_error}</p>
+                        <p className="energy_demand_text error_font">{this.state.yearlyEnergyDemand_error}</p>
                     </div>
                   </div>
 

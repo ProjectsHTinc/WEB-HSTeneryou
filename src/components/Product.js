@@ -24,7 +24,7 @@ class Product extends Component {
         const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
         let var_1=roof_inclination;
         alert(var_1);
-        
+        alert(localStorage.getItem('person_count'));
        
     }
 
