@@ -54,11 +54,39 @@ class Homedetails extends Component {
            formIsValid = false;
            errors["post_code"] = "Enter Post Code";           
         } 
-        if(!living_area){
+
+        if (!post_code.match(/^[0-9]{5}$/)) {
+            formIsValid = false;
+            errors["post_code"] = "*Enter only numbers";
+          }
+
+         if (living_area.length <= 1) {
+            formIsValid = false;
+            errors["living_area"] = "*Numbers with  Max 2 Characters";
+          }
+         
+          if (living_area <= 49) {
+            formIsValid = false;
+            errors["living_area"] = "*Greater Than 50";
+          }
+          if (living_area >= 301) {
+            formIsValid = false;
+            errors["living_area"] = "*Not more  Than 300";
+          }
+          if (living_area.length > 3) {
+            formIsValid = false;
+            errors["living_area"] = "*Numbers with  Max 3 Characters";
+          }
+          if (!living_area.match(/^[1-9][0-9]*$/)) {
+            formIsValid = false;
+            errors["living_area"] = "*Numbers ";
+          }
+          if(!living_area){
             formIsValid = false;
             errors["living_area"] = "Enter living Area";           
-         }  
-    
+         } 
+       
+
          if(!directionChange){
             formIsValid = false;
             errors["directionChange"] = "Select Direction";           
@@ -81,7 +109,7 @@ class Homedetails extends Component {
         if(this.handleValidation()){          
             this.props.nextStep();
          }else{           
-           alert("error");
+           //alert("error");
          }        
     }
 
@@ -91,21 +119,19 @@ class Homedetails extends Component {
 
     direction_call = (event) => {
         let directionval=event.target.value;  
-        // alert(directionval)   
-    
         localStorage.setItem('direct',directionval)
-        if(directionval==='east'){            
+        if(directionval==='EAST'){            
             this.setState({ NormalCompass: east });
-        }else if(directionval==='west'){
+        }else if(directionval==='WEST'){
             this.setState({ NormalCompass: west });
-        }else if(directionval==='south_west'){
+        }else if(directionval==='SOUTHWEST'){
             this.setState({ NormalCompass: south_west });
-        }else if(directionval==='south_east'){
+        }else if(directionval==='SOUTHEAST'){
             this.setState({ NormalCompass: south_east });
-        }else if(directionval==='south'){
+        }else if(directionval==='SOUTH'){
             this.setState({ NormalCompass: south });
         }else{
-            // this.setState({ NormalCompass: east });
+        
             this.setState({ NormalCompass: compass });
         }
        
@@ -113,19 +139,18 @@ class Homedetails extends Component {
     };
 
     componentDidMount(){
-        // Direction function
-        // let directionval=localStorage.getItem('direct');
+      
         const {values: {directionChange }} = this.props;
         let directionval=directionChange;
-        if(directionval==='east'){            
+        if(directionval==='EAST'){            
             this.setState({ NormalCompass: east });
-        }else if(directionval==='west'){
+        }else if(directionval==='WEST '){
             this.setState({ NormalCompass: west });
-        }else if(directionval==='south_west'){
+        }else if(directionval==='SOUTHWEST'){
             this.setState({ NormalCompass: south_west });
-        }else if(directionval==='south_east'){
+        }else if(directionval==='SOUTHEAST'){
             this.setState({ NormalCompass: south_east });
-        }else if(directionval==='south'){
+        }else if(directionval==='SOUTH'){
             this.setState({ NormalCompass: south });
         }else{
             this.setState({ NormalCompass: compass });
@@ -335,11 +360,11 @@ class Homedetails extends Component {
                     ref="direction_compass"              
                      >
                             <option value="">Select-Direction</option>
-                            <option value="east">East</option>
-                            <option value="west">West</option>
-                            <option value="south">South</option>
-                            <option value="south_east">South-East</option>
-                            <option value="south_west">South-West</option>
+                            <option value="EAST">East</option>
+                            <option value="WEST">West</option>
+                            <option value="SOUTH">South</option>
+                            <option value="SOUTHEAST">South-East</option>
+                            <option value="SOUTHWEST">South-West</option>
                     </select>
                     <p className="error_font">{this.state.errors["directionChange"]}</p>
                     
@@ -352,9 +377,10 @@ class Homedetails extends Component {
                  </div>
                  <div className="post_text_box">
                  <label className="post_code_text">Post Code</label>
-                        <input type="text" name="post_code" className="post_textbox"  maxlength='5' minLength='5'  
+                        <input type="text"   name="post_code" className="post_textbox"  maxlength='5' minLength='5'  
                          placeholder='' ref={(post_code) => this.post_code = post_code}
                         onChange={this.props.handleChange('post_code')}
+                        
                         defaultValue={values.post_code}/>
                         <p className="error_font">{this.state.errors["post_code"]}</p>
                    </div>
