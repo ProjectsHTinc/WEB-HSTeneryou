@@ -24,57 +24,9 @@ class Product extends Component {
 
     componentDidMount(){
         const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
-
-        localStorage.setItem("budgetInput",budget_value);
-        alert(localStorage.getItem('budgetInput'));
-       // let var_1=roof_inclination;
-       //  alert(var_1);
-       //  alert(local_person_count);
         let local_person_count = localStorage.getItem('person_count');
-        //let local_directionChange = "SOUTH";
-        // var data = {
-        //     "building": {
-        //          "postalCode": "20146",
-        //          "constructionYear": "FROM1969_TO1978",
-        //          "livingSpace": 150,
-        //       "roofAlignment": "SOUTH",
-        //       "roofTilt": "DEGREES_25"
-        //     },
-        //     "energyDemand": {
-        //          "personCount": 3,
-        //       "energyDemand": 3004,
-        //       "headingDemandType": "CONSTRUCTION_YEAR"
-        //     }
-        //   }
-        // var data = {
-        //     "building": {
-        //        "postalCode": "20146",
-        //        "constructionYear": "FROM1969_TO1978",
-        //        "livingSpace": 150,
-        //       "roofAlignment": "SOUTH",
-        //       "roofTilt": "DEGREES_25"
-        //     },
-          
-        //     "energyDemand": {
-        //       "personCount": 3,
-        //       "energyDemand": 3004,
-        //       "headingDemandType": "GAS_OR_OIL_BILL",
-        //       "yearlyGasDemand": 7000
-        //     }
-        //   }
-        //     var data = { "building": {
-        //       "postalCode": "88430",
-        //       "roofAlignment": "SOUTHEAST",
-        //       "roofTilt": "DEGREES_15"
-        //     },
-        //     "energyDemand": {
-        //       "energyDemand": 5004,
-        //       "headingDemandType": "ENERGY_CERTIFICATE",
-        //       "yearlyEnergyDemand": 7005,
-        //       "yearlyEnergyDemandOnWater": 4572
-        //     }
-        //   }
-
+        //localStorage.setItem("budgetInput",budget_value);
+    
       if (energy_demand === 'CONSTRUCTION_YEAR'){
         var data = {
             "building": {
@@ -139,17 +91,16 @@ class Product extends Component {
                 
                 if (response.status === 200) {
                     response.json().then(response_data => {
-                       // console.log(response_data);
-                        this.setState({ 
+                     this.setState({ 
                             recommentations_value: response_data.recommentations, 
                             systemCombinations_value:response_data.systemCombinations,
                             loading: true 
                             });
                     });
                 } else if (response.status === 400) {
-                    response.json().then(response_data => {
+                            response.json().then(response_data => {
                         // console.log(response_data);
-                         this.setState({ 
+                            this.setState({ 
                              });
                      });
                     alert("invalid input values")
@@ -201,7 +152,6 @@ class Product extends Component {
                         let price_1 = products_1[j]['price'];
                         //let productCode_1 = products_1[j]['productCode'];
                         let productName_1 = products_1[j]['productName'];
-                        // recommentations_list_1.push(componentName_1,logoPath_1,price_1,productCode_1,productName_1);
                         recommentations_list_1.push(<div className="row"><div className="col-md-4 col-sm-4"><p>{componentName_1}</p></div><div className="col-md-4 col-sm-4"><p>{productName_1}</p></div><div className="col-md-4 col-sm-4"><p>{price_1} € </p></div></div>);
                     }
             }
@@ -348,12 +298,15 @@ class Product extends Component {
 			})
             graph_7 = graph_7_1.concat(graph_7_2);
             
-            localStorage.setItem("graph1", JSON.stringify(graph_1));
-            //localStorage.setItem("graph1",graph1[]);
-            //console.log(graph1);
-			// console.log(recommentations_list_2);
-            // console.log(recommentations_list_3);
-            
+            localStorage.setItem("google_graph1", JSON.stringify(graph_1));
+            //localStorage.setItem("google_graph2", JSON.stringify(graph_1));
+            localStorage.setItem("google_graph3", JSON.stringify(graph_3));
+            localStorage.setItem("google_graph4", JSON.stringify(graph_4));
+            localStorage.setItem("google_graph5", JSON.stringify(graph_5));
+            localStorage.setItem("google_graph6", JSON.stringify(graph_6));
+            localStorage.setItem("google_graph7", JSON.stringify(graph_7));
+           
+           
         return(
             <div className="container-fluid wrapper">
             <Header/>
