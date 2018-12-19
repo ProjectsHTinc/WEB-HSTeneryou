@@ -47,30 +47,36 @@ class Graph_1 extends  Component{
             <div className="col-md-1"></div>
             <div className="col-md-10">
             <div class="graph_example">
-            <Chart id='Graph 1'
+            <Chart id='Graph 5'
         width={'800px'}
         height={'500px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[
-          ['', 'Self Sufficiency'],
-          ['9',  67],
-          ['7',  63],
-          ['5',  56],
-          ['3',  55],
-          ['4',  40],
-          ['6',  40],
-          ['2',  36],
-          ['8',  33]
+            ['', 'Fuel Costs', 'Maintenance Costs'],
+            ['6', 457.15, 1071.14],
+            ['7', 457.15, 1071.14],
+            ['4', 287.31, 1077.56],
+            ['5', 457.15, 1359.06],
+            ['2', 484.52, 1423.11],
+            ['8', 554.30, 1820.46],
+            ['3', 455.94, 1423.11],
+            ['9', 1259.11, 2611.87],
         ]}
-        options = {{
-            title : 'Comparison of Electricial Self Sufficiency',
-            vAxis: {title: 'Self Sufficiency in (%)'},
-            hAxis: {title: 'System Combination'} ,
+        options={{
+            title: 'Comparison of Operating & Yearly Fuel Costs for your Elecricity and Heat Supply',
             chartArea: { width: '50%' },
+            isStacked: true,
+            hAxis: {
+            title: 'System Combination',
+            minValue: 0,
+            },
+            vAxis: {
+            title: 'Operating Costs & Fuel Costs in €/a ',
+            },
             seriesType: 'bars',
-          }} 
-    />
+        }}
+     />
             </div>
             <div className="col-md-1"></div>
              </div>

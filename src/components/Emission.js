@@ -4,8 +4,7 @@ import Footer from './Footer';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
-import Graph_1 from './Graph_1';
-
+import Graph_7 from './Graph_7';
 import Graphmenu from './Graphmenu';
 import form_bg_3 from './images/form_3_bg.png';
 
@@ -37,18 +36,10 @@ class Emission extends Component {
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
                         <Tab>Tab 1</Tab>
-                        <Tab>Tab 2</Tab>
-                     
                     </TabList>
                         <TabPanel>
-                                <Graph_1/>
+                                <Graph_7/>
                         </TabPanel>
-                    <TabPanel>
-                        <Graph_1/>    
-                     </TabPanel>
-                   
-                  
-          
                 </Tabs>
                     </div>
                     

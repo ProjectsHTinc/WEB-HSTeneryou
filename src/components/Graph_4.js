@@ -47,27 +47,26 @@ class Graph_1 extends  Component{
             <div className="col-md-1"></div>
             <div className="col-md-10">
             <div class="graph_example">
-            <Chart id='Graph 1'
+            <Chart id='Graph 4'
         width={'800px'}
         height={'500px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[
-          ['', 'Self Sufficiency'],
-          ['9',  67],
-          ['7',  63],
-          ['5',  56],
-          ['3',  55],
-          ['4',  40],
-          ['6',  40],
-          ['2',  36],
-          ['8',  33]
+          ['', 'Investment Costs'],
+          ['6', 23385.08],
+          ['7', 29807.18],
+          ['4', 15341.35],
+          ['5', 14669.48],
+          ['2', 24084.26],
+          ['8', 18705.77],
+          ['3', 30506.36],
+          ['9', 59312.95],
         ]}
         options = {{
-            title : 'Comparison of Electricial Self Sufficiency',
-            vAxis: {title: 'Self Sufficiency in (%)'},
+            title : 'Comparison of Investment Costs including Installation €',
+            vAxis: {title: 'Investment Costs in €'},
             hAxis: {title: 'System Combination'} ,
-            chartArea: { width: '50%' },
             seriesType: 'bars',
           }} 
     />

@@ -47,29 +47,35 @@ class Graph_1 extends  Component{
             <div className="col-md-1"></div>
             <div className="col-md-10">
             <div class="graph_example">
-            <Chart id='Graph 1'
+            <Chart id='7'
         width={'800px'}
         height={'500px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[
-          ['', 'Self Sufficiency'],
-          ['9',  67],
-          ['7',  63],
-          ['5',  56],
-          ['3',  55],
-          ['4',  40],
-          ['6',  40],
-          ['2',  36],
-          ['8',  33]
+            [
+            '',
+            'CO2 Emissions',
+            'CO2 Abatement Cost',
+            ],
+            ['1', 11.51, 0],
+            ['4', 1.25, -99.73],
+            ['2', 3.33, 15.89],
+            ['3', 3.52, 51.04,],
+            ['9', 4.59, 366.48],
+            ['6', 6.44, -512.14],
+            ['7', 6.64, -476.40],
+            ['5', 8.60, -146.22,],
+            ['8', 10.44, 324.05],
         ]}
-        options = {{
-            title : 'Comparison of Electricial Self Sufficiency',
-            vAxis: {title: 'Self Sufficiency in (%)'},
-            hAxis: {title: 'System Combination'} ,
+        options={{
+            title: 'Comparison of Monthly Electricity & Heating Costs',
             chartArea: { width: '50%' },
+            vAxis: { title: 'Monthly Electricity & Heating Costs in €/Month' },
+            hAxis: { title: 'System Combination' },
             seriesType: 'bars',
-          }} 
+            series: { 1: { type: 'line' } },
+        }}
     />
             </div>
             <div className="col-md-1"></div>

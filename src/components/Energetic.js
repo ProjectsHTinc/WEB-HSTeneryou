@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
 import Graph_1 from './Graph_1';
-
+import Graph_2 from './Graph_2';
 import Graphmenu from './Graphmenu';
 import form_bg_3 from './images/form_3_bg.png';
 
@@ -38,20 +38,13 @@ class Energetic extends Component {
                     <TabList>
                         <Tab>Tab 1</Tab>
                         <Tab>Tab 2</Tab>
-                        <Tab>Tab 3</Tab>
                     </TabList>
                         <TabPanel>
                                 <Graph_1/>
                         </TabPanel>
                     <TabPanel>
-                        <Graph_1/>    
+                        <Graph_2/>    
                      </TabPanel>
-                     <TabPanel>
-                        <Graph_1/>    
-                     </TabPanel>
-                   
-                  
-          
                 </Tabs>
                     </div>
                     
