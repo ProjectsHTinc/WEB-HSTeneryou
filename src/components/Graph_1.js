@@ -49,7 +49,7 @@ class Graph_1 extends  Component{
             <div class="graph_example">
             <Chart id='Graph 1'
         width={'800px'}
-        height={'500px'}
+        height={'380px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[
@@ -65,6 +65,7 @@ class Graph_1 extends  Component{
         ]}
         options = {{
             title : 'Comparison of Electricial Self Sufficiency',
+            chartArea: { width: '50%' },
             vAxis: {title: 'Self Sufficiency in (%)'},
             hAxis: {title: 'System Combination'} ,
             chartArea: { width: '50%' },

@@ -49,7 +49,7 @@ class Graph_1 extends  Component{
             <div class="graph_example">
             <Chart id='Graph 3'
         width={'800px'}
-        height={'500px'}
+        height={'380px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[
@@ -66,6 +66,7 @@ class Graph_1 extends  Component{
         ]}
         options = {{
             title : 'Comparison of Annuity Costs €/a',
+            chartArea: { width: '50%' },
             vAxis: {title: 'Annuity Costs in €/a'},
             hAxis: {title: 'System Combination'} ,
             seriesType: 'bars',

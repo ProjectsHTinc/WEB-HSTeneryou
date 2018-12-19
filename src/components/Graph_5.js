@@ -49,7 +49,7 @@ class Graph_1 extends  Component{
             <div class="graph_example">
             <Chart id='Graph 5'
         width={'800px'}
-        height={'500px'}
+        height={'380px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[

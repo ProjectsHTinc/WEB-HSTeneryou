@@ -49,25 +49,27 @@ class Graph_1 extends  Component{
             <div class="graph_example">
             <Chart id='Graph 4'
         width={'800px'}
-        height={'500px'}
+        height={'380px'}
         chartType="ComboChart"
         loader={<div>Loading Chart</div>}
         data={[
-          ['', 'Investment Costs'],
-          ['6', 23385.08],
-          ['7', 29807.18],
-          ['4', 15341.35],
-          ['5', 14669.48],
-          ['2', 24084.26],
-          ['8', 18705.77],
-          ['3', 30506.36],
-          ['9', 59312.95],
+          ['', 'Investment Costs','Budget - 15,000'],
+          ['6', 23385.08,15000],
+          ['7', 29807.18,15000],
+          ['4', 15341.35,15000],
+          ['5', 14669.48,15000],
+          ['2', 24084.26,15000],
+          ['8', 18705.77,15000],
+          ['3', 30506.36,15000],
+          ['9', 59312.95,15000],
         ]}
         options = {{
             title : 'Comparison of Investment Costs including Installation €',
+            chartArea: { width: '50%' },
             vAxis: {title: 'Investment Costs in €'},
             hAxis: {title: 'System Combination'} ,
             seriesType: 'bars',
+            series: { 1: { type: 'line' } },
           }} 
     />
             </div>
