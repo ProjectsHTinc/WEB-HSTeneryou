@@ -24,11 +24,14 @@ class Product extends Component {
 
     componentDidMount(){
         const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
+
+        localStorage.setItem("budgetInput",budget_value);
+        alert(localStorage.getItem('budgetInput'));
        // let var_1=roof_inclination;
        //  alert(var_1);
        //  alert(local_person_count);
         let local_person_count = localStorage.getItem('person_count');
-        let local_directionChange = "SOUTH";
+        //let local_directionChange = "SOUTH";
         // var data = {
         //     "building": {
         //          "postalCode": "20146",
@@ -78,7 +81,7 @@ class Product extends Component {
                 "postalCode": post_code,
                 "constructionYear": construction_year,
                 "livingSpace": living_area,
-                "roofAlignment": local_directionChange,
+                "roofAlignment": directionChange,
                 "roofTilt": roof_inclination
             },
             "energyDemand": {
@@ -95,7 +98,7 @@ class Product extends Component {
                 "postalCode": post_code,
                 "constructionYear": construction_year,
                 "livingSpace": living_area,
-                "roofAlignment": local_directionChange,
+                "roofAlignment": directionChange,
                 "roofTilt": roof_inclination
             },
             "energyDemand": {
@@ -111,7 +114,7 @@ class Product extends Component {
         var data = {
             "building": {
                 "postalCode": post_code,
-                "roofAlignment": local_directionChange,
+                "roofAlignment": directionChange,
                 "roofTilt": roof_inclination
             },
             "energyDemand": {
@@ -242,7 +245,112 @@ class Product extends Component {
             } 
         }
 
-            // console.log(recommentations_list_1);
+
+            let graph_1=[];
+			let graph_2=[];
+			let graph_3=[];
+			let graph_3_1=[];
+			let graph_3_2=[];
+			let graph_4=[];
+			let graph_5=[];
+			let graph_6=[];
+			let graph_7=[];
+			let graph_7_1=[];
+			let graph_7_2=[];
+
+			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
+				let energeticValues = this.state.systemCombinations_value[i].energeticValues;
+					let energeticSelfSufficiency = energeticValues['energeticSelfSufficiency'];	
+					graph_1.push([systemCombinationPosition,energeticSelfSufficiency]);
+			}
+
+			for (i =0; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition_0 = this.state.systemCombinations_value[0].systemCombinationPosition;
+				let economicValues_0 = this.state.systemCombinations_value[0].economicValues;
+				let annuityCost_0 = economicValues_0['annuityCost'];
+				graph_3_1.push([systemCombinationPosition_0,annuityCost_0]);
+				break;
+			}
+			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
+				let economicValues = this.state.systemCombinations_value[i].economicValues;
+					let annuityCost = economicValues['annuityCost'];
+					graph_3_2.push([systemCombinationPosition,annuityCost]);
+			}
+
+			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
+				let economicValues = this.state.systemCombinations_value[i].economicValues;
+					let annuityCost = economicValues['annuityCost'];
+					let investCost = economicValues['investCost'];
+					graph_4.push([systemCombinationPosition,annuityCost,investCost]);
+			}
+
+			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
+				let economicValues = this.state.systemCombinations_value[i].economicValues;
+					let annuityCost = economicValues['annuityCost'];
+					let operatingCost = economicValues['operatingCost'];
+					let yearlyFuelCost = economicValues['yearlyFuelCost'];
+					graph_5.push([systemCombinationPosition,annuityCost,operatingCost,yearlyFuelCost]);
+			}
+
+			for (i = 0; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
+				let economicValues = this.state.systemCombinations_value[i].economicValues;
+					let annuityCost = economicValues['annuityCost'];
+					let operatingCost = economicValues['monthlyHeadingCost'];
+					let yearlyFuelCost = economicValues['monthlyEnergyCost'];
+					graph_6.push([systemCombinationPosition,annuityCost,operatingCost,yearlyFuelCost]);
+			}
+
+			for (i = 0; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[0].systemCombinationPosition;
+				let ecologicValues = this.state.systemCombinations_value[0].ecologicValues;
+					let yearlyCO2Equivalent = ecologicValues['yearlyCO2Equivalent'];
+					let yearlyAbatementCosts = ecologicValues['yearlyAbatementCosts'];	
+					graph_7_1.push([systemCombinationPosition,yearlyCO2Equivalent,yearlyAbatementCosts]);
+					break;
+			}
+
+			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
+				let ecologicValues = this.state.systemCombinations_value[i].ecologicValues;
+					let yearlyCO2Equivalent = ecologicValues['yearlyCO2Equivalent'];
+					let yearlyAbatementCosts = ecologicValues['yearlyAbatementCosts'];	
+					graph_7_2.push([systemCombinationPosition,yearlyCO2Equivalent,yearlyAbatementCosts]);
+			}
+
+			graph_1.sort(function(a,b){
+					return b[1]  - a[1];
+			})
+
+			graph_3_2.sort(function(a,b){
+				return a[1]  - b[1];
+			})
+			graph_3 = graph_3_1.concat(graph_3_2);
+
+			graph_4.sort(function(a,b){
+				return a[1]  - b[1];
+			})
+
+			graph_5.sort(function(a,b){
+				return a[1]  - b[1];
+			})
+
+			graph_6.sort(function(a,b){
+				return a[1]  - b[1];
+			})
+
+			graph_7_2.sort(function(a,b){
+				return a[1]  - b[1];
+			})
+            graph_7 = graph_7_1.concat(graph_7_2);
+            
+            localStorage.setItem("graph1", JSON.stringify(graph_1));
+            //localStorage.setItem("graph1",graph1[]);
+            //console.log(graph1);
 			// console.log(recommentations_list_2);
             // console.log(recommentations_list_3);
             
@@ -359,6 +467,15 @@ class Product extends Component {
                                  <img src={product_3} circle/>
                             </div>
                             <div className="product_box_3_1">
+                                <div className="product_heading">
+                                <div className="row">
+                                        <div className="col-md-4 col-sm-4"> <p>Component</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p>Total Price</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p>Product</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="product_box_3_2">
                                 <div className="product_heading">
                                 <div className="res" id="product_result_3">
                                         {recommentations_list_3}
