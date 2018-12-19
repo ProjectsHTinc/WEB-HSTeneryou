@@ -41,11 +41,15 @@ class Persondetail extends Component {
             formIsValid = false;
             this.setState({ star_errors: "Select the Person" });         
          } 
-
+         if (!power_val.match(/^[1-9][0-9]*$/)) {
+            formIsValid = false;
+            this.setState({ power_error: "*Enter only numbers" });
+          }
          if(power_val==''){
             formIsValid = false;
             this.setState({ power_error: "Power Error" }); 
          }
+        
 
 
         this.setState({errors: errors});
@@ -60,7 +64,7 @@ class Persondetail extends Component {
             this.props.nextStep();         
            
         }else{
-            alert("error");
+            
         }
         
     }

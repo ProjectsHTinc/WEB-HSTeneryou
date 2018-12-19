@@ -12,6 +12,7 @@ import Economicgraph from './components/Economicgraph'
 import Emission from './components/Emission'
 import Energetic from './components/Energetic'
 
+
 import Graph_1 from './components/Graph_1'
 
 
@@ -25,7 +26,7 @@ class App extends Component {
        
 
         <BrowserRouter>
-        <div>       
+        <div className="loader">       
         <Switch>
           <Route path="/" component={Homepage} exact />
           <Route path="/Form" component={Form}  />

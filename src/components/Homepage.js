@@ -3,8 +3,26 @@ import  VideoCover  from 'react-video-cover';
 
 
 
+
 class Homepage extends Component {
+  state = {
+    loading: true
+  };
+
+  componentDidMount() {
+   
+    setTimeout(() => this.setState({ loading: false }), 3000);
+  }
+
+
+
   render() {
+    
+    const { loading } = this.state;
+    
+    if(loading) { // if your component doesn't have to wait for an async action, remove this block 
+      return null; // render null when app is not ready
+    }
     const videoOptions = {
       src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
       autoPlay: true,
@@ -18,6 +36,7 @@ class Homepage extends Component {
     return (
      
       <div className="container-fluid wrapper">
+    
       <div className="row ">
       <div className="logo">
      <a href="/">

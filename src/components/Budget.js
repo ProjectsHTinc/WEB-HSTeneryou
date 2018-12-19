@@ -30,10 +30,15 @@ class Budget extends Component {
         let formIsValid = true;    
       
         let budget_value=this.budget_value.value;
+        if (!budget_value.match(/^[1-9][0-9]*$/)) {
+            formIsValid = false;            
+            errors["budget_value"] = "Enter only numbers";
+          }
         if(!budget_value){
         formIsValid = false;
         errors["budget_value"] = "Enter Budget";
         }
+       
            
        
      

@@ -42,22 +42,56 @@ class Enerydemand extends Component {
         const {values: {energy_demand }} = this.props;
         if(energy_demand=='GAS_OR_OIL_BILL'){
             let yearlyGasDemand=this.yearlyGasDemand.value;
-            if(!yearlyGasDemand){
+          
+           if (!yearlyGasDemand.match(/^[1-9][0-9]*$/)) {
+            formIsValid = false;            
+            errors["yearlyGasDemand"] = "Enter only numbers";
+          }
+          if (yearlyGasDemand <= 6999) {
+            formIsValid = false;
+            errors["yearlyGasDemand"] = "*Greater Than Equal to 7000";
+          }
+          if (yearlyGasDemand >= 52001) {
+            formIsValid = false;
+            errors["yearlyGasDemand"] = "*Not more  Than 52000";
+          }
+          if(!yearlyGasDemand){
             formIsValid = false;
             errors["yearlyGasDemand"] = "Enter yearlyGasDemand";
            }
-           
         }
         if(energy_demand=='ENERGY_CERTIFICATE'){
             let yearlyEnergyDemand=this.yearlyEnergyDemand.value;
             let yearlyEnergyDemandOnWater=this.yearlyEnergyDemandOnWater.value;
-            if(!yearlyEnergyDemand){
+          
+           if (!yearlyEnergyDemand.match(/^[1-9][0-9]*$/)) {
+            formIsValid = false;            
+            errors["yearlyEnergyDemand"] = "Enter only numbers";
+          }
+          if (yearlyEnergyDemand <= 6999) {
             formIsValid = false;
-            errors["yearlyEnergyDemand"] = "Enter yearlyEnergyDemand";
+            errors["yearlyEnergyDemand"] = "*Greater Than Equal to 7000";
+          }
+          if (yearlyEnergyDemand >= 52001) {
+            formIsValid = false;
+            errors["yearlyEnergyDemand"] = "*Not more  Than 52000";
+          }
+          if(!yearlyEnergyDemand){
+            formIsValid = false;
+            errors["yearlyEnergyDemand"] = "YearlyEnergyDemand";
            }
-           if(!yearlyEnergyDemandOnWater){
+         
+           if (!yearlyEnergyDemandOnWater.match(/^[1-9][0-9]*$/)) {
+            formIsValid = false;            
+            errors["yearlyEnergyDemandOnWater"] = "Enter only numbers";
+          }
+          if (yearlyEnergyDemandOnWater >= 5001) {
             formIsValid = false;
-            errors["yearlyEnergyDemandOnWater"] = "Enter yearlyEnergyDemandOnWater";
+            errors["yearlyEnergyDemandOnWater"] = "*Not more  Than 5000";
+          }
+          if(!yearlyEnergyDemandOnWater){
+            formIsValid = false;
+            errors["yearlyEnergyDemandOnWater"] = "YearlyEnergyDemandOnWater";
            }
         }
         
