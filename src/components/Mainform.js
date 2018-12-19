@@ -9,7 +9,7 @@ export class Mainform extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            step:1,
+            step:3,
             roof_inclination :'DEGREES_0',
             living_area:'',
             post_code:'',

@@ -70,7 +70,7 @@ class Enerydemand extends Component {
     continue = e => {
         e.preventDefault();       
         if(this.handleValidation()){        
-            this.props.nextStep();    
+            this.props.nextStep();   
                
         }else{
             

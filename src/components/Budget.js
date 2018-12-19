@@ -16,13 +16,33 @@ class Budget extends Component {
         super(props)
         this.state = {
             step :3,
-                   
+            budget_value:'',
+            fields: {},
+            errors: {},    
            
         };
     }
    
  
+    handleValidation(){
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;    
+      
+        let budget_value=this.budget_value.value;
+        if(!budget_value){
+        formIsValid = false;
+        errors["budget_value"] = "Enter Budget";
+        }
+           
+       
+     
+        
+      
 
+        this.setState({errors: errors});
+        return formIsValid;
+    }
  
 
     back = e => {
@@ -31,9 +51,13 @@ class Budget extends Component {
     }
     
     continue = e => {
-        e.preventDefault();
-        this.props.nextStep();    
-       
+        e.preventDefault();       
+        if(this.handleValidation()){        
+            this.props.nextStep();   
+               
+        }else{
+            
+        }
         
     }
   
@@ -70,7 +94,12 @@ class Budget extends Component {
                             <img src={euro_icon} circle className="coin_img" id="coin_spin"/>   
                         </div>
                         <div className="budget_box">
-                            <input type="text" name="budget_value" onChange={this.props.handleChange('budget_value')} className="budget_price" placeholder='Price' />
+                            <input type="text" 
+                            name="budget_value" 
+                            ref={(budget_value) => this.budget_value = budget_value}
+                            onChange={this.props.handleChange('budget_value')}
+                             className="budget_price" placeholder='Price' />
+                               <p  className="error_font">{this.state.errors["budget_value"]}</p>
                         </div>
                         <div className="form_btn">
                             <button  onClick={this.continue}  className="btn btn_submit">Speichern</button>
