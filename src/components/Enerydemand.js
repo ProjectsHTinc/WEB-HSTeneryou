@@ -168,7 +168,7 @@ class Enerydemand extends Component {
                     <div className="col-md-2">
                     <img src={character_3} className="character_3"/>
                     </div>
-                    <div className="col-md-8 text-center" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
+                    <div className="col-md-8 text-center form_3_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'417px',

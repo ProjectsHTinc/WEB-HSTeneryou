@@ -86,7 +86,7 @@ class Budget extends Component {
                     <div className="col-md-2">
                         <img src={character_4} className="character_4"/>
                     </div>
-                    <div className="col-md-8 text-center" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
+                    <div className="col-md-8 text-center form_4_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'417px',
@@ -103,7 +103,7 @@ class Budget extends Component {
                             name="budget_value" 
                             ref={(budget_value) => this.budget_value = budget_value}
                             onChange={this.props.handleChange('budget_value')}
-                             className="budget_price" placeholder='Price' />
+                             className="budget_price" placeholder='Price' defaultValue={values.budget_value} />
                                <p  className="error_font">{this.state.errors["budget_value"]}</p>
                         </div>
                         <div className="form_btn">

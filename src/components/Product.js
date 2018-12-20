@@ -10,6 +10,7 @@ import graph_img_2 from './images/graph_img_2.png';
 import graph_img_3 from './images/graph_img_3.png';
 
 
+
 class Product extends Component {
 
     constructor(props){
@@ -22,11 +23,17 @@ class Product extends Component {
         };
     }
 
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
+
     componentDidMount(){
         const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
         let local_person_count = localStorage.getItem('person_count');
         //localStorage.setItem("budgetInput",budget_value);
-    
+
+      console.log("loading");
       if (energy_demand === 'CONSTRUCTION_YEAR'){
         var data = {
             "building": {
@@ -90,6 +97,7 @@ class Product extends Component {
             .then(response => {
                 
                 if (response.status === 200) {
+                    console.log("loaded");
                     response.json().then(response_data => {
                      this.setState({ 
                             recommentations_value: response_data.recommentations, 
@@ -120,7 +128,7 @@ class Product extends Component {
     }
 
     render(){
-
+      
         let i = 0;
         let recommentations_list_1 =[];
         let recommentations_list_1_furthering=[];
@@ -152,7 +160,7 @@ class Product extends Component {
                         let price_1 = products_1[j]['price'];
                         //let productCode_1 = products_1[j]['productCode'];
                         let productName_1 = products_1[j]['productName'];
-                        recommentations_list_1.push(<div className="row"><div className="col-md-4 col-sm-4"><p>{componentName_1}</p></div><div className="col-md-4 col-sm-4"><p>{productName_1}</p></div><div className="col-md-4 col-sm-4"><p>{price_1} € </p></div></div>);
+                        recommentations_list_1.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_1}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_1}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_1} € </p></div></div>);
                     }
             }
              if (i == 1){
@@ -171,7 +179,7 @@ class Product extends Component {
                         let price_2 = products_2[k]['price'];
                        // let productCode_2 = products_2[k]['productCode'];
                         let productName_2 = products_2[k]['productName'];
-                        recommentations_list_2.push(<div className="row"><div className="col-md-4 col-sm-4"><p>{componentName_2}</p></div><div className="col-md-4 col-sm-4"><p>{productName_2}</p></div><div className="col-md-4 col-sm-4"><p>{price_2} € </p></div></div>);
+                        recommentations_list_2.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_2} € </p></div></div>);
                     }
             }
             if (i == 2){
@@ -190,7 +198,7 @@ class Product extends Component {
                         let price_3 = products_3[l]['price'];
                         //let productCode_3 = products_3[l]['productCode'];
                         let productName_3 = products_3[l]['productName'];
-                        recommentations_list_3.push(<div className="row"><div className="col-md-4 col-sm-4"><p>{componentName_3}</p></div><div className="col-md-4 col-sm-4"><p>{productName_3}</p></div><div className="col-md-4 col-sm-4"><p>{price_3} € </p></div></div>);
+                        recommentations_list_3.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_3}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_3}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_3} € </p></div></div>);
                     }
             } 
         }
@@ -311,7 +319,11 @@ class Product extends Component {
             <div className="container-fluid wrapper">
             <Header/>
                 <div className="container">
-                  <h4 className="form_heading">Product Recommendation  </h4>
+                 <p>
+                 <div className="back_btn_form_2">
+                    <button onClick={this.back} className="btn btn_next pull_left">Back to Form </button>
+                    </div>
+                </p> <h4 className="form_heading">Product Recommendation  </h4>
                   <div className="row product_recommendation">
                         <div className="col-md-4 col-sm-12">
                             <div className="product_img">
@@ -320,9 +332,9 @@ class Product extends Component {
                             <div className="product_box_1_1">
                                 <div className="product_heading">
                                 <div className="row">
-                                        <div className="col-md-4 col-sm-4"> <p>Component</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Total Price</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Product</p></div>
+                                        <div className="col-md-4 col-sm-4"> <p className="prod_res">Component</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Product </p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Price</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -337,22 +349,22 @@ class Product extends Component {
                             <div className="product_heading">
                                 <div className="row">
                                          <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p>Total Funding</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_1_furthering} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Funding</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_1_furthering} €</p></div>
                                     </div>
                                 </div>
                                 <div className="product_heading">
                                 <div className="row">
                                          <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p>Investment Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_1_investCost} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Investment Cost</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_1_investCost} €</p></div>
                                     </div>
                                 </div>
                                 <div className="product_heading">
                                     <div className="row">
                                         <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p>Operation Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_1_operatingCost} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Operation Cost</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_1_operatingCost} €</p></div>
                                     </div>                                  
                                 </div>
                                 <div className="graph_img">
@@ -370,9 +382,9 @@ class Product extends Component {
                             <div className="product_box_2_1">
                                 <div className="product_heading">
                                 <div className="row">
-                                        <div className="col-md-4 col-sm-4"> <p>Component</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Total Price</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Product</p></div>
+                                <div className="col-md-4 col-sm-4"> <p className="prod_res">Component</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Product </p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Price</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -389,22 +401,22 @@ class Product extends Component {
                             <div className="product_heading">
                                 <div className="row">
                                          <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p>Total Funding</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_2_furthering} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Funding</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_2_furthering} €</p></div>
                                     </div>
                                 </div>
                                 <div className="product_heading">
                                 <div className="row">
                                         <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Investment Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_2_investCost} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Investment Cost</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_2_investCost} €</p></div>
                                     </div>
                                 </div>
                                 <div className="product_heading">
                                     <div className="row">
                                     <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Operation Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_2_operatingCost} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Operation Cost</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_2_operatingCost} €</p></div>
                                     </div>                                  
                                 </div>
                                 <div className="graph_img">
@@ -422,9 +434,9 @@ class Product extends Component {
                             <div className="product_box_3_1">
                                 <div className="product_heading">
                                 <div className="row">
-                                        <div className="col-md-4 col-sm-4"> <p>Component</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Total Price</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Product</p></div>
+                                         <div className="col-md-4 col-sm-4"> <p className="prod_res">Component</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Product </p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Price</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -439,22 +451,22 @@ class Product extends Component {
                             <div className="product_heading">
                                 <div className="row">
                                          <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p>Total Funding</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_3_furthering} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Funding</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_3_furthering} €</p></div>
                                     </div>
                                 </div>
                                 <div className="product_heading">
                                 <div className="row">
                                         <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Investment Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_3_investCost} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Investment Cost</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_3_investCost} €</p></div>
                                     </div>
                                 </div>
                                 <div className="product_heading">
                                     <div className="row">
                                     <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p>Operation Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p>{recommentations_list_3_operatingCost} €</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Operation Cost</p></div>
+                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_3_operatingCost} €</p></div>
                                     </div>                                  
                                 </div>
                                 <div className="graph_img">

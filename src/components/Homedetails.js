@@ -287,10 +287,27 @@ class Homedetails extends Component {
                     <p className="error_font" style={{textAlign:'right'}}>{this.state.errors["roof_error"]}</p>
                     </div>
                     <div className="col-md-3">
+                  
                         <p className="img_compass">
                         {/* <img src={require('./images/n_compass.png')} alt="" className=""/> */}
                         <img src={NormalCompass} circle />
-                       
+                        <div className="direction_box">
+                    <select className="direction_drop_box " name="directionChange"
+                    onChange={this.direction_call} 
+                    onClick={this.props.handleChange('directionChange')}                    
+                    defaultValue={values.directionChange} 
+                    ref="direction_compass"              
+                     >
+                            <option value="">Select-Direction</option>
+                            <option value="EAST">East</option>
+                            <option value="WEST">West</option>
+                            <option value="SOUTH">South</option>
+                            <option value="SOUTHEAST">South-East</option>
+                            <option value="SOUTHWEST">South-West</option>
+                    </select>
+                    <p className="error_font">{this.state.errors["directionChange"]}</p>
+                    
+                 </div>
                         </p>
 
                     </div>
@@ -324,7 +341,7 @@ class Homedetails extends Component {
                         <option value="FROM_1979_TO1983">von 1979 bis 1983</option>
                         <option value="FROM1984_TO1994">von 1984 bis 1994</option>
                         <option value="FROM1995_TO2001">von 1995 bis 2001</option>
-                        <option value="FROM2002_TONOW ">seit 2002</option>
+                        <option value="FROM2002_TONOW">seit 2002</option>
                        
                 </select>
                 
@@ -335,7 +352,7 @@ class Homedetails extends Component {
                  </div>
                
                  </div>
-                 <div className="col-md-8" style={ { backgroundImage: 'url(' + imgUrl + ')',
+                 <div className="col-md-8 form_1_bg" style={ { backgroundImage: 'url(' + imgUrl + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'400px',
@@ -352,7 +369,7 @@ class Homedetails extends Component {
                  
                  </div>
                  <div className="col-md-2">
-                 <div className="direction_box">
+                 {/* <div className="direction_box">
                     <select className="direction_drop_box " name="directionChange"
                     onChange={this.direction_call} 
                     onClick={this.props.handleChange('directionChange')}                    
@@ -368,7 +385,7 @@ class Homedetails extends Component {
                     </select>
                     <p className="error_font">{this.state.errors["directionChange"]}</p>
                     
-                 </div>
+                 </div> */}
 
                  <div className="postbox_text">
                    

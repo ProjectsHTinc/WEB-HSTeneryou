@@ -45,6 +45,14 @@ class Persondetail extends Component {
             formIsValid = false;
             this.setState({ power_error: "*Enter only numbers" });
           }
+          if (power_val <= 1999) {
+            formIsValid = false;
+            this.setState({ power_error: "*Greater  Than 2000" });
+          }
+          if (power_val >= 8001) {
+            formIsValid = false;          
+            this.setState({ power_error: "*Not more  Than 8000" });
+          }
          if(power_val==''){
             formIsValid = false;
             this.setState({ power_error: "Power Error" }); 
@@ -77,8 +85,57 @@ class Persondetail extends Component {
     handleRate (rate) {
         this.setState({ person: rate });
         localStorage.setItem("person_count",rate);
+        let person_value=rate;
+        if(person_value=='6'){
+            this.power_consumption.focus();
+             document.getElementById("power_consumption").value = "6000";           
+           }else if(person_value=='5'){
+            this.power_consumption.focus();
+            document.getElementById("power_consumption").value = "5000";   
+           }else if(person_value=='4'){
+            this.power_consumption.focus();
+            document.getElementById("power_consumption").value = "4000";   
+            }else if(person_value=='3'){
+                this.power_consumption.focus();
+                document.getElementById("power_consumption").value = "3000";   
+            }else if(person_value=='2'){
+                this.power_consumption.focus();
+                document.getElementById("power_consumption").value = "2000";   
+            }
+            else if(person_value=='1'){
+                this.power_consumption.focus();
+                document.getElementById("power_consumption").value = "1000";   
+            }else{
+                document.getElementById("power_consumption").value = "";   
+           }
       }
-  
+    componentDidMount(){
+       let person_value=localStorage.getItem("person_count");
+       
+       if(person_value=='6'){
+        this.power_consumption.focus();
+         document.getElementById("power_consumption").value = "6000";           
+       }else if(person_value=='5'){
+        this.power_consumption.focus();
+        document.getElementById("power_consumption").value = "5000";   
+       }else if(person_value=='4'){
+        this.power_consumption.focus();
+        document.getElementById("power_consumption").value = "4000";   
+        }else if(person_value=='3'){
+            this.power_consumption.focus();
+            document.getElementById("power_consumption").value = "3000";   
+        }else if(person_value=='2'){
+            this.power_consumption.focus();
+            document.getElementById("power_consumption").value = "2000";   
+        }
+        else if(person_value=='1'){
+            this.power_consumption.focus();
+            document.getElementById("power_consumption").value = "1000";   
+        }else{
+            document.getElementById("power_consumption").value = "";   
+       }
+
+    }
     render() {
         const { rating_half_star,person } = this.state;
         const { values } = this.props
@@ -94,7 +151,7 @@ class Persondetail extends Component {
                 <div className="row">
                     <div className="col-md-2">
                     <div className="form_char_img">
-                        <img src={character_2} className=""/>
+                        <img src={character_2} className="char_img_2"/>
                      </div>
                     </div>
                     <div className="col-md-8 text-center" style={ { backgroundImage: 'url(' + electric_img + ')',
@@ -135,9 +192,9 @@ class Persondetail extends Component {
                  backgroundRepeat: 'no-repeat' }}>
                  
                  <div className="power_meter_box">
-                        <input type="text" name="power_consumption" className="power_consumption" minLength="5" maxLength='5'
+                        <input type="text" name="power_consumption" id="power_consumption" className="power_consumption" minLength="5" maxLength='5'
                          placeholder='power_consumption' ref={(power_consumption) => this.power_consumption = power_consumption}
-                         onChange={this.props.handleChange('power_consumption')}
+                         onBlur={this.props.handleChange('power_consumption')}
                          defaultValue={values.power_consumption} />                                
                     </div>
                    
@@ -158,7 +215,7 @@ class Persondetail extends Component {
 
                 {/* Progress Bar section Starts here */}
                 <div className="row progress_section">
-                <div className="col-md-2">
+                <div className="col-md-2 col-sm-2">
                     <div className="char_next_btn_section">
                             <div className="">
                                
@@ -173,7 +230,7 @@ class Persondetail extends Component {
                     </div>
                         
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-8 col-sm-8">
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
                     <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'50%'}} />
@@ -181,7 +238,7 @@ class Persondetail extends Component {
                      <p style={{color:'#000',marginLeft:'49%'}}>50%</p>
                 </div>
                 </div>
-                <div className="col-md-2 text-center">    
+                <div className="col-md-2  col-sm-2 text-center">    
                 <div className="next_section">
                         <button onClick={this.continue} className="btn btn_next pull_right">Next  </button>
                 </div>                 
