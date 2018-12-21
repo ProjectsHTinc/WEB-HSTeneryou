@@ -49,10 +49,10 @@ export class Mainform extends Component{
 
     handleChange = input => event => {
        
-      
+        
         this.setState({ [input] : event.target.value });
         localStorage.setItem( [input] , event.target.value);
-       
+      
              
         
 

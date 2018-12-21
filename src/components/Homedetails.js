@@ -293,8 +293,10 @@ class Homedetails extends Component {
                         <img src={NormalCompass} circle />
                         <div className="direction_box">
                     <select className="direction_drop_box " name="directionChange"
-                    onChange={this.direction_call} 
-                    onClick={this.props.handleChange('directionChange')}                    
+                    // onChange={this.direction_call} 
+                    // onClick={this.props.handleChange('directionChange')}
+                    onClick={this.direction_call} 
+                    onChange={this.props.handleChange('directionChange')}                       
                     defaultValue={values.directionChange} 
                     ref="direction_compass"              
                      >
@@ -326,8 +328,10 @@ class Homedetails extends Component {
                  <div className="year_box">
                  <label className="year_label">Construction Year</label>
                   <select className="house_year_drop_box " name="construction_year" 
-                   onChange={this.construction_year} 
-                   onClick={this.props.handleChange('construction_year')}                    
+                //    onChange={this.construction_year} 
+                //    onClick={this.props.handleChange('construction_year')}  
+                onClick={this.construction_year} 
+                onChange={this.props.handleChange('construction_year')}                     
                    defaultValue={values.construction_year} 
                    ref="house_construction_year" 
                   >

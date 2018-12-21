@@ -766,3 +766,48 @@ input[type='radio']:checked:before {
         display: none;
     }
 }
+
+@media only screen and (max-width:1024px) {
+    .img_compass{
+        margin-left: 0px;
+    }
+    .radio_box{
+        border: none;
+    }
+    .living_box{
+        margin-right: 0px;
+    }
+    .post_textbox{
+        margin-left: 0px;
+        font-size: 15px;
+    }
+    .year_label{
+        margin-left: 0px;
+
+    }
+    .house_year_drop_box{
+        margin-left: -10px;
+        font-size: 10px;
+    }
+    .power_meter_box{
+        top: 76px;
+        margin-left: 0px;
+        padding: 0px;
+
+    }
+    .power_consumption{
+        width: 90px;
+    }
+    .blink-image{
+        display: none;
+    }
+    .hide_tab{
+        display: none;
+    }
+    .form_4_bg{
+        height: 429px;
+    }
+    .energy_form{
+
+    }
+}

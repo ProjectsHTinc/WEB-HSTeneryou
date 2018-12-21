@@ -165,10 +165,10 @@ class Enerydemand extends Component {
 
                 {/* Form section starts here */}
                 <div className="row" >
-                    <div className="col-md-2">
+                    <div className="col-lg-2 col-md-2 hide_tab">
                     <img src={character_3} className="character_3"/>
                     </div>
-                    <div className="col-md-8 text-center form_3_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
+                    <div className="col-md-12 col-lg-8 col-sm-12 text-center form_3_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'417px',
@@ -272,7 +272,7 @@ class Enerydemand extends Component {
                        
                             
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-2 col-lg-2 hide_tab">
                  
                     
                    
