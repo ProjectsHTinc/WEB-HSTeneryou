@@ -548,71 +548,65 @@ input[type='radio']:checked:before {
     margin-left: 10px;
 }
 .product_heading .row{
-    width: 100%;
+   
 
 }
 .product_img{
-    height: 127px;
+    height: auto;
 }
 
 .product_box_1_1{
-    background-color: #efbcbe;
-    margin-top: -1px;
-    margin-left: 4px;
-    margin-right: 3px;
+    background-color: #efbcbe;  
+   
     border-bottom: 2px solid #000;
 }
 .product_box_1_2{
     background-color: #efbcbe;
-    margin-left: 4px;
-    margin-right: 3px;   
+
 }
 .product_box_1_3{
     background-color: #fae7e7;
-    margin-left: 4px;
-    margin-right: 3px;   
+
 }
 
 
 .product_box_2_1{
     background-color: #a9e0ba;
-    margin-top: -1px;
-    margin-left: 4px;
-    margin-right: 3px;
+ 
     border-bottom: 2px solid #000;
 }
 .product_box_2_2{
     background-color: #a9e0ba;
-    margin-left: 4px;
-    margin-right: 3px;   
+   
 }
 .product_box_2_3{
     background-color: #dbf1e0;
-    margin-left: 4px;
-    margin-right: 3px;   
+  
 }
 
 .product_box_3_1{
     background-color: #fad3bc;
-    margin-top: -1px;
-    margin-left: 4px;
-    margin-right: 3px;
+ 
     border-bottom: 2px solid #000;
 }
 .product_box_3_2{
     background-color: #fad3bc;
-    margin-left: 4px;
-    margin-right: 3px;   
+  
 }
 .product_box_3_3{
     background-color: #ffeade;
-    margin-left: 4px;
-    margin-right: 3px;   
+ 
+}
+.table thead th{
+    text-align: center;
+}
+.p_img{
+    width: 100%;
 }
 .graph_img{
     text-align: center;
     position: relative;
-    top:20px;
+    top:-25px;
 }
 .product_recommendation{
     margin-top: 20px;
@@ -658,6 +652,9 @@ input[type='radio']:checked:before {
 
 .tab_box_3 p a{
   color: #fff;
+}
+td{
+    font-size: 14px;
 }
 
 .graph_box{
@@ -769,13 +766,16 @@ input[type='radio']:checked:before {
 
 @media only screen and (max-width:1024px) {
     .img_compass{
-        margin-left: 0px;
+      text-align: center;
     }
     /* .radio_box{
         border: none;
     } */
+    .character_img{
+        display: none;
+    }
     .living_box{
-        margin-right: 0px;
+        margin-right: 70px;
     }
     .post_textbox{
         margin-left: 0px;
@@ -807,7 +807,13 @@ input[type='radio']:checked:before {
     .form_4_bg{
         height: 429px;
     }
-    .energy_form{
+    .table td, .table th{
+
+    }
+}
+
+@media only screen and (min-device : 768px) and (max-device : 1024px) and (orientation : landscape) {  
+    .living_box{
 
     }
 }

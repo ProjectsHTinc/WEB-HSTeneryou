@@ -34,72 +34,72 @@ class Product extends Component {
       
       console.log("loading");
 
-    //   var data = {
-    //     "building": {
-    //         "postalCode": 20146,
-    //         "constructionYear": "FROM1969_TO1978",
-    //         "livingSpace": 150,
-    //         "roofAlignment": "SOUTH",
-    //         "roofTilt": "DEGREES_25"
-    //     },
-    //     "energyDemand": {
-    //         "personCount": 3,
-    //         "energyDemand": 3004,
-    //         "headingDemandType": "CONSTRUCTION_YEAR"
-    //     }
-    //   }
-
-      if (energy_demand === 'CONSTRUCTION_YEAR'){
-
-        var data = {
-            "building": {
-                "postalCode": post_code,
-                "constructionYear": construction_year,
-                "livingSpace": living_area,
-                "roofAlignment": directionChange,
-                "roofTilt": roof_inclination
-            },
-            "energyDemand": {
-                "personCount": local_person_count,
-                "energyDemand": power_consumption,
-                "headingDemandType": energy_demand
-            }
-          }
-      } 
-
-      if (energy_demand === 'GAS_OR_OIL_BILL'){
-        var data = {
-            "building": {
-                "postalCode": post_code,
-                "constructionYear": construction_year,
-                "livingSpace": living_area,
-                "roofAlignment": directionChange,
-                "roofTilt": roof_inclination
-            },
-            "energyDemand": {
-                "personCount": local_person_count,
-                "energyDemand": power_consumption,
-                "headingDemandType": energy_demand,
-                "yearlyGasDemand": yearlyGasDemand
-            }
-          }
-      } 
-      
-      if (energy_demand === 'ENERGY_CERTIFICATE'){ 
-        var data = {
-            "building": {
-                "postalCode": post_code,
-                "roofAlignment": directionChange,
-                "roofTilt": roof_inclination
-            },
-            "energyDemand": {
-                "energyDemand": power_consumption,
-                "headingDemandType": energy_demand,
-                "yearlyEnergyDemand": yearlyEnergyDemand,
-                "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
-            }
-          }
+      var data = {
+        "building": {
+            "postalCode": 20146,
+            "constructionYear": "FROM1969_TO1978",
+            "livingSpace": 150,
+            "roofAlignment": "SOUTH",
+            "roofTilt": "DEGREES_25"
+        },
+        "energyDemand": {
+            "personCount": 3,
+            "energyDemand": 3004,
+            "headingDemandType": "CONSTRUCTION_YEAR"
+        }
       }
+
+    //   if (energy_demand === 'CONSTRUCTION_YEAR'){
+
+    //     var data = {
+    //         "building": {
+    //             "postalCode": post_code,
+    //             "constructionYear": construction_year,
+    //             "livingSpace": living_area,
+    //             "roofAlignment": directionChange,
+    //             "roofTilt": roof_inclination
+    //         },
+    //         "energyDemand": {
+    //             "personCount": local_person_count,
+    //             "energyDemand": power_consumption,
+    //             "headingDemandType": energy_demand
+    //         }
+    //       }
+    //   } 
+
+    //   if (energy_demand === 'GAS_OR_OIL_BILL'){
+    //     var data = {
+    //         "building": {
+    //             "postalCode": post_code,
+    //             "constructionYear": construction_year,
+    //             "livingSpace": living_area,
+    //             "roofAlignment": directionChange,
+    //             "roofTilt": roof_inclination
+    //         },
+    //         "energyDemand": {
+    //             "personCount": local_person_count,
+    //             "energyDemand": power_consumption,
+    //             "headingDemandType": energy_demand,
+    //             "yearlyGasDemand": yearlyGasDemand
+    //         }
+    //       }
+    //   } 
+      
+    //   if (energy_demand === 'ENERGY_CERTIFICATE'){ 
+    //     var data = {
+    //         "building": {
+    //             "postalCode": post_code,
+    //             "roofAlignment": directionChange,
+    //             "roofTilt": roof_inclination
+    //         },
+    //         "energyDemand": {
+    //             "energyDemand": power_consumption,
+    //             "headingDemandType": energy_demand,
+    //             "yearlyEnergyDemand": yearlyEnergyDemand,
+    //             "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
+    //         }
+    //       }
+    //   }
 
             fetch("http://18.222.103.21:8080/eneryou/api/recommentations",{
                 method: 'POST',
@@ -176,7 +176,9 @@ class Product extends Component {
                         let price_1 = products_1[j]['price'];
                         //let productCode_1 = products_1[j]['productCode'];
                         let productName_1 = products_1[j]['productName'];
-                        recommentations_list_1.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_1}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_1}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_1} € </p></div></div>);
+                        recommentations_list_1.push(<tr><td>{componentName_1}</td><td>{productName_1}</td><td>{price_1} €</td></tr>);
+
+                       
                     }
             }
              if (i == 1){
@@ -195,7 +197,8 @@ class Product extends Component {
                         let price_2 = products_2[k]['price'];
                        // let productCode_2 = products_2[k]['productCode'];
                         let productName_2 = products_2[k]['productName'];
-                        recommentations_list_2.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_2} € </p></div></div>);
+                        // recommentations_list_2.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_2} € </p></div></div>);
+                        recommentations_list_2.push(<tr><td>{componentName_2}</td><td>{productName_2}</td><td>{price_2} €</td></tr>);
                     }
             }
             if (i == 2){
@@ -214,7 +217,7 @@ class Product extends Component {
                         let price_3 = products_3[l]['price'];
                         //let productCode_3 = products_3[l]['productCode'];
                         let productName_3 = products_3[l]['productName'];
-                        recommentations_list_3.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_3}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_3}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_3} € </p></div></div>);
+                        recommentations_list_3.push(<tr><td>{componentName_3}</td><td>{productName_3}</td><td>{price_3} €</td></tr>);
                     }
             } 
         }
@@ -398,156 +401,134 @@ class Product extends Component {
                     </div>
                 </p> <h4 className="form_heading">Product Recommendation  </h4>
                   <div className="row product_recommendation">
-                        <div className="col-md-4 col-sm-12">
-                            <div className="product_img">
-                                 <img src={product_1} circle/>
+                        <div className="col-md-4 col-lg-4 col-sm-12">
+                             <div className="product_img">
+                                 <img  className="p_img" src={product_1} responsive />
                             </div>
-                            <div className="product_box_1_1">
-                                <div className="product_heading">
-                                <div className="row">
-                                        <div className="col-md-4 col-sm-4"> <p className="prod_res">Component</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Product </p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Price</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product_box_1_2">
-                                <div className="product_heading" >
-                                    <div className="res" id="product_result_1">
-                                        {recommentations_list_1}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product_box_1_3">
-                            <div className="product_heading">
-                                <div className="row">
-                                         <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Funding</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_1_furthering} €</p></div>
-                                    </div>
-                                </div>
-                                <div className="product_heading">
-                                <div className="row">
-                                         <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Investment Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_1_investCost} €</p></div>
-                                    </div>
-                                </div>
-                                <div className="product_heading">
-                                    <div className="row">
-                                        <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Operation Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_1_operatingCost} €</p></div>
-                                    </div>                                  
-                                </div>
-                                <div className="graph_img">
-                                     <a href="/Economicgraph"><img src={graph_img_1} circle/></a>
-                                </div>
-                               
-
+                            <div class="table-responsive">
+                            <table class="table table-borderless" responsive>
+                                <thead className="product_box_1_2">
+                                    <tr>
+                                        <th scope="col" className="prod_res">Component</th>
+                                        <th scope="col" className="prod_res">Product</th>
+                                        <th scope="col" className="prod_res">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="product_result_1" className="product_box_1_2">
+                                    {recommentations_list_1}
+                                </tbody>
+                                <tbody id="product_result_1" className="product_box_1_3">
+                                    <tr>
+                                        <td></td>
+                                        <td>Total Funding</td>
+                                        <td>{recommentations_list_1_furthering} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Investment Cost</td>
+                                        <td>{recommentations_list_1_investCost} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Operation Cost</td>
+                                        <td>{recommentations_list_1_operatingCost} €</td>
+                                    </tr>
+                                </tbody>
+                                <tbody className="graph_img">
+                                    <td></td>
+                                    <td>   <a href="/Economicgraph"><img className="graph_img"  src={graph_img_1} circle /></a></td>
+                                    <td></td>
+                                </tbody>
+                            </table>
                             </div>
                             
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-4 col-lg-4 col-sm-12">
+                      
+                        <div class="table-responsive">
                         <div className="product_img">
-                                 <img src={product_2} circle/>
+                                 <img className="p_img" src={product_2} responsive />
                             </div>
-                            <div className="product_box_2_1">
-                                <div className="product_heading">
-                                <div className="row">
-                                <div className="col-md-4 col-sm-4"> <p className="prod_res">Component</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Product </p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Price</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product_box_2_2">
-                                <div className="product_heading">
-                                    <div className="res" id="product_result_2">
-                                        {recommentations_list_2}
-                                    </div>
-                                </div>
-                                
-
-                            </div>
-                            <div className="product_box_2_3">
-                            <div className="product_heading">
-                                <div className="row">
-                                         <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Funding</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_2_furthering} €</p></div>
-                                    </div>
-                                </div>
-                                <div className="product_heading">
-                                <div className="row">
-                                        <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Investment Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_2_investCost} €</p></div>
-                                    </div>
-                                </div>
-                                <div className="product_heading">
-                                    <div className="row">
-                                    <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Operation Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_2_operatingCost} €</p></div>
-                                    </div>                                  
-                                </div>
-                                <div className="graph_img">
-                                <a href="/Emission"><img src={graph_img_2} circle/></a>
-                                </div>
-                               
-
+                            <table class="table table-borderless">
+                                <thead className="product_box_2_2">
+                                    <tr>
+                                        <th scope="col" className="prod_res">Component</th>
+                                        <th scope="col" className="prod_res">Product</th>
+                                        <th scope="col" className="prod_res">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="product_result_1" className="product_box_2_2">
+                                    {recommentations_list_2}
+                                </tbody>
+                                <tbody id="product_result_1" className="product_box_2_3">
+                                    <tr>
+                                        <td></td>
+                                        <td>Total Funding</td>
+                                        <td>{recommentations_list_2_furthering} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Investment Cost</td>
+                                        <td>{recommentations_list_2_investCost} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Operation Cost</td>
+                                        <td>{recommentations_list_2_operatingCost} €</td>
+                                    </tr>
+                                </tbody>
+                                <tbody className="">
+                                    <td></td>
+                                    <td> <a href="/Emission"><img className="graph_img" src={graph_img_2} circle/></a></td>
+                                    <td></td>
+                                </tbody>
+                            </table>
                             </div>
 
                         </div>
-                        <div className="col-md-4">
-                        <div className="product_img">
-                                 <img src={product_3} circle/>
+                        <div className="col-md-4 col-lg-4 col-sm-12">
+                            <div className="product_img">
+                                <img className="p_img" src={product_3} circle />
                             </div>
-                            <div className="product_box_3_1">
-                                <div className="product_heading">
-                                <div className="row">
-                                         <div className="col-md-4 col-sm-4"> <p className="prod_res">Component</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Product </p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Price</p></div>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead className="product_box_3_2">
+                                    <tr>
+                                        <th scope="col" className="prod_res">Component</th>
+                                        <th scope="col" className="prod_res">Product</th>
+                                        <th scope="col" className="prod_res">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="product_result_1" className="product_box_3_2">
+                                    {recommentations_list_3}
+                                </tbody>
+                                <tbody id="product_result_1" className="product_box_3_3">
+                                    <tr>
+                                        <td></td>
+                                        <td>Total Funding</td>
+                                        <td>{recommentations_list_3_furthering} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Investment Cost</td>
+                                        <td>{recommentations_list_3_investCost} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Operation Cost</td>
+                                        <td>{recommentations_list_3_operatingCost} €</td>
+                                    </tr>
+                                </tbody>
+                                <tbody className="graph_img">
+                                    <td></td>
+                                    <td><a href="/Energetic"><img className="graph_img"  src={graph_img_3} circle /></a></td>
+                                    <td></td>
+                                </tbody>
+                            </table>
                             </div>
-                            <div className="product_box_3_2">
-                                <div className="product_heading">
-                                <div className="res" id="product_result_3">
-                                        {recommentations_list_3}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product_box_3_3">
-                            <div className="product_heading">
-                                <div className="row">
-                                         <div className="col-md-4 col-sm-4"> </div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Total Funding</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_3_furthering} €</p></div>
-                                    </div>
-                                </div>
-                                <div className="product_heading">
-                                <div className="row">
-                                        <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Investment Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_3_investCost} €</p></div>
-                                    </div>
-                                </div>
-                                <div className="product_heading">
-                                    <div className="row">
-                                    <div className="col-md-4"></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">Operation Cost</p></div>
-                                        <div className="col-md-4 col-sm-4">  <p className="prod_res">{recommentations_list_3_operatingCost} €</p></div>
-                                    </div>                                  
-                                </div>
-                                <div className="graph_img">
-                                <a href="/Energetic"><img src={graph_img_3} circle/></a>
-                                </div>
-                               
+                           
 
-                            </div>
+
 
                         </div>
                   </div>

@@ -183,8 +183,8 @@ class Homedetails extends Component {
 
                 {/* First section start Here */}
                 <div className="row">
-                    <div className="col-md-1"></div>
-                    <div className="col-md-8">
+                    <div className="col-md-1 hide_tab"></div>
+                    <div className="col-md-12 col-lg-8">
                    
                     <div className="row radio-toolbar">
                    
@@ -286,7 +286,7 @@ class Homedetails extends Component {
                     </div>
                     <p className="error_font" style={{textAlign:'right'}}>{this.state.errors["roof_error"]}</p>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-12 col-lg-3">
                   
                         <p className="img_compass">
                         {/* <img src={require('./images/n_compass.png')} alt="" className=""/> */}
@@ -320,7 +320,7 @@ class Homedetails extends Component {
                  {/* Second Section Starts Here */}
 
                  <div className="row">
-                 <div className="col-md-2 " style={ { backgroundImage: 'url(' + house_year + ')',
+                 <div className="col-md-2 col-lg-2" style={ { backgroundImage: 'url(' + house_year + ')',
                  backgroundPosition: 'center',
                 marginTop:'50px',
                  height:'127px',
@@ -337,7 +337,7 @@ class Homedetails extends Component {
                   >
                         <option value="">Bitte auswählen</option>
                         <option value="UP_TO1859">bis 1859</option>
-                        <option value="CFROM_1860_TO1918">von 1860 bis 1918</option>
+                        <option value="FROM_1860_TO1918">von 1860 bis 1918</option>
                         <option value="FROM1919_TO1948">von 1919 bis 1948</option>
                         <option value="FROM1949_TO1957">von 1949 bis 1957</option>
                         <option value="FROM1958_TO1968">von 1958 bis 1968</option>
@@ -356,7 +356,7 @@ class Homedetails extends Component {
                  </div>
                
                  </div>
-                 <div className="col-md-8 form_1_bg" style={ { backgroundImage: 'url(' + imgUrl + ')',
+                 <div className="col-lg-8 col-md-10 form_1_bg" style={ { backgroundImage: 'url(' + imgUrl + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'400px',
@@ -372,7 +372,7 @@ class Homedetails extends Component {
                 
                  
                  </div>
-                 <div className="col-md-2">
+                 <div className="col-md-2 col-lg-2 hide_tab">
                  {/* <div className="direction_box">
                     <select className="direction_drop_box " name="directionChange"
                     onChange={this.direction_call} 
