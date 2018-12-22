@@ -1,82 +1,47 @@
 import React, {Component} from "react";
 import Chart from "react-google-charts";
-//import {Bar, Line, Pie} from 'react-chartjs-2';
 
-class Graph_1 extends  Component{
-
-    constructor(props){
-        super(props);
-        this.state={
-            chartData :{
-                labels:['chennai','cbe','salem','trichy','madurai','ooty'],
-                datasets : [
-                    {
-                        label:'population',
-                        data:[
-                            1200,2000,3000,2000,4000,2000
-                        ],
-                        backgroundColor:[
-                            'red','blue','green','black','orange','blue'
-                        ]
-
-                }
-            ]
-            },
-            SalesData :{
-                labels:['chennai','cbe','salem','trichy','madurai','ooty'],
-                datasets : [
-                    {
-                        label:'population',
-                        data:[
-                            1200,2000,3000,2000,1000,2000
-                        ],
-                        backgroundColor:[
-                            'red','blue','green','black','orange','blue'
-                        ]
-
-                }
-            ]
-            }
-        }
-    }
+class Graph_7 extends  Component{
 
     render(){
+        const graph7_values = JSON.parse(localStorage.getItem('google_graph7'));
+
         return(
             <div className="container">
             <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-10">
             <div class="graph_example">
-            <Chart id='7'
-        width={'800px'}
-        height={'380px'}
-        chartType="ComboChart"
-        loader={<div>Loading Chart</div>}
-        data={[
-            [
-            '',
-            'CO2 Emissions',
-            'CO2 Abatement Cost',
-            ],
-            ['1', 11.51, 0],
-            ['4', 1.25, -99.73],
-            ['2', 3.33, 15.89],
-            ['3', 3.52, 51.04,],
-            ['9', 4.59, 366.48],
-            ['6', 6.44, -512.14],
-            ['7', 6.64, -476.40],
-            ['5', 8.60, -146.22,],
-            ['8', 10.44, 324.05],
-        ]}
-        options={{
-            title: 'Comparison of Monthly Electricity & Heating Costs',
-            chartArea: { width: '50%' },
-            vAxis: { title: 'Monthly Electricity & Heating Costs in €/Month' },
-            hAxis: { title: 'System Combination' },
-            seriesType: 'bars',
-            series: { 1: { type: 'line' } },
-        }}
-    />
+            <Chart id='Graph 7'
+                width={'800px'}
+                height={'380px'}
+                chartType="ComboChart"
+                loader={<div>Loading Chart</div>}
+                data={graph7_values}
+                // Set chart options
+                options={{
+                    title: 'Comparison of CO2 Emissions for your Electricity & Heat Supply',
+                    chartArea: { width: '60%' },
+                // vAxis: { title: 'CO2 Equivalent in t/a' },
+                    hAxis: { title: 'System Combination' },
+                    seriesType: 'bars',
+                    colors: ['#f2a614','#cc0303'],
+                    animation: {
+                        startup: true,
+                        duration: 1500,
+                        easing: 'out',
+                    },
+                    pointsVisible: true	,
+                    series: {
+                        0: {targetAxisIndex: 0},
+                        1: {targetAxisIndex: 1, type: 'line'},
+                    },
+                    vAxes: {
+                        0: {title: 'CO2 Equivalent in t/a'},
+                        1: {title: 'CO2 Abatement Costs in €/t'},
+                    },
+                }}
+            />
             </div>
             <div className="col-md-1"></div>
              </div>
@@ -89,4 +54,4 @@ class Graph_1 extends  Component{
     }
 }
 
-export default Graph_1;
+export default Graph_7;
