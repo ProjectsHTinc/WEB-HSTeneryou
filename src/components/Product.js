@@ -31,10 +31,26 @@ class Product extends Component {
     componentDidMount(){
         const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
         let local_person_count = localStorage.getItem('person_count');
-        //localStorage.setItem("budgetInput",budget_value);
-
+      
       console.log("loading");
+
+    //   var data = {
+    //     "building": {
+    //         "postalCode": 20146,
+    //         "constructionYear": "FROM1969_TO1978",
+    //         "livingSpace": 150,
+    //         "roofAlignment": "SOUTH",
+    //         "roofTilt": "DEGREES_25"
+    //     },
+    //     "energyDemand": {
+    //         "personCount": 3,
+    //         "energyDemand": 3004,
+    //         "headingDemandType": "CONSTRUCTION_YEAR"
+    //     }
+    //   }
+
       if (energy_demand === 'CONSTRUCTION_YEAR'){
+
         var data = {
             "building": {
                 "postalCode": post_code,
@@ -203,78 +219,117 @@ class Product extends Component {
             } 
         }
 
-
+            
             let graph_1=[];
-			let graph_2=[];
+            let graph_2=[];
 			let graph_3=[];
 			let graph_3_1=[];
 			let graph_3_2=[];
 			let graph_4=[];
 			let graph_5=[];
-			let graph_6=[];
+            let graph_6=[];
+            let graph_6_1=[];
+            let graph_6_2=[];
 			let graph_7=[];
 			let graph_7_1=[];
 			let graph_7_2=[];
 
+            graph_1.push(['','Self Sufficiency']);
 			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
-				let energeticValues = this.state.systemCombinations_value[i].energeticValues;
+				    let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
+				    let energeticValues = this.state.systemCombinations_value[i].energeticValues;
 					let energeticSelfSufficiency = energeticValues['energeticSelfSufficiency'];	
 					graph_1.push([systemCombinationPosition,energeticSelfSufficiency]);
-			}
+            }
+            
+            graph_2.push(['', 'Self Sufficiency','Grid Consumption','Self Consumption-PV','Self Consumption-BHKW','Feed-In-PV','Feed-In-BHKW']);
+            for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+                let systemCombinationPosition =  String(this.state.systemCombinations_value[i].systemCombinationPosition);
+                let energeticValues = this.state.systemCombinations_value[i].energeticValues;
+                let energeticSelfSufficiency = energeticValues['energeticSelfSufficiency'];
+                let energeticNetConsumption = energeticValues['energeticNetConsumption'];
+                if(energeticNetConsumption == null){energeticNetConsumption=0}
+                let energeticOwnConsumptionPV = energeticValues['energeticOwnConsumptionPV'];
+                if(energeticOwnConsumptionPV == null){energeticOwnConsumptionPV=0}
+                let energeticOwnConsumptionBHKW = energeticValues['energeticOwnConsumptionBHKW'];
+                if(energeticOwnConsumptionBHKW == null){energeticOwnConsumptionBHKW=0}
+                let energeticPowerSupplyPV = energeticValues['energeticPowerSupplyPV'];
+                if(energeticPowerSupplyPV == null){energeticPowerSupplyPV=0}
+                let energeticPowerSupplyBHKW = energeticValues['energeticPowerSupplyBHKW'];
+                if(energeticPowerSupplyBHKW == null){energeticPowerSupplyBHKW=0}
+                graph_2.push([systemCombinationPosition,energeticSelfSufficiency,energeticNetConsumption,energeticOwnConsumptionPV,energeticOwnConsumptionBHKW,energeticPowerSupplyPV,energeticPowerSupplyBHKW]);
+        }
 
+            graph_3_1.push(['', 'Annuity Costs']);
 			for (i =0; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition_0 = this.state.systemCombinations_value[0].systemCombinationPosition;
-				let economicValues_0 = this.state.systemCombinations_value[0].economicValues;
-				let annuityCost_0 = economicValues_0['annuityCost'];
-				graph_3_1.push([systemCombinationPosition_0,annuityCost_0]);
-				break;
+                    let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
+                    let economicValues = this.state.systemCombinations_value[0].economicValues;
+                    let annuityCost = economicValues['annuityCost'];
+                    graph_3_1.push([systemCombinationPosition,annuityCost]);
+                    break;
 			}
 			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
-				let economicValues = this.state.systemCombinations_value[i].economicValues;
+				    let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
+				    let economicValues = this.state.systemCombinations_value[i].economicValues;
 					let annuityCost = economicValues['annuityCost'];
 					graph_3_2.push([systemCombinationPosition,annuityCost]);
-			}
+            }
+            
 
+            graph_4.push(['', 'annuityCost','Investment Costs','Budget']);
 			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
-				let economicValues = this.state.systemCombinations_value[i].economicValues;
-					let annuityCost = economicValues['annuityCost'];
-					let investCost = economicValues['investCost'];
-					graph_4.push([systemCombinationPosition,annuityCost,investCost]);
-			}
+                    let budget_value_amount = Number(localStorage.getItem('budget_value'));
+				    let systemCombinationPosition =  String(this.state.systemCombinations_value[i].systemCombinationPosition);
+                    let economicValues = this.state.systemCombinations_value[i].economicValues;
+                    let annuityCost = economicValues['annuityCost'];
+                    let investCost = economicValues['investCost'];
+					graph_4.push([systemCombinationPosition,annuityCost,investCost,budget_value_amount]);
+            }
 
+
+            graph_5.push(['', 'annuityCost','Fuel Costs', 'Maintenance Costs']);
 			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
-				let economicValues = this.state.systemCombinations_value[i].economicValues;
+				    let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
+				    let economicValues = this.state.systemCombinations_value[i].economicValues;
 					let annuityCost = economicValues['annuityCost'];
 					let operatingCost = economicValues['operatingCost'];
 					let yearlyFuelCost = economicValues['yearlyFuelCost'];
 					graph_5.push([systemCombinationPosition,annuityCost,operatingCost,yearlyFuelCost]);
-			}
+			}         
 
+            graph_6_1.push(['', 'annuityCost','Electricity Costs', 'Heating Costs']);
 			for (i = 0; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
-				let economicValues = this.state.systemCombinations_value[i].economicValues;
+				    let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
+				    let economicValues = this.state.systemCombinations_value[i].economicValues;
 					let annuityCost = economicValues['annuityCost'];
-					let operatingCost = economicValues['monthlyHeadingCost'];
-					let yearlyFuelCost = economicValues['monthlyEnergyCost'];
-					graph_6.push([systemCombinationPosition,annuityCost,operatingCost,yearlyFuelCost]);
-			}
+					let monthlyHeadingCost = economicValues['monthlyHeadingCost'];
+					let monthlyEnergyCost = economicValues['monthlyEnergyCost'];
+                    graph_6_1.push([systemCombinationPosition,annuityCost,monthlyHeadingCost,monthlyEnergyCost]);
+                    break;
+            }
+			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
+				    let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
+				    let economicValues = this.state.systemCombinations_value[i].economicValues;
+					let annuityCost = economicValues['annuityCost'];
+					let monthlyHeadingCost = economicValues['monthlyHeadingCost'];
+					let monthlyEnergyCost = economicValues['monthlyEnergyCost'];
+					graph_6_2.push([systemCombinationPosition,annuityCost,monthlyHeadingCost,monthlyEnergyCost]);
+            }
 
+
+
+            graph_7_1.push(['', 'CO2 Emission', 'CO2 Abatement Costs']);
 			for (i = 0; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[0].systemCombinationPosition;
-				let ecologicValues = this.state.systemCombinations_value[0].ecologicValues;
+				    let systemCombinationPosition =  String(this.state.systemCombinations_value[0].systemCombinationPosition);
+				    let ecologicValues = this.state.systemCombinations_value[0].ecologicValues;
 					let yearlyCO2Equivalent = ecologicValues['yearlyCO2Equivalent'];
 					let yearlyAbatementCosts = ecologicValues['yearlyAbatementCosts'];	
 					graph_7_1.push([systemCombinationPosition,yearlyCO2Equivalent,yearlyAbatementCosts]);
 					break;
 			}
-
 			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
-				let systemCombinationPosition = this.state.systemCombinations_value[i].systemCombinationPosition;
-				let ecologicValues = this.state.systemCombinations_value[i].ecologicValues;
+				    let systemCombinationPosition =  String(this.state.systemCombinations_value[i].systemCombinationPosition);
+				    let ecologicValues = this.state.systemCombinations_value[i].ecologicValues;
 					let yearlyCO2Equivalent = ecologicValues['yearlyCO2Equivalent'];
 					let yearlyAbatementCosts = ecologicValues['yearlyAbatementCosts'];	
 					graph_7_2.push([systemCombinationPosition,yearlyCO2Equivalent,yearlyAbatementCosts]);
@@ -282,9 +337,16 @@ class Product extends Component {
 
 			graph_1.sort(function(a,b){
 					return b[1]  - a[1];
-			})
+            })
+ 
+            graph_2.sort(function(a,b){
+                return b[1]  - a[1];
+            })
+            graph_2.map(function(val){
+                 return val.splice(1, 1);
+             });
 
-			graph_3_2.sort(function(a,b){
+           	graph_3_2.sort(function(a,b){
 				return a[1]  - b[1];
 			})
 			graph_3 = graph_3_1.concat(graph_3_2);
@@ -292,22 +354,33 @@ class Product extends Component {
 			graph_4.sort(function(a,b){
 				return a[1]  - b[1];
 			})
+            graph_4.map(function(val){
+                return val.splice(1, 1);
+            });
 
 			graph_5.sort(function(a,b){
 				return a[1]  - b[1];
 			})
+            graph_5.map(function(val){
+                return val.splice(1, 1);
+            });
 
-			graph_6.sort(function(a,b){
+			graph_6_2.sort(function(a,b){
 				return a[1]  - b[1];
-			})
+            })
+            graph_6 = graph_6_1.concat(graph_6_2);
+            graph_6.map(function(val){
+                return val.splice(1, 1);
+            });
 
 			graph_7_2.sort(function(a,b){
 				return a[1]  - b[1];
 			})
             graph_7 = graph_7_1.concat(graph_7_2);
             
+
             localStorage.setItem("google_graph1", JSON.stringify(graph_1));
-            //localStorage.setItem("google_graph2", JSON.stringify(graph_1));
+            localStorage.setItem("google_graph2", JSON.stringify(graph_2));
             localStorage.setItem("google_graph3", JSON.stringify(graph_3));
             localStorage.setItem("google_graph4", JSON.stringify(graph_4));
             localStorage.setItem("google_graph5", JSON.stringify(graph_5));
