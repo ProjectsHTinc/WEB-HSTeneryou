@@ -771,9 +771,9 @@ input[type='radio']:checked:before {
     .img_compass{
         margin-left: 0px;
     }
-    .radio_box{
+    /* .radio_box{
         border: none;
-    }
+    } */
     .living_box{
         margin-right: 0px;
     }

@@ -110,30 +110,39 @@ class Persondetail extends Component {
            }
       }
     componentDidMount(){
-       let person_value=localStorage.getItem("person_count");
-       
-       if(person_value=='6'){
-        this.power_consumption.focus();
-         document.getElementById("power_consumption").value = "6000";           
-       }else if(person_value=='5'){
-        this.power_consumption.focus();
-        document.getElementById("power_consumption").value = "5000";   
-       }else if(person_value=='4'){
-        this.power_consumption.focus();
-        document.getElementById("power_consumption").value = "4000";   
-        }else if(person_value=='3'){
-            this.power_consumption.focus();
-            document.getElementById("power_consumption").value = "3000";   
-        }else if(person_value=='2'){
-            this.power_consumption.focus();
-            document.getElementById("power_consumption").value = "2000";   
-        }
-        else if(person_value=='1'){
-            this.power_consumption.focus();
-            document.getElementById("power_consumption").value = "1000";   
-        }else{
-            document.getElementById("power_consumption").value = "";   
-       }
+    //     const { values :{power_consumption}}= this.props;
+    //    let pw_valu=power_consumption;
+    //    alert(pw_valu);
+    //     if(pw_valu){           
+    //         alert("set value");
+    //     }else{
+    //         alert("assigned");
+    //     }
+
+    //    let person_value=localStorage.getItem("person_count");
+      //let person_value=power_consumption;
+    //    if(person_value=='6'){
+    //     this.power_consumption.focus();
+    //      document.getElementById("power_consumption").value = "6000";           
+    //    }else if(person_value=='5'){
+    //     this.power_consumption.focus();
+    //     document.getElementById("power_consumption").value = "5000";   
+    //    }else if(person_value=='4'){
+    //     this.power_consumption.focus();
+    //     document.getElementById("power_consumption").value = "4000";   
+    //     }else if(person_value=='3'){
+    //         this.power_consumption.focus();
+    //         document.getElementById("power_consumption").value = "3000";   
+    //     }else if(person_value=='2'){
+    //         this.power_consumption.focus();
+    //         document.getElementById("power_consumption").value = "2000";   
+    //     }
+    //     else if(person_value=='1'){
+    //         this.power_consumption.focus();
+    //         document.getElementById("power_consumption").value = "1000";   
+    //     }else{
+    //         document.getElementById("power_consumption").value = "";   
+    //    }
 
     }
     render() {
