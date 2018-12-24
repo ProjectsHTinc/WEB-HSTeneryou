@@ -807,7 +807,7 @@ table{
     }
     .form_1_bg{
         background-size: contain !important;
-        margin-top: 230px;
+      
         }
      /* .radio_box{
         border: none;
@@ -894,6 +894,9 @@ table{
     .living_box{
         padding: 8px;
         margin-right: 80px;
+    }
+    .form_1_bg{
+        
     }
 }
 

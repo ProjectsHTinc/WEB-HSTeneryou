@@ -89,6 +89,10 @@ class Enerydemand extends Component {
             formIsValid = false;
             errors["yearlyEnergyDemandOnWater"] = "*Not more  Than 5000";
           }
+          if (yearlyEnergyDemandOnWater <= 99) {
+            formIsValid = false;
+            errors["yearlyEnergyDemandOnWater"] = "*Greater Than Equal to 100";
+          }
           if(!yearlyEnergyDemandOnWater){
             formIsValid = false;
             errors["yearlyEnergyDemandOnWater"] = "YearlyEnergyDemandOnWater";
