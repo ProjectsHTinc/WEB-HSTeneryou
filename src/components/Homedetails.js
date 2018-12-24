@@ -15,6 +15,7 @@ import house_year from './images/house_year.png';
 import postbox from './images/postbox.png';
 import Character from './images/character_fields.png';
 import progress_img from './images/progress_home.png';
+import char_error from './images/char_error.png';
 
 
 class Homedetails extends Component {
@@ -24,6 +25,7 @@ class Homedetails extends Component {
         this.state = {
             step :1,
             NormalCompass:east,
+            Character:Character,
             roof_inclination:'',
             living_area:'',
             post_code:'',
@@ -93,7 +95,8 @@ class Homedetails extends Component {
          } 
          if(!house_con_year){
             formIsValid = false;
-            errors["house_con_year"] = "Select Year";           
+            errors["house_con_year"] = "Select Year"; 
+            this.setState({ Character: char_error });          
          }  
     
     
@@ -108,7 +111,8 @@ class Homedetails extends Component {
         
         if(this.handleValidation()){          
             this.props.nextStep();
-         }else{           
+         }else{    
+            this.setState({ Character: char_error });        
            //alert("error");
          }        
     }
@@ -166,7 +170,7 @@ class Homedetails extends Component {
 
     render() {
 
-        const { options, NormalCompass } = this.state;
+        const { options, NormalCompass,Character } = this.state;
         const { values } = this.props      
        
         const {roof} = this.state
@@ -322,7 +326,7 @@ class Homedetails extends Component {
                  <div className="row">
                  <div className="col-md-2 col-lg-2" style={ { backgroundImage: 'url(' + house_year + ')',
                  backgroundPosition: 'center',
-                marginTop:'50px',
+                marginTop:'0px',
                  height:'127px',
                  backgroundRepeat: 'no-repeat' } }>
                  <div className="year_box">
@@ -351,10 +355,20 @@ class Homedetails extends Component {
                 
                 </div>
                 <p className="error_font" style={{textAlign:'center'}}>{this.state.errors["house_con_year"]}</p>
-                <div className="character_img">
-                    <p> <img src={Character} className="" circle  /></p>
-                 </div>
-               
+              
+                            <div className="post_text_box">
+                                 <label className="post_code_text">Post Code</label>
+                                <input type="text" name="post_code" className="post_textbox form-control" maxlength='5' minLength='5'
+                                     placeholder='' ref={(post_code) => this.post_code = post_code}
+                                   onChange={this.props.handleChange('post_code')}
+
+                                   defaultValue={values.post_code} />
+                                 <p className="error_font">{this.state.errors["post_code"]}</p>
+                            </div>
+                            <div className="postbox_img">
+                                <p> <img src={postbox} className="" circle /></p>
+                             </div>
+
                  </div>
                  <div className="col-lg-8 col-md-10 form_1_bg" style={ { backgroundImage: 'url(' + imgUrl + ')',
                  backgroundPosition: 'center',
@@ -363,51 +377,40 @@ class Homedetails extends Component {
                  backgroundRepeat: 'no-repeat' } }>
                  <div className="living_box">
                  <label className="living_label">Living Area</label>
-                        <input type="text" name="living_area" className="living_textbox" 
+                        <input type="text" name="living_area" className="living_textbox " 
                         placeholder='' ref={(living_area) => this.living_area = living_area}
                         onChange={this.props.handleChange('living_area')}
                         defaultValue={values.living_area}/>
                           <p className="error_font" style={{textAlign:'right'}}>{this.state.errors["living_area"]}</p>
                 </div>
+                {/* <div className="row">
+                    <div className="col-md-2">1</div>
+                    <div className="col-md-8 text-center">
+                        <div className="">
+                        <label>living_area</label>
+                        <input type="text"></input>
+                        </div>
+                    </div>              
+                    <div className="col-md-2">3</div> */}
+                {/* <div>
+
+
+                </div> */}
+
+                
+                       
+                
+                {/* </div> */}
                 
                  
                  </div>
                  <div className="col-md-2 col-lg-2 hide_tab">
-                 {/* <div className="direction_box">
-                    <select className="direction_drop_box " name="directionChange"
-                    onChange={this.direction_call} 
-                    onClick={this.props.handleChange('directionChange')}                    
-                    defaultValue={values.directionChange} 
-                    ref="direction_compass"              
-                     >
-                            <option value="">Select-Direction</option>
-                            <option value="EAST">East</option>
-                            <option value="WEST">West</option>
-                            <option value="SOUTH">South</option>
-                            <option value="SOUTHEAST">South-East</option>
-                            <option value="SOUTHWEST">South-West</option>
-                    </select>
-                    <p className="error_font">{this.state.errors["directionChange"]}</p>
-                    
-                 </div> */}
+              
 
-                 <div className="postbox_text">
-                   
-                 
-
+                <div className="character_img">
+                    <p> <img src={Character} className="" circle  /></p>
                  </div>
-                 <div className="post_text_box">
-                 <label className="post_code_text">Post Code</label>
-                        <input type="text"   name="post_code" className="post_textbox"  maxlength='5' minLength='5'  
-                         placeholder='' ref={(post_code) => this.post_code = post_code}
-                        onChange={this.props.handleChange('post_code')}
-                        
-                        defaultValue={values.post_code}/>
-                        <p className="error_font">{this.state.errors["post_code"]}</p>
-                   </div>
-                 <div className="postbox_img">
-                    <p> <img src={postbox} className="" circle  /></p>
-                 </div>
+           
                 
                  </div>
 
@@ -426,7 +429,7 @@ class Homedetails extends Component {
                 <div className="col-md-8">
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'25%'}} />
+                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'-15px',left:'25%'}} />
                      <Line percent="28" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
                      <p style={{color:'#000',marginLeft:'25%'}}>25%</p>
                 </div>

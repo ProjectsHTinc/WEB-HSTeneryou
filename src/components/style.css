@@ -1,7 +1,16 @@
-.wrapper{
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+  
+    margin-bottom: 60px;
+  }
+  .wrapper{
     margin: 0px;
     padding: 0px;
 }
+
 .error_font{
     font-size: 13px;
     color:red;
@@ -55,7 +64,9 @@
     color:#000;
 }
 .img_compass{
-    margin-left: 90px;
+    margin-left: 50px;
+    margin-top: -10px;
+
 }
 .direction_drop_box{
     background-color: #2171b9;
@@ -63,6 +74,8 @@
     padding: 5px;
     width: 100%;
     border-radius:5px;
+    margin-top: 10px;
+
 }
 .year_label{
     color:#000;
@@ -142,9 +155,9 @@ input[type='radio']:checked:before {
     background-color: #fbc417;
 }
 .post_text_box{
-    padding:10px;
+    padding:5px;
     background-color: #fbc417;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 40px;
     border-radius: 5px;
 }
@@ -177,6 +190,8 @@ input[type='radio']:checked:before {
     width: 100%;
     font-weight: 700;
 }
+
+
 
 .living_box{
     float: right;
@@ -508,13 +523,13 @@ input[type='radio']:checked:before {
 .budget_box{
     width:100%;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form_btn{
     width:100%;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 
 }
 .btn_submit{
@@ -524,8 +539,11 @@ input[type='radio']:checked:before {
 
 .footer_section{
     background-color: #2171b9;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
 }
 .btn_next{
     background-color: #fff;
@@ -699,17 +717,25 @@ td{
 
 
 
+
+                  
+
+
 @media only screen and (max-width: 420px) {
+    .progress_bar{
+        display: none;
+    }
     .img_compass{
         margin-left:0px;
         text-align: center;
     }
     .form_1_bg{
         background-image: none !important;
-        height: 100px !important;
+      
     }
     .living_box{
-        margin: 30px 0px 0px 0px;
+        margin-right: 0px;
+        margin-top: 320px;
         width: 100%;        
         text-align: center;
     }
@@ -731,6 +757,7 @@ td{
     }
     .next_section{
         margin-bottom: 10px;
+        margin-top: 25px;
         text-align: center;
         width: 100%;
     }
@@ -767,16 +794,17 @@ td{
 @media only screen and (max-width:1024px) {
     .img_compass{
       text-align: center;
+    } 
+    .progress_bar{
+        display: none;
     }
-    /* .radio_box{
+     /* .radio_box{
         border: none;
     } */
     .character_img{
         display: none;
     }
-    .living_box{
-        margin-right: 70px;
-    }
+  
     .post_textbox{
         margin-left: 0px;
         font-size: 15px;
@@ -810,10 +838,31 @@ td{
     .table td, .table th{
 
     }
-}
+} 
 
-@media only screen and (min-device : 768px) and (max-device : 1024px) and (orientation : landscape) {  
-    .living_box{
+.rc-progress-line {
+    height: 8px;
+ }
 
+ @media (min-width: 768px) and (max-width: 991px) { 
+    .form_1_bg{
+        background-size: contain;
     }
-}
+    .living_box{
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 10px;
+    }
+    .footer_section{
+        line-height: 20px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+  }
+
+
+
+
+

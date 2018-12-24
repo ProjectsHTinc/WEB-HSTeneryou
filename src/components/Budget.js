@@ -99,7 +99,7 @@ class Budget extends Component {
                             <img src={euro_icon} circle className="coin_img" id="coin_spin"/>   
                         </div>
                         <div className="budget_box">
-                            <input type="text" 
+                            <input type="text"  className="form-control"
                             name="budget_value" 
                             ref={(budget_value) => this.budget_value = budget_value}
                             onChange={this.props.handleChange('budget_value')}
@@ -150,7 +150,7 @@ class Budget extends Component {
                 <div className="col-md-8">
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'97%'}} />
+                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'-15px',left:'83%'}} />
                      <Line percent="100" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
                      <p style={{color:'#000',marginLeft:'99%'}}>100%</p>
                 </div>

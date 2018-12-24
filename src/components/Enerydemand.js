@@ -218,7 +218,7 @@ class Enerydemand extends Component {
                                   </div>    
                                   <div className="gas_oil_section" id={this.state.gas_section}>
                                     <p className="label_demand_value_label">Yearly Gas/Oil Consumption  <br></br> (kWh/a)</p>
-                                    <p><input type="text" 
+                                    <p><input type="text" className="form-control"
                                     name="yearlyGasDemand" 
                                     ref={(yearlyGasDemand) => this.yearlyGasDemand = yearlyGasDemand}
                                     onChange={this.props.handleChange('yearlyGasDemand')} 
@@ -246,7 +246,7 @@ class Enerydemand extends Component {
                                             </div>
                                             <div className="energy_section" id={this.state.energy_section}>
                                                 <p className="label_demand_value_label">Energy Consumption <br></br> (kWh/a)</p>
-                                                <p><input type="text" 
+                                                <p><input type="text"  className="form-control"
                                                 name="yearlyEnergyDemand" 
                                                 onChange={this.props.handleChange('yearlyEnergyDemand')}
                                                 defaultValue={values.yearlyEnergyDemand} 
@@ -254,7 +254,7 @@ class Enerydemand extends Component {
                                                     /></p>
                                              <p  className="error_font">{this.state.errors["yearlyEnergyDemand"]}</p>
                                                 <p className="label_demand_value_label">Hot Water Share <br></br> (kWh/a)</p>
-                                                <p><input type="text"
+                                                <p><input type="text" className="form-control"
                                                  name="yearlyEnergyDemandOnWater"
                                                  ref={(yearlyEnergyDemandOnWater) => this.yearlyEnergyDemandOnWater = yearlyEnergyDemandOnWater}
                                                   onChange={this.props.handleChange('yearlyEnergyDemandOnWater')}
@@ -302,7 +302,7 @@ class Enerydemand extends Component {
                 <div className="col-md-8">
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'72%'}} />
+                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'-15px',left:'63%'}} />
                      <Line percent="75" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
                      <p style={{color:'#000',marginLeft:'75%'}}>75%</p>
                 </div>

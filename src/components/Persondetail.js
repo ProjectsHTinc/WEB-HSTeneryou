@@ -242,7 +242,7 @@ class Persondetail extends Component {
                 <div className="col-md-8 col-sm-8">
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'12px',left:'50%'}} />
+                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'-15px',left:'45%'}} />
                      <Line percent="53" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
                      <p style={{color:'#000',marginLeft:'49%'}}>50%</p>
                 </div>
