@@ -39,7 +39,10 @@ class Budget extends Component {
         errors["budget_value"] = "Enter Budget";
         }
        
-           
+        if (budget_value <= 9999) {
+            formIsValid = false;
+            errors["budget_value"] = "*Greater Than Equal to 10000";
+          }
        
      
         
@@ -96,7 +99,7 @@ class Budget extends Component {
                     <div className="row energy_form">
                         <p className="budget_font">Budgetobergrenze (€)</p>
                         <div className="budget_icon">
-                            <img src={euro_icon} circle className="coin_img" id="coin_spin"/>   
+                            <img src={euro_icon} circle className="coin_img" id=""/>   
                         </div>
                         <div className="budget_box">
                             <input type="text"  className="form-control"

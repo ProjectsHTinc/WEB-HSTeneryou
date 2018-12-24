@@ -104,7 +104,7 @@ class Persondetail extends Component {
             }
             else if(person_value=='1'){
                 this.power_consumption.focus();
-                document.getElementById("power_consumption").value = "1000";   
+                document.getElementById("power_consumption").value = "2000";   
             }else{
                 document.getElementById("power_consumption").value = "";   
            }

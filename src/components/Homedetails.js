@@ -358,7 +358,7 @@ class Homedetails extends Component {
               
                             <div className="post_text_box">
                                  <label className="post_code_text">Post Code</label>
-                                <input type="text" name="post_code" className="post_textbox form-control" maxlength='5' minLength='5'
+                                <input type="text" name="post_code" className="post_textbox " maxlength='5' minLength='5'
                                      placeholder='' ref={(post_code) => this.post_code = post_code}
                                    onChange={this.props.handleChange('post_code')}
 

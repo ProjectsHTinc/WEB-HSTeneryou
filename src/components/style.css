@@ -165,7 +165,7 @@ input[type='radio']:checked:before {
 .post_textbox{
     width:100%;
     border: none;
-    width: 10.5ch;
+    width:100px;
     background: 
       repeating-linear-gradient(90deg, 
           dimgrey 0, 
@@ -173,10 +173,12 @@ input[type='radio']:checked:before {
           transparent 0, 
           transparent 2.1ch) 
         0 100%/100% 2px no-repeat;
-    color: dimgrey;
-    font-size:24px;
-    letter-spacing: 14px;
+   
+    letter-spacing: 11px;
     margin-left: 10px;
+    font-size: 19px;
+   
+
 }
 .post_textbox:focus {
     outline: none;
@@ -673,8 +675,12 @@ input[type='radio']:checked:before {
 }
 td{
     font-size: 14px;
+    width: 200px;
+    padding: 10px;
 }
-
+table{
+    margin-top: -5px;
+}
 .graph_box{
     width: 100%;
     margin-top: 40px;
@@ -731,6 +737,7 @@ td{
     }
     .form_1_bg{
         background-image: none !important;
+        margin-top: 10px !important;
       
     }
     .living_box{
@@ -798,6 +805,10 @@ td{
     .progress_bar{
         display: none;
     }
+    .form_1_bg{
+        background-size: contain !important;
+        margin-top: 230px;
+        }
      /* .radio_box{
         border: none;
     } */
@@ -808,6 +819,8 @@ td{
     .post_textbox{
         margin-left: 0px;
         font-size: 15px;
+        width: 100px;
+       
     }
     .year_label{
         margin-left: 0px;
@@ -860,9 +873,27 @@ td{
         padding-top: 10px;
         padding-bottom: 20px;
     }
+    .post_textbox{
+        letter-spacing: 5px;
+    }
   }
 
 
 
+ 
 
+@media screen and (orientation:landscape) {
+   
+}
+@media screen and (max-width: 736px) and (orientation:landscape) {
+    .year_box{
+        text-align: center;
+        display: inline-grid;
+        margin: 50px 0px 20px 200px;
+    }
+    .living_box{
+        padding: 8px;
+        margin-right: 80px;
+    }
+}
 
