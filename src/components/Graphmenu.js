@@ -11,7 +11,6 @@ class Graphmenu extends Component {
                             <div className="tab_box_1">
                                 <p><a href="/Energetic">Energetic Analysis</a></p>
                             </div>
-                            
                         </div>
                         <div className="col-md-4">
                         <div className="tab_box_2">
@@ -25,7 +24,6 @@ class Graphmenu extends Component {
                         </div>
                     </div>
                 </div>
-          
         </div>
         )
     }

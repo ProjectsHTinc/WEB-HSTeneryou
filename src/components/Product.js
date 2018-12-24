@@ -28,78 +28,81 @@ class Product extends Component {
         this.props.prevStep();
     }
 
+   
+
+      
     componentDidMount(){
         const {values: {roof_inclination,living_area,post_code,directionChange,construction_year,person_count,power_consumption,energy_demand,yearlyGasDemand,yearlyEnergyDemand,yearlyEnergyDemandOnWater,budget_value }} = this.props;
         let local_person_count = localStorage.getItem('person_count');
       
       console.log("loading");
 
-    //   var data = {
-    //     "building": {
-    //         "postalCode": 20146,
-    //         "constructionYear": "FROM1969_TO1978",
-    //         "livingSpace": 150,
-    //         "roofAlignment": "SOUTH",
-    //         "roofTilt": "DEGREES_25"
-    //     },
-    //     "energyDemand": {
-    //         "personCount": 3,
-    //         "energyDemand": 3004,
-    //         "headingDemandType": "CONSTRUCTION_YEAR"
-    //     }
-    //   }
-
-      if (energy_demand === 'CONSTRUCTION_YEAR'){
-
-        var data = {
-            "building": {
-                "postalCode": post_code,
-                "constructionYear": construction_year,
-                "livingSpace": living_area,
-                "roofAlignment": directionChange,
-                "roofTilt": roof_inclination
-            },
-            "energyDemand": {
-                "personCount": local_person_count,
-                "energyDemand": power_consumption,
-                "headingDemandType": energy_demand
-            }
-          }
-      } 
-
-      if (energy_demand === 'GAS_OR_OIL_BILL'){
-        var data = {
-            "building": {
-                "postalCode": post_code,
-                "constructionYear": construction_year,
-                "livingSpace": living_area,
-                "roofAlignment": directionChange,
-                "roofTilt": roof_inclination
-            },
-            "energyDemand": {
-                "personCount": local_person_count,
-                "energyDemand": power_consumption,
-                "headingDemandType": energy_demand,
-                "yearlyGasDemand": yearlyGasDemand
-            }
-          }
-      } 
-      
-      if (energy_demand === 'ENERGY_CERTIFICATE'){ 
-        var data = {
-            "building": {
-                "postalCode": post_code,
-                "roofAlignment": directionChange,
-                "roofTilt": roof_inclination
-            },
-            "energyDemand": {
-                "energyDemand": power_consumption,
-                "headingDemandType": energy_demand,
-                "yearlyEnergyDemand": yearlyEnergyDemand,
-                "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
-            }
-          }
+      var data = {
+        "building": {
+            "postalCode": 20146,
+            "constructionYear": "FROM1969_TO1978",
+            "livingSpace": 150,
+            "roofAlignment": "SOUTH",
+            "roofTilt": "DEGREES_25"
+        },
+        "energyDemand": {
+            "personCount": 3,
+            "energyDemand": 3004,
+            "headingDemandType": "CONSTRUCTION_YEAR"
+        }
       }
+
+    //   if (energy_demand === 'CONSTRUCTION_YEAR'){
+
+    //     var data = {
+    //         "building": {
+    //             "postalCode": post_code,
+    //             "constructionYear": construction_year,
+    //             "livingSpace": living_area,
+    //             "roofAlignment": directionChange,
+    //             "roofTilt": roof_inclination
+    //         },
+    //         "energyDemand": {
+    //             "personCount": local_person_count,
+    //             "energyDemand": power_consumption,
+    //             "headingDemandType": energy_demand
+    //         }
+    //       }
+    //   } 
+
+    //   if (energy_demand === 'GAS_OR_OIL_BILL'){
+    //     var data = {
+    //         "building": {
+    //             "postalCode": post_code,
+    //             "constructionYear": construction_year,
+    //             "livingSpace": living_area,
+    //             "roofAlignment": directionChange,
+    //             "roofTilt": roof_inclination
+    //         },
+    //         "energyDemand": {
+    //             "personCount": local_person_count,
+    //             "energyDemand": power_consumption,
+    //             "headingDemandType": energy_demand,
+    //             "yearlyGasDemand": yearlyGasDemand
+    //         }
+    //       }
+    //   } 
+      
+    //   if (energy_demand === 'ENERGY_CERTIFICATE'){ 
+    //     var data = {
+    //         "building": {
+    //             "postalCode": post_code,
+    //             "roofAlignment": directionChange,
+    //             "roofTilt": roof_inclination
+    //         },
+    //         "energyDemand": {
+    //             "energyDemand": power_consumption,
+    //             "headingDemandType": energy_demand,
+    //             "yearlyEnergyDemand": yearlyEnergyDemand,
+    //             "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
+    //         }
+    //       }
+    //   }
 
             fetch("http://18.222.103.21:8080/eneryou/api/recommentations",{
                 method: 'POST',
@@ -145,6 +148,16 @@ class Product extends Component {
 
     render(){
       
+        function formatNumber(number, options) {
+            /** @type {Array.<string>} */
+            var result = (options['fraction'] ? number.toFixed(options['fraction']) :'' + number).split('.');
+            return options['prefix'] +
+                result[0].replace(/\B(?=(\d{3})+(?!\d))/g,
+                /** @type {string} */ (options['grouping'])) +
+                (result[1] ? options['decimal'] + result[1] : '') +
+                options['suffix'];
+          }
+
         let i = 0;
         let recommentations_list_1 =[];
         let recommentations_list_1_furthering=[];
@@ -159,13 +172,37 @@ class Product extends Component {
         let recommentations_list_3_investCost=[];
         let recommentations_list_3_operatingCost=[];
         
-        
-        for (i = 0; i < this.state.recommentations_value.length; i++) {
+        let recommentations_value = this.state.recommentations_value.length;
+        //for (i = 0; i < this.state.recommentations_value.length; i++) {
+            for (i = 0; i < recommentations_value; i++) {
             if (i === 0){
                 //recommentations_list_1_type.push(this.state.recommentations_value[0].type);
-                recommentations_list_1_furthering.push(this.state.recommentations_value[0].furthering);
-                recommentations_list_1_investCost.push(this.state.recommentations_value[0].investCost);
-                recommentations_list_1_operatingCost.push(this.state.recommentations_value[0].operatingCost);
+                // let furthering_1 = formatNumber(this.state.recommentations_value[0].furthering,{
+                //     'decimal': ',',
+                //     'grouping': '.',
+                //     'fraction': 2,
+                //     'prefix': '',
+                //     'suffix': ' €'
+                //    });
+                // recommentations_list_1_furthering.push(furthering_1);
+
+                let investCost_1 = formatNumber(this.state.recommentations_value[0].investCost,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_1_investCost.push(investCost_1);
+
+                let operatingCost_1 = formatNumber(this.state.recommentations_value[0].operatingCost,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_1_operatingCost.push(operatingCost_1);
                 //recommentations_list_1_systemCombinationPosition.push(this.state.recommentations_value[0].systemCombinationPosition);
                 let j = 0;
                 let products_1 =[];
@@ -173,19 +210,46 @@ class Product extends Component {
                 for (j = 0; j < this.state.recommentations_value[0].products.length; j++) {
                         let componentName_1 = products_1[j]['componentName'];
                         //let logoPath_1 = products_1[j]['logoPath'];
-                        let price_1 = products_1[j]['price'];
+                        let price_1 = formatNumber(products_1[j]['price'],{
+                            'decimal': ',',
+                            'grouping': '.',
+                            'fraction': 2,
+                            'prefix': '',
+                            'suffix': ' €'
+                           });
                         //let productCode_1 = products_1[j]['productCode'];
                         let productName_1 = products_1[j]['productName'];
-                        recommentations_list_1.push(<tr><td>{componentName_1}</td><td>{productName_1}</td><td>{price_1} €</td></tr>);
-
-                       
+                        recommentations_list_1.push(<tr><td>{componentName_1}</td><td>{productName_1}</td><td>{price_1}</td></tr>);
                     }
             }
              if (i == 1){
                 //recommentations_list_2_type.push(this.state.recommentations_value[1].type);
-                recommentations_list_2_furthering.push(this.state.recommentations_value[1].furthering);
-                recommentations_list_2_investCost.push(this.state.recommentations_value[1].investCost);
-                recommentations_list_2_operatingCost.push(this.state.recommentations_value[1].operatingCost);
+                let furthering_2 = formatNumber(this.state.recommentations_value[1].furthering,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_2_furthering.push(furthering_2);
+
+                let operatingCost_2 = formatNumber(this.state.recommentations_value[1].operatingCost,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                   recommentations_list_2_operatingCost.push(operatingCost_2);
+
+                let investCost_2 = formatNumber(this.state.recommentations_value[1].investCost,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_2_investCost.push(investCost_2);
                 //recommentations_list_2_systemCombinationPosition.push(this.state.recommentations_value[1].systemCombinationPosition);
                 
                 let k = 0;
@@ -194,18 +258,46 @@ class Product extends Component {
                 for (k = 0; k < this.state.recommentations_value[1].products.length; k++) {
                         let componentName_2 = products_2[k]['componentName'];
                        // let logoPath_2 = products_2[k]['logoPath'];
-                        let price_2 = products_2[k]['price'];
+                        let price_2 = formatNumber(products_2[k]['price'],{
+                            'decimal': ',',
+                            'grouping': '.',
+                            'fraction': 2,
+                            'prefix': '',
+                            'suffix': ' €'
+                           });
                        // let productCode_2 = products_2[k]['productCode'];
                         let productName_2 = products_2[k]['productName'];
-                        // recommentations_list_2.push(<div className="row"><div className="col-md-4 col-sm-4"><p className="prod_res">{componentName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{productName_2}</p></div><div className="col-md-4 col-sm-4"><p className="prod_res">{price_2} € </p></div></div>);
-                        recommentations_list_2.push(<tr><td>{componentName_2}</td><td>{productName_2}</td><td>{price_2} €</td></tr>);
+                        recommentations_list_2.push(<tr><td>{componentName_2}</td><td>{productName_2}</td><td>{price_2}</td></tr>);
                     }
             }
             if (i == 2){
                 //recommentations_list_3_type.push(this.state.recommentations_value[2].type);
-                recommentations_list_3_furthering.push(this.state.recommentations_value[2].furthering);
-                recommentations_list_3_investCost.push(this.state.recommentations_value[2].investCost);
-                recommentations_list_3_operatingCost.push(this.state.recommentations_value[2].operatingCost);
+                let furthering_3 = formatNumber(this.state.recommentations_value[2].furthering,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_3_furthering.push(furthering_3);
+
+                let operatingCost_3 = formatNumber(this.state.recommentations_value[2].operatingCost,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                   recommentations_list_3_operatingCost.push(operatingCost_3);
+
+                let investCost_3 = formatNumber(this.state.recommentations_value[2].investCost,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_3_investCost.push(investCost_3);
                 //recommentations_list_3_systemCombinationPosition.push(this.state.recommentations_value[2].systemCombinationPosition);
                 
                 let l = 0;
@@ -213,16 +305,21 @@ class Product extends Component {
                 products_3 = this.state.recommentations_value[2].products;
                 for (l = 0; l < this.state.recommentations_value[2].products.length; l++) {
                         let componentName_3 = products_3[l]['componentName'];
-                        //let logoPath_3 = products_3[l]['logoPath'];
-                        let price_3 = products_3[l]['price'];
+                        let price_3 = formatNumber(products_3[l]['price'],{
+                            'decimal': ',',
+                            'grouping': '.',
+                            'fraction': 2,
+                            'prefix': '',
+                            'suffix': ' €'
+                           });
                         //let productCode_3 = products_3[l]['productCode'];
                         let productName_3 = products_3[l]['productName'];
-                        recommentations_list_3.push(<tr><td>{componentName_3}</td><td>{productName_3}</td><td>{price_3} €</td></tr>);
+                        recommentations_list_3.push(<tr><td>{componentName_3}</td><td>{productName_3}</td><td>{price_3}</td></tr>);
                     }
             } 
         }
 
-            
+
             let graph_1=[];
             let graph_2=[];
 			let graph_3=[];
@@ -382,13 +479,310 @@ class Product extends Component {
             graph_7 = graph_7_1.concat(graph_7_2);
             
 
-            localStorage.setItem("google_graph1", JSON.stringify(graph_1));
-            localStorage.setItem("google_graph2", JSON.stringify(graph_2));
-            localStorage.setItem("google_graph3", JSON.stringify(graph_3));
-            localStorage.setItem("google_graph4", JSON.stringify(graph_4));
-            localStorage.setItem("google_graph5", JSON.stringify(graph_5));
-            localStorage.setItem("google_graph6", JSON.stringify(graph_6));
-            localStorage.setItem("google_graph7", JSON.stringify(graph_7));
+
+            let graph1_values_1=[];
+            let graph1_values_2=[];
+            let graph_1_values=[];
+            let graph1_text="";
+			for (i = 0; i < graph_1.length; i++) {
+                graph1_values_1 = graph_1[i][0];
+                if ( graph1_values_1 == "9"){
+                     graph1_text = "FC + PLB + TS";
+                }
+                if ( graph1_values_1 == "8"){
+                    graph1_text = "CHP + PLB + TS";
+                }
+                if ( graph1_values_1 == "7"){
+                    graph1_text = "PV + ST + BS + CGB + TS ";
+                }
+                if ( graph1_values_1 == "6"){
+                    graph1_text = "PV + ST + CGB + TS";
+                }
+                if ( graph1_values_1 == "5"){
+                    graph1_text = "PV + HR + CGB + TS";
+                }
+                if ( graph1_values_1 == "4"){
+                    graph1_text = "PV + HP + TS";
+                }
+                if ( graph1_values_1 == "3"){
+                    graph1_text = "PV + BS + PB + TS";
+                }
+                if ( graph1_values_1 == "2"){
+                    graph1_text = "PV + PB + TS";
+                }
+                if ( graph1_values_1 == "1"){
+                    graph1_text = "Reference";
+                }
+                graph1_values_2 = graph_1[i][1];
+                graph_1_values.push([graph1_text,graph1_values_2]);
+              }
+
+
+              let graph2_values_1=[];
+              let graph2_values_2=[];
+              let graph2_values_3=[];
+              let graph2_values_4=[];
+              let graph2_values_5=[];
+              let graph2_values_6=[];
+              let graph_2_values=[];
+              let graph2_text="";
+              for (i = 0; i < graph_2.length; i++) {
+                  graph2_values_1 = graph_2[i][0];
+                  if ( graph2_values_1 == "9"){
+                       graph2_text = "FC + PLB + TS";
+                  }
+                  if ( graph2_values_1 == "8"){
+                      graph2_text = "CHP + PLB + TS";
+                  }
+                  if ( graph2_values_1 == "7"){
+                      graph2_text = "PV + ST + BS + CGB + TS ";
+                  }
+                  if ( graph2_values_1 == "6"){
+                      graph2_text = "PV + ST + CGB + TS";
+                  }
+                  if ( graph2_values_1 == "5"){
+                      graph2_text = "PV + HR + CGB + TS";
+                  }
+                  if ( graph2_values_1 == "4"){
+                      graph2_text = "PV + HP + TS";
+                  }
+                  if ( graph2_values_1 == "3"){
+                      graph2_text = "PV + BS + PB + TS";
+                  }
+                  if ( graph2_values_1 == "2"){
+                      graph2_text = "PV + PB + TS";
+                  }
+                  if ( graph2_values_1 == "1"){
+                      graph2_text = "Reference";
+                  }
+                  graph2_values_2 = graph_2[i][1];
+                  graph2_values_3 = graph_2[i][2];
+                  graph2_values_4 = graph_2[i][3];
+                  graph2_values_5 = graph_2[i][4];
+                  graph2_values_6 = graph_2[i][5];
+                  graph_2_values.push([graph2_text,graph2_values_2,graph2_values_3,graph2_values_4,graph2_values_5,graph2_values_6]);
+                }
+
+
+            let graph3_values_1=[];
+            let graph3_values_2=[];
+            let graph_3_values=[];
+            let graph3_text="";
+			for (i = 0; i < graph_3.length; i++) {
+                graph3_values_1 = graph_3[i][0];
+                if ( graph3_values_1 == "9"){
+                     graph3_text = "FC + PLB + TS";
+                }
+                if ( graph3_values_1 == "8"){
+                    graph3_text = "CHP + PLB + TS";
+                }
+                if ( graph3_values_1 == "7"){
+                    graph3_text = "PV + ST + BS + CGB + TS ";
+                }
+                if ( graph3_values_1 == "6"){
+                    graph3_text = "PV + ST + CGB + TS";
+                }
+                if ( graph3_values_1 == "5"){
+                    graph3_text = "PV + HR + CGB + TS";
+                }
+                if ( graph3_values_1 == "4"){
+                    graph3_text = "PV + HP + TS";
+                }
+                if ( graph3_values_1 == "3"){
+                    graph3_text = "PV + BS + PB + TS";
+                }
+                if ( graph3_values_1 == "2"){
+                    graph3_text = "PV + PB + TS";
+                }
+                if ( graph3_values_1 == "1"){
+                    graph3_text = "Reference";
+                }
+                graph3_values_2 = graph_3[i][1];
+                graph_3_values.push([graph3_text,graph3_values_2]);
+              }
+
+
+            let graph4_values_1=[];
+            let graph4_values_2=[];
+            let graph4_values_3=[];
+            let graph_4_values=[];
+            let graph4_text="";
+			for (i = 0; i < graph_4.length; i++) {
+                graph4_values_1 = graph_4[i][0];
+                if ( graph4_values_1 == "9"){
+                     graph4_text = "FC + PLB + TS";
+                }
+                if ( graph4_values_1 == "8"){
+                    graph4_text = "CHP + PLB + TS";
+                }
+                if ( graph4_values_1 == "7"){
+                    graph4_text = "PV + ST + BS + CGB + TS ";
+                }
+                if ( graph4_values_1 == "6"){
+                    graph4_text = "PV + ST + CGB + TS";
+                }
+                if ( graph4_values_1 == "5"){
+                    graph4_text = "PV + HR + CGB + TS";
+                }
+                if ( graph4_values_1 == "4"){
+                    graph4_text = "PV + HP + TS";
+                }
+                if ( graph4_values_1 == "3"){
+                    graph4_text = "PV + BS + PB + TS";
+                }
+                if ( graph4_values_1 == "2"){
+                    graph4_text = "PV + PB + TS";
+                }
+                if ( graph4_values_1 == "1"){
+                    graph4_text = "Reference";
+                }
+                graph4_values_2 = graph_4[i][1];
+                graph4_values_3 = graph_4[i][2];
+                graph_4_values.push([graph4_text,graph4_values_2,graph4_values_3]);
+              }
+
+
+              let graph5_values_1=[];
+              let graph5_values_2=[];
+              let graph5_values_3=[];
+              let graph_5_values=[];
+              let graph5_text="";
+              for (i = 0; i < graph_5.length; i++) {
+                  graph5_values_1 = graph_5[i][0];
+                  if ( graph5_values_1 == "9"){
+                       graph5_text = "FC + PLB + TS";
+                  }
+                  if ( graph5_values_1 == "8"){
+                      graph5_text = "CHP + PLB + TS";
+                  }
+                  if ( graph5_values_1 == "7"){
+                      graph5_text = "PV + ST + BS + CGB + TS ";
+                  }
+                  if ( graph5_values_1 == "6"){
+                      graph5_text = "PV + ST + CGB + TS";
+                  }
+                  if ( graph5_values_1 == "5"){
+                      graph5_text = "PV + HR + CGB + TS";
+                  }
+                  if ( graph5_values_1 == "4"){
+                      graph5_text = "PV + HP + TS";
+                  }
+                  if ( graph5_values_1 == "3"){
+                      graph5_text = "PV + BS + PB + TS";
+                  }
+                  if ( graph5_values_1 == "2"){
+                      graph5_text = "PV + PB + TS";
+                  }
+                  if ( graph5_values_1 == "1"){
+                      graph5_text = "Reference";
+                  }
+                  graph5_values_2 = graph_5[i][1];
+                  graph5_values_3 = graph_5[i][2];
+                  graph_5_values.push([graph5_text,graph5_values_2,graph5_values_3]);
+                }
+
+              let graph6_values_1=[];
+              let graph6_values_2=[];
+              let graph6_values_3=[];
+              let graph_6_values=[];
+              let graph6_text="";
+              for (i = 0; i < graph_6.length; i++) {
+                  graph6_values_1 = graph_6[i][0];
+                  if ( graph6_values_1 == "9"){
+                       graph6_text = "FC + PLB + TS";
+                  }
+                  if ( graph6_values_1 == "8"){
+                      graph6_text = "CHP + PLB + TS";
+                  }
+                  if ( graph6_values_1 == "7"){
+                      graph6_text = "PV + ST + BS + CGB + TS ";
+                  }
+                  if ( graph6_values_1 == "6"){
+                      graph6_text = "PV + ST + CGB + TS";
+                  }
+                  if ( graph6_values_1 == "5"){
+                      graph6_text = "PV + HR + CGB + TS";
+                  }
+                  if ( graph6_values_1 == "4"){
+                      graph6_text = "PV + HP + TS";
+                  }
+                  if ( graph6_values_1 == "3"){
+                      graph6_text = "PV + BS + PB + TS";
+                  }
+                  if ( graph6_values_1 == "2"){
+                      graph6_text = "PV + PB + TS";
+                  }
+                  if ( graph6_values_1 == "1"){
+                      graph6_text = "Reference";
+                  }
+                  graph6_values_2 = graph_6[i][1];
+                  graph6_values_3 = graph_6[i][2];
+                  graph_6_values.push([graph6_text,graph6_values_2,graph6_values_3]);
+                }
+
+                let graph7_values_1=[];
+                let graph7_values_2=[];
+                let graph7_values_3=[];
+                let graph_7_values=[];
+                let graph7_text="";
+                for (i = 0; i < graph_7.length; i++) {
+                    graph7_values_1 = graph_7[i][0];
+                    if ( graph7_values_1 == "9"){
+                         graph7_text = "FC + PLB + TS";
+                    }
+                    if ( graph7_values_1 == "8"){
+                        graph7_text = "CHP + PLB + TS";
+                    }
+                    if ( graph7_values_1 == "7"){
+                        graph7_text = "PV + ST + BS + CGB + TS ";
+                    }
+                    if ( graph7_values_1 == "6"){
+                        graph7_text = "PV + ST + CGB + TS";
+                    }
+                    if ( graph7_values_1 == "5"){
+                        graph7_text = "PV + HR + CGB + TS";
+                    }
+                    if ( graph7_values_1 == "4"){
+                        graph7_text = "PV + HP + TS";
+                    }
+                    if ( graph7_values_1 == "3"){
+                        graph7_text = "PV + BS + PB + TS";
+                    }
+                    if ( graph7_values_1 == "2"){
+                        graph7_text = "PV + PB + TS";
+                    }
+                    if ( graph7_values_1 == "1"){
+                        graph7_text = "Reference";
+                    }
+                    graph7_values_2 = graph_7[i][1];
+                    graph7_values_3 = graph_7[i][2];
+                    graph_7_values.push([graph7_text,graph7_values_2,graph7_values_3]);
+                  }
+
+
+
+
+           // console.log(graph_7);
+            //console.log(graph_7_values);
+
+
+            localStorage.setItem("google_graph1", JSON.stringify(graph_1_values));
+            localStorage.setItem("google_graph2", JSON.stringify(graph_2_values));
+            localStorage.setItem("google_graph3", JSON.stringify(graph_3_values));
+            localStorage.setItem("google_graph4", JSON.stringify(graph_4_values));
+            localStorage.setItem("google_graph5", JSON.stringify(graph_5_values));
+            localStorage.setItem("google_graph6", JSON.stringify(graph_6_values));
+            localStorage.setItem("google_graph7", JSON.stringify(graph_7_values));
+
+
+
+            // localStorage.setItem("google_graph1", JSON.stringify(graph_1));
+            // localStorage.setItem("google_graph2", JSON.stringify(graph_2));
+            // localStorage.setItem("google_graph3", JSON.stringify(graph_3));
+            // localStorage.setItem("google_graph4", JSON.stringify(graph_4));
+            // localStorage.setItem("google_graph5", JSON.stringify(graph_5));
+            // localStorage.setItem("google_graph6", JSON.stringify(graph_6));
+            // localStorage.setItem("google_graph7", JSON.stringify(graph_7));
            
            
         return(
@@ -421,17 +815,17 @@ class Product extends Component {
                                     <tr>
                                         <td></td>
                                         <td>Total Funding</td>
-                                        <td>{recommentations_list_1_furthering} €</td>
+                                        <td>{recommentations_list_1_furthering}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>Investment Cost</td>
-                                        <td>{recommentations_list_1_investCost} €</td>
+                                        <td>{recommentations_list_1_investCost}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>Operation Cost</td>
-                                        <td>{recommentations_list_1_operatingCost} €</td>
+                                        <td>{recommentations_list_1_operatingCost}</td>
                                     </tr>
                                 </tbody>
                                 <tbody className="graph_img">
@@ -464,17 +858,17 @@ class Product extends Component {
                                     <tr>
                                         <td></td>
                                         <td>Total Funding</td>
-                                        <td>{recommentations_list_2_furthering} €</td>
+                                        <td>{recommentations_list_2_furthering}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>Investment Cost</td>
-                                        <td>{recommentations_list_2_investCost} €</td>
+                                        <td>{recommentations_list_2_investCost}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>Operation Cost</td>
-                                        <td>{recommentations_list_2_operatingCost} €</td>
+                                        <td>{recommentations_list_2_operatingCost}</td>
                                     </tr>
                                 </tbody>
                                 <tbody className="">
@@ -506,17 +900,17 @@ class Product extends Component {
                                     <tr>
                                         <td></td>
                                         <td>Total Funding</td>
-                                        <td>{recommentations_list_3_furthering} €</td>
+                                        <td>{recommentations_list_3_furthering}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>Investment Cost</td>
-                                        <td>{recommentations_list_3_investCost} €</td>
+                                        <td>{recommentations_list_3_investCost}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>Operation Cost</td>
-                                        <td>{recommentations_list_3_operatingCost} €</td>
+                                        <td>{recommentations_list_3_operatingCost}</td>
                                     </tr>
                                 </tbody>
                                 <tbody className="graph_img">

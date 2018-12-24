@@ -36,14 +36,14 @@ class Energetic extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
-                        <Tab>Tab 1</Tab>
-                        <Tab>Tab 2</Tab>
+                        <Tab>Graph 1</Tab>
+                        <Tab>Graph 2</Tab>
                     </TabList>
                         <TabPanel>
-                                <Graph_1/>
+                            <Graph_1/>
                         </TabPanel>
                     <TabPanel>
-                        <Graph_2/>    
+                            <Graph_2/>    
                      </TabPanel>
                 </Tabs>
                     </div>

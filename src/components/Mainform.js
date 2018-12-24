@@ -24,8 +24,7 @@ export class Mainform extends Component{
             budget_value:'',
   
         }
-       
-      
+
     }
     
 

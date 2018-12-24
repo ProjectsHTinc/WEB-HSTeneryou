@@ -5,6 +5,7 @@ class Graph_3 extends  Component{
 
     render(){
         const graph3_values = JSON.parse(localStorage.getItem('google_graph3'));
+        
         return(
             <div className="container">
             <div className="row">
