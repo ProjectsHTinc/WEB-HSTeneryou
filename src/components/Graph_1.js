@@ -22,7 +22,7 @@ class Graph_1 extends  Component{
                 options = {{
                     title : 'Comparison of Electricial Self Sufficiency',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Self Sufficiency in (%)'},
+                    vAxis: {title: 'Self Sufficiency',format: '#\'%\''},
                     hAxis: {title: 'System Combination'} ,
                     seriesType: 'bars',
                     colors: ['#9b0303'],

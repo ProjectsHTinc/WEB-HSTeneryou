@@ -337,8 +337,9 @@ class Product extends Component {
             graph_1.push(['','Self Sufficiency']);
 			for (i = 1; i < this.state.systemCombinations_value.length; i++) {
 				    let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
-				    let energeticValues = this.state.systemCombinations_value[i].energeticValues;
-					let energeticSelfSufficiency = energeticValues['energeticSelfSufficiency'];	
+                    let energeticValues = this.state.systemCombinations_value[i].energeticValues;
+                    let energeticSelfSufficiency = Math.round(energeticValues['energeticSelfSufficiency']);
+					//let energeticSelfSufficiency = Math.round(energeticValues['energeticSelfSufficiency']);
 					graph_1.push([systemCombinationPosition,energeticSelfSufficiency]);
             }
             
