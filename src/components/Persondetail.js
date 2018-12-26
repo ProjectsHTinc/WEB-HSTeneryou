@@ -153,7 +153,7 @@ class Persondetail extends Component {
         <div className="container-fluid wrapper">
         <Header/>
         <div className="container">
-        <h4 className="form_heading">My Electricity Demand  </h4>
+        <h4 className="form_heading">Mein Strombedarf  </h4>
         <form>
 
                 {/* Form section starts here */}
@@ -193,7 +193,7 @@ class Persondetail extends Component {
                             
                     </div>
                     <div className="col-md-2">
-                    <p className="text-center">Power <br></br> Consumption</p>
+                    <p className="text-center">Jährlicher Strombedarf</p>
                                 <div className="" style={{backgroundImage: 'url(' + electric_board + ')',
                  backgroundPosition: 'center',
                 backgroundSize:'contain',

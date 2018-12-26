@@ -181,8 +181,8 @@ class Homedetails extends Component {
         <div className="container-fluid wrapper">
           <Header/>
           <div className="container">
-        <h4 className="form_heading">Building Details</h4>
-        <h4 className="text-center small_heading">Roof Inclination</h4>
+        <h4 className="form_heading">Meine Gebäudedaten</h4>
+        <h4 className="text-center small_heading">Dachneigung</h4>
         <form onSubmit={this.continue}>
 
                 {/* First section start Here */}
@@ -304,12 +304,12 @@ class Homedetails extends Component {
                     defaultValue={values.directionChange} 
                     ref="direction_compass"              
                      >
-                            <option value="">Select-Direction</option>
-                            <option value="EAST">East</option>
+                            <option value="">Dachausrichtung</option>
+                            <option value="EAST">Ost</option>
                             <option value="WEST">West</option>
-                            <option value="SOUTH">South</option>
-                            <option value="SOUTHEAST">South-East</option>
-                            <option value="SOUTHWEST">South-West</option>
+                            <option value="SOUTH">Süd</option>
+                            <option value="SOUTHEAST">Süd-Ost</option>
+                            <option value="SOUTHWEST">Süd-West</option>
                     </select>
                     <p className="error_font">{this.state.errors["directionChange"]}</p>
                     
@@ -324,13 +324,14 @@ class Homedetails extends Component {
                  {/* Second Section Starts Here */}
 
                  <div className="row">
-                 <div className="col-md-2 col-lg-2" style={ { backgroundImage: 'url(' + house_year + ')',
+                 <div className="col-md-6 col-lg-2" style={ { backgroundImage: 'url(' + house_year + ')',
                  backgroundPosition: 'center',
                 marginTop:'0px',
-                 height:'127px',
+                 height:'151px',
                  backgroundRepeat: 'no-repeat' } }>
                  <div className="year_box">
-                 <label className="year_label">Construction Year</label>
+                 <label className="year_label">Baujahr bzw. letztes Modernisierungsjahr
+</label>
                   <select className="house_year_drop_box " name="construction_year" 
                 //    onChange={this.construction_year} 
                 //    onClick={this.props.handleChange('construction_year')}  
@@ -357,7 +358,7 @@ class Homedetails extends Component {
                 <p className="error_font" style={{textAlign:'center'}}>{this.state.errors["house_con_year"]}</p>
               
                             <div className="post_text_box">
-                                 <label className="post_code_text">Post Code</label>
+                                 <label className="post_code_text">Postleitzahl</label>
                                 <input type="text" name="post_code" className="post_textbox " maxlength='5' minLength='5'
                                      placeholder='' ref={(post_code) => this.post_code = post_code}
                                    onChange={this.props.handleChange('post_code')}
@@ -376,31 +377,20 @@ class Homedetails extends Component {
                  height:'400px',
                  backgroundRepeat: 'no-repeat' } }>
                  <div className="living_box">
-                 <label className="living_label">Living Area</label>
-                        <input type="text" name="living_area" className="living_textbox " 
-                        placeholder='' ref={(living_area) => this.living_area = living_area}
+                 <label className="living_label">Wohnfläche</label>
+                        <input type="text" name="living_area" className="living_textbox" 
+
+                        placeholder='Wohnfläche in m2 ein' ref={(living_area) => this.living_area = living_area}
                         onChange={this.props.handleChange('living_area')}
                         defaultValue={values.living_area}/>
                           <p className="error_font" style={{textAlign:'right'}}>{this.state.errors["living_area"]}</p>
                 </div>
-                {/* <div className="row">
-                    <div className="col-md-2">1</div>
-                    <div className="col-md-8 text-center">
-                        <div className="">
-                        <label>living_area</label>
-                        <input type="text"></input>
-                        </div>
-                    </div>              
-                    <div className="col-md-2">3</div> */}
-                {/* <div>
-
-
-                </div> */}
+              
 
                 
                        
                 
-                {/* </div> */}
+               
                 
                  
                  </div>
@@ -430,7 +420,7 @@ class Homedetails extends Component {
                 <div className="progress_bar">                   
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
                     <img src={progress_img} className="" circle  style={ { position:'relative',top:'-15px',left:'25%'}} />
-                     <Line percent="28" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
+                     <Line percent="29" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
                      <p style={{color:'#000',marginLeft:'25%'}}>25%</p>
                 </div>
                 </div>

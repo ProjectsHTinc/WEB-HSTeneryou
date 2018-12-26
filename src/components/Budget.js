@@ -84,7 +84,7 @@ class Budget extends Component {
         <div className="container-fluid wrapper">
         <Header/>
         <div className="container">
-        <h4 className="form_heading">My Personal Preference </h4>
+        <h4 className="form_heading">Meine persönliche Präferenz </h4>
         <form>
 
                 {/* Form section starts here */}
@@ -102,7 +102,7 @@ class Budget extends Component {
                     <div className="row energy_form">
                         <p className="budget_font">Budgetobergrenze (€)</p>
                         <div className="budget_icon">
-                            <img src={euro_icon} circle className="coin_img" id=""/>   
+                            <img src={euro_icon} responsive className="" id=""/>   
                         </div>
                         <div className="budget_box">
                             <input type="text"  className="form-control"
@@ -158,7 +158,7 @@ class Budget extends Component {
                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
                     <img src={progress_img} className="" circle  style={ { position:'relative',top:'-15px',left:'83%'}} />
                      <Line percent="100" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
-                     <p style={{color:'#000',marginLeft:'99%'}}>100%</p>
+                     <p style={{color:'#000',marginLeft:'85%'}}>100%</p>
                 </div>
                 </div>
                 <div className="col-md-2 text-center">    
