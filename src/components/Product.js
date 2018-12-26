@@ -172,6 +172,7 @@ class Product extends Component {
         let recommentations_list_3_investCost = [];
         let recommentations_list_3_operatingCost = [];
 
+       // alert(this.state.recommentations_value.length);
         let recommentations_value = this.state.recommentations_value.length;
         //for (i = 0; i < this.state.recommentations_value.length; i++) {
         for (i = 0; i < recommentations_value; i++) {
@@ -204,24 +205,36 @@ class Product extends Component {
                 });
                 recommentations_list_1_operatingCost.push(operatingCost_1);
                 //recommentations_list_1_systemCombinationPosition.push(this.state.recommentations_value[0].systemCombinationPosition);
+                
                 let j = 0;
                 let products_1 = [];
+                let componentName_1='';
+                let price_1 ='';
+                let productName_1='';
                 products_1 = this.state.recommentations_value[0].products;
-                for (j = 0; j < this.state.recommentations_value[0].products.length; j++) {
-                    let componentName_1 = products_1[j]['componentName'];
-                    //let logoPath_1 = products_1[j]['logoPath'];
-                    let price_1 = formatNumber(products_1[j]['price'], {
-                        'decimal': ',',
-                        'grouping': '.',
-                        'fraction': 2,
-                        'prefix': '',
-                        'suffix': ' €'
-                    });
-                    //let productCode_1 = products_1[j]['productCode'];
-                    let productName_1 = products_1[j]['productName'];
+                let prod_1_len = this.state.recommentations_value[0].products.length;
+                
+                for (j = 0; j < 6; j++) {
+                 if(prod_1_len > j){                  
+                     componentName_1 = products_1[j]['componentName'];
+                     price_1 = formatNumber(products_1[j]['price'], {
+                                'decimal': ',',
+                                'grouping': '.',
+                                'fraction': 2,
+                                'prefix': '',
+                                'suffix': ' €'
+                            });
+                     productName_1 = products_1[j]['productName'];
+                 }else{
+                     componentName_1 = "";
+                     price_1 = "";
+                     productName_1 = "";
+                 }
                     recommentations_list_1.push(<tr><td>{componentName_1}</td><td>{productName_1}</td><td>{price_1}</td></tr>);
                 }
             }
+            
+            
             if (i == 1) {
                 //recommentations_list_2_type.push(this.state.recommentations_value[1].type);
                 let furthering_2 = formatNumber(this.state.recommentations_value[1].furthering, {
@@ -254,22 +267,33 @@ class Product extends Component {
 
                 let k = 0;
                 let products_2 = [];
+                let componentName_2='';
+                let price_2 ='';
+                let productName_2='';
                 products_2 = this.state.recommentations_value[1].products;
-                for (k = 0; k < this.state.recommentations_value[1].products.length; k++) {
-                    let componentName_2 = products_2[k]['componentName'];
-                    // let logoPath_2 = products_2[k]['logoPath'];
-                    let price_2 = formatNumber(products_2[k]['price'], {
-                        'decimal': ',',
-                        'grouping': '.',
-                        'fraction': 2,
-                        'prefix': '',
-                        'suffix': ' €'
-                    });
-                    // let productCode_2 = products_2[k]['productCode'];
-                    let productName_2 = products_2[k]['productName'];
+                let prod_2_len = this.state.recommentations_value[1].products.length;
+                
+                for (k = 0; k < 6; k++) {
+                 if(prod_2_len > k){                  
+                     componentName_2 = products_2[k]['componentName'];
+                     price_2 = formatNumber(products_2[k]['price'], {
+                                'decimal': ',',
+                                'grouping': '.',
+                                'fraction': 2,
+                                'prefix': '',
+                                'suffix': ' €'
+                            });
+                     productName_2 = products_2[k]['productName'];
+                 }else{
+                     componentName_2 = "";
+                     price_2 = "";
+                     productName_2 = "";
+                 }
                     recommentations_list_2.push(<tr><td>{componentName_2}</td><td>{productName_2}</td><td>{price_2}</td></tr>);
                 }
             }
+            
+            
             if (i == 2) {
                 //recommentations_list_3_type.push(this.state.recommentations_value[2].type);
                 let furthering_3 = formatNumber(this.state.recommentations_value[2].furthering, {
@@ -302,23 +326,32 @@ class Product extends Component {
 
                 let l = 0;
                 let products_3 = [];
+                let componentName_3='';
+                let price_3 ='';
+                let productName_3='';
                 products_3 = this.state.recommentations_value[2].products;
-                for (l = 0; l < this.state.recommentations_value[2].products.length; l++) {
-                    let componentName_3 = products_3[l]['componentName'];
-                    let price_3 = formatNumber(products_3[l]['price'], {
-                        'decimal': ',',
-                        'grouping': '.',
-                        'fraction': 2,
-                        'prefix': '',
-                        'suffix': ' €'
-                    });
-                    //let productCode_3 = products_3[l]['productCode'];
-                    let productName_3 = products_3[l]['productName'];
+                let prod_3_len = this.state.recommentations_value[2].products.length;
+                
+                for (l = 0; l < 6; l++) {
+                 if(prod_3_len > l){                  
+                     componentName_3 = products_3[l]['componentName'];
+                     price_3 = formatNumber(products_3[l]['price'], {
+                                'decimal': ',',
+                                'grouping': '.',
+                                'fraction': 2,
+                                'prefix': '',
+                                'suffix': ' €'
+                            });
+                     productName_3 = products_3[l]['productName'];
+                 }else{
+                     componentName_3 = "";
+                     price_3 = "";
+                     productName_3 = "";
+                 }
                     recommentations_list_3.push(<tr><td>{componentName_3}</td><td>{productName_3}</td><td>{price_3}</td></tr>);
                 }
             }
         }
-
 
         let graph_1 = [];
         let graph_2 = [];
@@ -339,7 +372,6 @@ class Product extends Component {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let energeticValues = this.state.systemCombinations_value[i].energeticValues;
             let energeticSelfSufficiency = Math.round(energeticValues['energeticSelfSufficiency']);
-            //let energeticSelfSufficiency = Math.round(energeticValues['energeticSelfSufficiency']);
             graph_1.push([systemCombinationPosition, energeticSelfSufficiency]);
         }
 
@@ -416,7 +448,6 @@ class Product extends Component {
             let monthlyEnergyCost = economicValues['monthlyEnergyCost'];
             graph_6_2.push([systemCombinationPosition, annuityCost, monthlyHeadingCost, monthlyEnergyCost]);
         }
-
 
 
         graph_7_1.push(['', 'CO2 Emission', 'CO2 Abatement Costs']);
@@ -761,11 +792,13 @@ class Product extends Component {
         }
 
 
-
-
-        // console.log(graph_7);
-        //console.log(graph_7_values);
-
+        // localStorage.setItem("google_graph1_1", JSON.stringify(graph_1));
+        // localStorage.setItem("google_graph2_2", JSON.stringify(graph_2));
+        // localStorage.setItem("google_graph3_3", JSON.stringify(graph_3));
+        // localStorage.setItem("google_graph4_4", JSON.stringify(graph_4));
+        // localStorage.setItem("google_graph5_5", JSON.stringify(graph_5));
+        // localStorage.setItem("google_graph6_6", JSON.stringify(graph_6));
+        // localStorage.setItem("google_graph7_7", JSON.stringify(graph_7));
 
         localStorage.setItem("google_graph1", JSON.stringify(graph_1_values));
         localStorage.setItem("google_graph2", JSON.stringify(graph_2_values));
@@ -777,14 +810,7 @@ class Product extends Component {
 
 
 
-        // localStorage.setItem("google_graph1", JSON.stringify(graph_1));
-        // localStorage.setItem("google_graph2", JSON.stringify(graph_2));
-        // localStorage.setItem("google_graph3", JSON.stringify(graph_3));
-        // localStorage.setItem("google_graph4", JSON.stringify(graph_4));
-        // localStorage.setItem("google_graph5", JSON.stringify(graph_5));
-        // localStorage.setItem("google_graph6", JSON.stringify(graph_6));
-        // localStorage.setItem("google_graph7", JSON.stringify(graph_7));
-
+        
 
         return (
             <div className="container-fluid wrapper">
