@@ -595,6 +595,7 @@ input::placeholder {
 }
 .product_box_1_3{
     background-color: #9cccee;
+    font-weight: 600;
 
 }
 
@@ -610,6 +611,7 @@ input::placeholder {
 }
 .product_box_2_3{
     background-color: #a8d7b0;
+    font-weight: 600;
   
 }
 
@@ -624,6 +626,7 @@ input::placeholder {
 }
 .product_box_3_3{
     background-color: #e3d0a7;
+    font-weight: 600;
  
 }
 .table thead th{
@@ -634,8 +637,7 @@ input::placeholder {
 }
 .graph_img{
     text-align: center;
-    position: relative;
-    top:-25px;
+   
 }
 .product_recommendation{
     margin-top: 20px;
@@ -704,10 +706,14 @@ td{
     padding: 10px;
 }
 tr td{
-    height:100px;
+    height:100px
 }
 .table-borderless{
     margin-top: -1px;
+}
+.table td, .table th{
+    border-top: 1px solid #e0eefd59;
+    padding: 8px;
 }
 .graph_box{
     width: 100%;
