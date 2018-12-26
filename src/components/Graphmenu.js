@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 class Graphmenu extends Component {
 
     render(){
@@ -8,19 +9,24 @@ class Graphmenu extends Component {
                 <div className="container">
                     <div className="row" style={{marginTop:'10px'}}>
                         <div className="col-md-4">
-                            <div className="tab_box_1">
-                                <p><a href="/Energetic">Energetic Analysis</a></p>
-                            </div>
+                         
+                              
+                               
+                                <NavLink to='/Economicgraph'   activeClassName="Graphactive">
+                                <p className="tab_box_1">Economic Analysis</p></NavLink>
+                           
+                        </div>
+                        <div className="col-md-4">                      
+                            <NavLink to='/Emission' activeClassName="Graphactive">
+                             <p className="tab_box_2">Ecological Analysis</p>
+                             </NavLink>
+                           
                         </div>
                         <div className="col-md-4">
-                        <div className="tab_box_2">
-                                <p><a href="/Economicgraph">Economic Analysis</a></p>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                        <div className="tab_box_3">
-                                <p><a href="/Emission">Ecological Analysis</a></p>
-                            </div>
+                                                   
+                                <NavLink to='/Energetic'  activeClassName="Graphactive">
+                                <p  className="tab_box_3">Energetic Analysis</p></NavLink>
+                            
                         </div>
                     </div>
                 </div>

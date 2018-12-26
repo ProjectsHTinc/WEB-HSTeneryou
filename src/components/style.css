@@ -645,20 +645,36 @@ input::placeholder {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    background-color: #d05761;
+    background-color: #1554a0;
+    opacity: 0.3;
+    color:#fff;
 }
 .tab_box_2{
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    background-color: #94cda8;
+    background-color: #1d8140;
+    opacity: 0.3;
+    color:#fff;
 }
 .tab_box_3{
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    background-color: #eeb593;
+    background-color: #bd902d;
+    opacity: 0.3;
+    color:#fff;
 }
+
+.Graphactive .tab_box_3{
+    opacity: 1;
+  }
+  .Graphactive .tab_box_2{
+    opacity: 1;
+  }
+  .Graphactive .tab_box_1{
+    opacity: 1;
+  }
 .tab_box_1 p{
     margin-top: 0px;
     margin-bottom: 0px;
