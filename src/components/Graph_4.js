@@ -20,10 +20,10 @@ class Graph_4 extends  Component{
                 data={graph4_values}
                  // Set chart options
                 options = {{
-                    title : 'Comparison of Investment Costs including Installation €',
+                    title : 'Vergleich der Investitionskosten (inkl. Monatage)',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Investment Costs in €'},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Investitionskosten in €'},
+                    hAxis: {title: 'Anlagenkombinationen'} ,
                     seriesType: 'bars',
                     colors: ['#20801b','#000000'],
                     animation: {

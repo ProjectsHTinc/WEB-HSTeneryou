@@ -20,10 +20,10 @@ class Graph_6 extends  Component{
                 data={graph6_values}
                  // Set chart options
                 options={{
-                    title: 'Comparison of Monthly Electricity & Heating Costs',
+                    title: 'Vergleich der monatlichen Elektrizitäts- und Heizkosten',
                     chartArea: { width: '60%' },
-                    vAxis: { title: 'Monthly Electricity & Heating Costs in €/Month' },
-                    hAxis: { title: 'System Combination' },
+                    vAxis: { title: 'Monatliche Kosten in €/Monat' },
+                    hAxis: { title: 'Anlagenkombinationen' },
                     seriesType: 'bars',
                     colors: ['#0a6705','#0a9b03'],
                     animation: {

@@ -172,7 +172,7 @@ class Product extends Component {
         let recommentations_list_3_investCost = [];
         let recommentations_list_3_operatingCost = [];
 
-       // alert(this.state.recommentations_value.length);
+       
         let recommentations_value = this.state.recommentations_value.length;
         //for (i = 0; i < this.state.recommentations_value.length; i++) {
         for (i = 0; i < recommentations_value; i++) {
@@ -367,7 +367,7 @@ class Product extends Component {
         let graph_7_1 = [];
         let graph_7_2 = [];
 
-        graph_1.push(['', 'Self Sufficiency']);
+        graph_1.push(['', 'Autarkiegrad']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let energeticValues = this.state.systemCombinations_value[i].energeticValues;
@@ -393,7 +393,7 @@ class Product extends Component {
             graph_2.push([systemCombinationPosition, energeticSelfSufficiency, energeticNetConsumption, energeticOwnConsumptionPV, energeticOwnConsumptionBHKW, energeticPowerSupplyPV, energeticPowerSupplyBHKW]);
         }
 
-        graph_3_1.push(['', 'Annuity Costs']);
+        graph_3_1.push(['', 'Annuitätische Kosten']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
             let economicValues = this.state.systemCombinations_value[0].economicValues;
@@ -409,7 +409,7 @@ class Product extends Component {
         }
 
 
-        graph_4.push(['', 'annuityCost', 'Investment Costs', 'Budget']);
+        graph_4.push(['', 'annuityCost', 'Investitionskosten', 'Budget']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let budget_value_amount = Number(localStorage.getItem('budget_value'));
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
@@ -450,7 +450,7 @@ class Product extends Component {
         }
 
 
-        graph_7_1.push(['', 'CO2 Emission', 'CO2 Abatement Costs']);
+        graph_7_1.push(['', 'CO2-Äquivalent in t/a', 'CO2 Abatement Costs']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
             let ecologicValues = this.state.systemCombinations_value[0].ecologicValues;
@@ -830,9 +830,9 @@ class Product extends Component {
                                 <table class="table table-borderless" responsive>
                                     <thead className="product_box_1_2">
                                         <tr>
-                                            <th scope="col" className="prod_res">Component</th>
-                                            <th scope="col" className="prod_res">Product</th>
-                                            <th scope="col" className="prod_res">Price</th>
+                                            <th scope="col" className="prod_res">Komponente</th>
+                                            <th scope="col" className="prod_res">Produkt</th>
+                                            <th scope="col" className="prod_res">Preis</th>
                                         </tr>
                                     </thead>
                                     <tbody id="product_result_1" className="product_box_1_2">
@@ -840,18 +840,18 @@ class Product extends Component {
                                     </tbody>
                                     <tbody id="product_result_1" className="product_box_1_3">
                                         <tr>
-                                            <td></td>
-                                            <td>Total Funding</td>
+                                            {/* <td></td> */}
+                                            <td colspan="2">Gesamt Förderungen</td>
                                             <td>{recommentations_list_1_furthering}</td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>Investment Cost</td>
+                                            {/* <td></td> */}
+                                            <td colspan="2">Investitionskosten (ikl. Montage)</td>
                                             <td>{recommentations_list_1_investCost}</td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>Operation Cost</td>
+                                            {/* <td></td> */}
+                                            <td colspan="2">Betreibskosten pro Jahr</td>
                                             <td>{recommentations_list_1_operatingCost}</td>
                                         </tr>
                                     </tbody>
@@ -872,9 +872,9 @@ class Product extends Component {
                                     <table class="table table-borderless" responsive>
                                         <thead className="product_box_2_2">
                                             <tr>
-                                                <th scope="col" className="prod_res">Component</th>
-                                                <th scope="col" className="prod_res">Product</th>
-                                                <th scope="col" className="prod_res">Price</th>
+                                                <th scope="col" className="prod_res">Komponente</th>
+                                                <th scope="col" className="prod_res">Produkt</th>
+                                                <th scope="col" className="prod_res">Preis</th>
                                             </tr>
                                         </thead>
                                         <tbody id="product_result_1" className="product_box_2_2">
@@ -882,18 +882,18 @@ class Product extends Component {
                                         </tbody>
                                         <tbody id="product_result_1" className="product_box_2_3">
                                             <tr>
-                                                <td></td>
-                                                <td>Total Funding</td>
+                                                {/* <td></td> */}
+                                                <td colspan="2">Gesamt Förderungen</td>
                                                 <td>{recommentations_list_2_furthering}</td>
                                             </tr>
                                             <tr>
-                                                <td></td>
-                                                <td>Investment Cost</td>
+                                                {/* <td></td> */}
+                                                <td colspan="2">Investitionskosten (ikl. Montage)</td>
                                                 <td>{recommentations_list_2_investCost}</td>
                                             </tr>
                                             <tr>
-                                                <td></td>
-                                                <td>Operation Cost</td>
+                                                {/* <td></td> */}
+                                                <td colspan="2">Betreibskosten pro Jahr</td>
                                                 <td>{recommentations_list_2_operatingCost}</td>
                                             </tr>
                                         </tbody>
@@ -915,9 +915,9 @@ class Product extends Component {
                                 <table class="table table-borderless" responsive>
                                     <thead className="product_box_3_2">
                                         <tr>
-                                            <th scope="col" className="prod_res">Component</th>
-                                            <th scope="col" className="prod_res">Product</th>
-                                            <th scope="col" className="prod_res">Price</th>
+                                            <th scope="col" className="prod_res">Komponente</th>
+                                            <th scope="col" className="prod_res">Produkt</th>
+                                            <th scope="col" className="prod_res">Preis</th>
                                         </tr>
                                     </thead>
                                     <tbody id="product_result_1" className="product_box_3_2">
@@ -925,18 +925,18 @@ class Product extends Component {
                                     </tbody>
                                     <tbody id="product_result_1" className="product_box_3_3">
                                         <tr>
-                                            <td></td>
-                                            <td>Total Funding</td>
+                                            {/* <td></td> */}
+                                            <td colspan="2">Gesamt Förderungen</td>
                                             <td>{recommentations_list_3_furthering}</td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>Investment Cost</td>
+                                            {/* <td></td> */}
+                                            <td colspan="2">Investitionskosten (ikl. Montage)</td>
                                             <td>{recommentations_list_3_investCost}</td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>Operation Cost</td>
+                                            {/* <td></td> */}
+                                            <td colspan="2">Betreibskosten pro Jahr</td>
                                             <td>{recommentations_list_3_operatingCost}</td>
                                         </tr>
                                     </tbody>

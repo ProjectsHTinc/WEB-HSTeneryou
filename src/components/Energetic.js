@@ -24,7 +24,7 @@ class Energetic extends Component {
             <div className="container-fluid wrapper">
             <Header/>
             <h4 className="form_heading">Product Comparsion Graph  </h4>
-                <div className="container" style={ { marginTop:'40px',marginBottom:'40px', backgroundImage: 'url(' + form_bg_3 + ')',
+                <div className="container" style={ { marginTop:'40px',marginBottom:'100px', backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'600px',

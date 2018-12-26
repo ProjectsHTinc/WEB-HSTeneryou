@@ -20,7 +20,7 @@ class Graph_2 extends  Component{
                 data={graph2_values}            
                  // Set chart options
                 options={{
-                    title: 'Comparison of Self Consumption, Feed-In and Grid Consumption in kWh,el',
+                    title: 'Vergleich des Eigenverbrauchs, Einspeisung und Netzbezug',
                     chartArea: { width: '60%' },
                     isStacked: true,
                     seriesType: 'bars',
@@ -31,11 +31,11 @@ class Graph_2 extends  Component{
                         easing: 'out',
                     },
                     hAxis: {
-                    title: 'System Combination',
+                    title: 'Anlagenkombinationen',
                     minValue: 0,
                     },
                     vAxis: {
-                    title: 'Self Consumption, Feed-In & Grid Consumption in kWh,el',
+                    title: 'Strom in kWh',
                     },
                    
                 }}

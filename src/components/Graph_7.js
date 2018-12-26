@@ -20,10 +20,9 @@ class Graph_7 extends  Component{
                 data={graph7_values}
                 // Set chart options
                 options={{
-                    title: 'Comparison of CO2 Emissions for your Electricity & Heat Supply',
+                    title: 'CO2-Emissionsvergleich',
                     chartArea: { width: '60%' },
-                // vAxis: { title: 'CO2 Equivalent in t/a' },
-                    hAxis: { title: 'System Combination' },
+                    hAxis: { title: 'Anlagenkombinationen' },
                     seriesType: 'bars',
                     colors: ['#f2a614','#cc0303'],
                     animation: {
@@ -37,7 +36,7 @@ class Graph_7 extends  Component{
                         1: {targetAxisIndex: 1, type: 'line'},
                     },
                     vAxes: {
-                        0: {title: 'CO2 Equivalent in t/a'},
+                        0: {title: 'CO2-Äquivalent in t/a'},
                         1: {title: 'CO2 Abatement Costs in €/t'},
                     },
                 }}

@@ -20,10 +20,10 @@ class Graph_5 extends  Component{
                 data={graph5_values}
                  // Set chart options
                 options={{
-                    title: 'Comparison of Operating & Yearly Fuel Costs for your Elecricity and Heat Supply',
+                    title: 'Vergleich der Energie- und Instandhaltungskosten',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Operating Costs & Fuel Costs in €/a'},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Betriebskosten und Brennstoffkosten in €/a'},
+                    hAxis: {title: 'Anlagenkombinationen'} ,
                     isStacked: true,
                     seriesType: 'bars',
                     colors: ['#0a6705','#0a9b03'],

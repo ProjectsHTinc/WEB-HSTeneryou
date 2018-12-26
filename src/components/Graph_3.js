@@ -21,10 +21,10 @@ class Graph_3 extends  Component{
                 
                  // Set chart options
                 options = {{
-                    title : 'Comparison of Annuity Costs €/a',
+                    title : 'Vergleich der Annuitätskosten',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Annuity Costs in €/a'},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Annuitätische Kosten in €/a'},
+                    hAxis: {title: 'Anlagenkombinationen'} ,
                     seriesType: 'bars',
                     colors: ['#0a9b03'],
                     animation: {

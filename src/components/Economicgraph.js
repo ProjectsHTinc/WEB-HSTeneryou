@@ -26,7 +26,7 @@ class Economicgraph extends Component {
             <div className="container-fluid wrapper">
             <Header/>
             <h4 className="form_heading">Product Comparsion Graph  </h4>
-                <div className="container" style={ { marginTop:'40px',marginBottom:'40px', backgroundImage: 'url(' + form_bg_3 + ')',
+                <div className="container" style={ { marginTop:'40px',marginBottom:'100px', backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  height:'600px',
@@ -38,10 +38,10 @@ class Economicgraph extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
+                        <Tab>Graph 1</Tab>
+                        <Tab>Graph 2</Tab>
                         <Tab>Graph 3</Tab>
                         <Tab>Graph 4</Tab>
-                        <Tab>Graph 5</Tab>
-                        <Tab>Graph 6</Tab>
                     </TabList>
                         <TabPanel>
                                 <Graph_3/>
