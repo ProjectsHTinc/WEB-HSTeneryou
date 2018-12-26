@@ -687,7 +687,9 @@ td{
     width: 200px;
     padding: 10px;
 }
-
+tr td{
+    height:100px;
+}
 .table-borderless{
     margin-top: -1px;
 }
@@ -704,7 +706,7 @@ td{
 }
 
 .graph_pic{
-    margin:20px 0px 20px 0px;
+    /* margin:20px 0px 20px 0px; */
 }
 
 .react-tabs__tab--selected{
