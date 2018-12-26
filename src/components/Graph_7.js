@@ -20,11 +20,11 @@ class Graph_7 extends  Component{
                 data={graph7_values}
                 // Set chart options
                 options={{
-                    title: 'CO2-Emissionsvergleich',
+                    title: 'Comparison of CO2 Emissions',
                     chartArea: { width: '60%' },
-                    hAxis: { title: 'Anlagenkombinationen' },
+                    hAxis: { title: 'System Combination' },
                     seriesType: 'bars',
-                    colors: ['#f2a614','#cc0303'],
+                    colors: ['#2fa057','#e88e00'],
                     animation: {
                         startup: true,
                         duration: 1500,
@@ -36,7 +36,7 @@ class Graph_7 extends  Component{
                         1: {targetAxisIndex: 1, type: 'line'},
                     },
                     vAxes: {
-                        0: {title: 'CO2-Äquivalent in t/a'},
+                        0: {title: 'CO2 Equivalent in t/a'},
                         1: {title: 'CO2 Abatement Costs in €/t'},
                     },
                 }}

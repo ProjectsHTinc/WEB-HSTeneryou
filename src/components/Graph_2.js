@@ -20,22 +20,22 @@ class Graph_2 extends  Component{
                 data={graph2_values}            
                  // Set chart options
                 options={{
-                    title: 'Vergleich des Eigenverbrauchs, Einspeisung und Netzbezug',
+                    title: 'Comparison of Self Consumption, Feed-In and Grid Consumption',
                     chartArea: { width: '60%' },
                     isStacked: true,
                     seriesType: 'bars',
-                    colors: ['#9b0303', '#9b8003', '#239b03', '#039b92', '#03479b'],
+                    colors: ['#cba550', '#9851b9', '#239b03', '#039b92', '#4170aa'],
                     animation: {
                         startup: true,
                         duration: 1500,
                         easing: 'out',
                     },
                     hAxis: {
-                    title: 'Anlagenkombinationen',
+                    title: 'System Combination',
                     minValue: 0,
                     },
                     vAxis: {
-                    title: 'Strom in kWh',
+                    title: 'Electricity in kWh',
                     },
                    
                 }}

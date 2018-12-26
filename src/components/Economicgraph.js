@@ -38,10 +38,10 @@ class Economicgraph extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
-                        <Tab>Graph 1</Tab>
-                        <Tab>Graph 2</Tab>
-                        <Tab>Graph 3</Tab>
-                        <Tab>Graph 4</Tab>
+                        <Tab>Annuity Costs</Tab>
+                        <Tab>Investment Costs</Tab>
+                        <Tab>Operational Costs</Tab>
+                        <Tab>Monthly Costs</Tab>
                     </TabList>
                         <TabPanel>
                                 <Graph_3/>

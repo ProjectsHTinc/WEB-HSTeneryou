@@ -35,7 +35,7 @@ class Emission extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
-                        <Tab>Graph 1</Tab>
+                        <Tab>CO2 Analysis</Tab>
                     </TabList>
                         <TabPanel>
                             <Graph_7/>

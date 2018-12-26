@@ -20,12 +20,12 @@ class Graph_1 extends  Component{
                 data={graph1_values}
                  // Set chart options
                 options = {{
-                    title : 'Vergleich des elektrischen Autarkiegrades',
+                    title : 'Comparison of Electrical Self Sufficiency',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Autarkiegrad',format: '#\'%\''},
-                    hAxis: {title: 'Anlagenkombinationen'} ,
+                    vAxis: {title: 'Self Sufficiency',format: '#\'%\''},
+                    hAxis: {title: 'System Combination'} ,
                     seriesType: 'bars',
-                    colors: ['#9b0303'],
+                    colors: ['#cba550'],
                     animation: {
                         startup: true,
                         duration: 1500,

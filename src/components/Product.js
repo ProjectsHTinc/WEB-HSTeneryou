@@ -367,7 +367,7 @@ class Product extends Component {
         let graph_7_1 = [];
         let graph_7_2 = [];
 
-        graph_1.push(['', 'Autarkiegrad']);
+        graph_1.push(['', 'Self Sufficiency']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let energeticValues = this.state.systemCombinations_value[i].energeticValues;
@@ -393,7 +393,7 @@ class Product extends Component {
             graph_2.push([systemCombinationPosition, energeticSelfSufficiency, energeticNetConsumption, energeticOwnConsumptionPV, energeticOwnConsumptionBHKW, energeticPowerSupplyPV, energeticPowerSupplyBHKW]);
         }
 
-        graph_3_1.push(['', 'Annuitätische Kosten']);
+        graph_3_1.push(['', 'Annuity Costs']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
             let economicValues = this.state.systemCombinations_value[0].economicValues;
@@ -409,7 +409,7 @@ class Product extends Component {
         }
 
 
-        graph_4.push(['', 'annuityCost', 'Investitionskosten', 'Budget']);
+        graph_4.push(['', 'annuityCost', 'Investment Costs', 'Budget']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let budget_value_amount = Number(localStorage.getItem('budget_value'));
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
@@ -450,7 +450,7 @@ class Product extends Component {
         }
 
 
-        graph_7_1.push(['', 'CO2-Äquivalent in t/a', 'CO2 Abatement Costs']);
+        graph_7_1.push(['', 'CO2 Equivalent in t/a', 'CO2 Abatement Costs']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
             let ecologicValues = this.state.systemCombinations_value[0].ecologicValues;

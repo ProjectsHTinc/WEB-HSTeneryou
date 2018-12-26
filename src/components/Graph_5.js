@@ -20,13 +20,13 @@ class Graph_5 extends  Component{
                 data={graph5_values}
                  // Set chart options
                 options={{
-                    title: 'Vergleich der Energie- und Instandhaltungskosten',
+                    title: 'Comparison of Maintenance & Fuel Costs',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Betriebskosten und Brennstoffkosten in €/a'},
-                    hAxis: {title: 'Anlagenkombinationen'} ,
+                    vAxis: {title: 'Maintenance & Fuel Costs in €/a'},
+                    hAxis: {title: 'System Combination'} ,
                     isStacked: true,
                     seriesType: 'bars',
-                    colors: ['#0a6705','#0a9b03'],
+                    colors: ['#113969','#4170aa'],
                     animation: {
                         startup: true,
                         duration: 1500,
