@@ -11,9 +11,9 @@ class Graph_1 extends  Component{
             <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-10">
-            <div className="graph_example">
+            <div className="container">
             <Chart id='Graph 1'
-                width={'800px'}
+                width={'100%'}
                 height={'380px'}
                 chartType="ComboChart"
                 loader={<div>Loading Chart</div>}

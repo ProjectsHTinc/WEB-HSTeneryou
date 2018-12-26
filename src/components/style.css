@@ -704,7 +704,7 @@ td{
 }
 
 .graph_pic{
-    margin:20px 20px 20px 20px;
+    margin:20px 0px 20px 0px;
 }
 
 .react-tabs__tab--selected{
@@ -806,6 +806,9 @@ td{
     .character_4{
         display: none;
     }
+    .footer_section{
+        display: none;
+    }
 }
 
 @media only screen and (max-width:1024px) {
@@ -896,6 +899,9 @@ td{
     .house_year_drop_box {
         margin-left: 100px;
     }
+    .footer_section{
+        display: none;
+    }
   }
 
 
@@ -915,8 +921,8 @@ td{
         padding: 8px;
         margin-right: 80px;
     }
-    .form_1_bg{
-
+    .footer_section{
+        display: none;
     }
 }
 

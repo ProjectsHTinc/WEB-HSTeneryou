@@ -13,7 +13,7 @@ class Graph_5 extends  Component{
             <div className="col-md-10">
             <div class="graph_example">
             <Chart id='Graph 5'
-                width={'800px'}
+                width={'100%'}
                 height={'380px'}
                 chartType="ComboChart"
                 loader={<div>Loading Chart</div>}
