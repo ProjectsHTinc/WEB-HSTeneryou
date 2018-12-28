@@ -291,7 +291,7 @@ class Enerydemand extends Component {
 
 
                         {/* Progress Bar section Starts here */}
-                        <div className="row progress_section" style={{ marginTop: '70px' }}>
+                        <div className="row progress_section" style={{ marginTop: '120px' }}>
                             <div className="col-md-2">
                                 <div className="char_next_btn_section">
                                     <div className="">

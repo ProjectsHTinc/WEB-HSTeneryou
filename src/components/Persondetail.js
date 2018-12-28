@@ -13,6 +13,10 @@ import electric_img from './images/house_int.png';
 import electric_board from './images/electric_board.png';
 import electric_symbol from './images/electric_symbol.png';
 
+
+import number_person_error from './images/number_person_error.png';
+import power_consumption_error from './images/power_consumption_error.png';
+
 import select from './images/select.png';
 import unselect from './images/unselect.png';
 
@@ -21,6 +25,7 @@ class Persondetail extends Component {
         super(props)
         this.state = {
             step :2,
+            character_2:character_2,
             person:localStorage.getItem('person_count'),
             power_consumption:'',
             power_val:'',
@@ -39,7 +44,8 @@ class Persondetail extends Component {
        
         if(star_val=='0' || star_val==null){
             formIsValid = false;
-            this.setState({ star_errors: "Select the Person" });         
+            this.setState({ star_errors: "Select the Person" });     
+            this.setState({ character_2: number_person_error});     
          } 
          if (!power_val.match(/^[1-9][0-9]*$/)) {
             formIsValid = false;
@@ -56,6 +62,7 @@ class Persondetail extends Component {
          if(power_val==''){
             formIsValid = false;
             this.setState({ power_error: "Power Error" }); 
+            this.setState({ character_2: power_consumption_error});  
          }
         
 
@@ -110,43 +117,11 @@ class Persondetail extends Component {
            }
       }
     componentDidMount(){
-    //     const { values :{power_consumption}}= this.props;
-    //    let pw_valu=power_consumption;
-    //    alert(pw_valu);
-    //     if(pw_valu){           
-    //         alert("set value");
-    //     }else{
-    //         alert("assigned");
-    //     }
-
-    //    let person_value=localStorage.getItem("person_count");
-      //let person_value=power_consumption;
-    //    if(person_value=='6'){
-    //     this.power_consumption.focus();
-    //      document.getElementById("power_consumption").value = "6000";           
-    //    }else if(person_value=='5'){
-    //     this.power_consumption.focus();
-    //     document.getElementById("power_consumption").value = "5000";   
-    //    }else if(person_value=='4'){
-    //     this.power_consumption.focus();
-    //     document.getElementById("power_consumption").value = "4000";   
-    //     }else if(person_value=='3'){
-    //         this.power_consumption.focus();
-    //         document.getElementById("power_consumption").value = "3000";   
-    //     }else if(person_value=='2'){
-    //         this.power_consumption.focus();
-    //         document.getElementById("power_consumption").value = "2000";   
-    //     }
-    //     else if(person_value=='1'){
-    //         this.power_consumption.focus();
-    //         document.getElementById("power_consumption").value = "1000";   
-    //     }else{
-    //         document.getElementById("power_consumption").value = "";   
-    //    }
+  
 
     }
     render() {
-        const { rating_half_star,person } = this.state;
+        const { rating_half_star,person,character_2 } = this.state;
         const { values } = this.props
 
     return (
@@ -193,7 +168,7 @@ class Persondetail extends Component {
                             
                     </div>
                     <div className="col-md-2">
-                    <p className="text-center">Jährlicher Strombedarf</p>
+                    <p className="text-center power_text">Jährlicher Strombedarf</p>
                                 <div className="" style={{backgroundImage: 'url(' + electric_board + ')',
                  backgroundPosition: 'center',
                 backgroundSize:'contain',
@@ -223,7 +198,7 @@ class Persondetail extends Component {
 
 
                 {/* Progress Bar section Starts here */}
-                <div className="row progress_section">
+                <div className="row progress_section" style={{marginTop:'25px'}}>
                 <div className="col-md-2 col-sm-2">
                     <div className="char_next_btn_section">
                             <div className="">

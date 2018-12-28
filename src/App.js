@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Homepage from './components/Homepage'
 import Header from './components/Header'
@@ -11,16 +13,24 @@ import Graphmenu from './components/Graphmenu'
 import Economicgraph from './components/Economicgraph'
 import Emission from './components/Emission'
 import Energetic from './components/Energetic'
-
-
-import Graph_1 from './components/Graph_1'
-
-
 import Error from './components/Error'
+
+// import Graph_1 from './components/Graph_1'
+
+
+
 import '../src/components/style.css'
 
+
+
+
 class App extends Component {
+
+
+
   render() {
+
+
     return (  
        
        
@@ -28,17 +38,19 @@ class App extends Component {
         <BrowserRouter>
         <div className="loader">       
         <Switch>
+        
           <Route path="/" component={Homepage} exact />
           <Route path="/Form" component={Form}  />
           <Route path="/Homedetails" component={Homedetails}  />
           <Route path="/Person" component={Person}  />
-          <Route path="/Product" component={Product}  />
-          <Route path="/Graphmenu" component={Graphmenu}  />
+          <Route path="/Product" component={Product}  />      
+          <Route path="/Graphmenu" component={Graphmenu}  />          
           <Route path="/Economicgraph" component={Economicgraph}  />
           <Route path="/Emission" component={Emission} />
-          <Route Path="/Energetic" component={Energetic} />
-          <Route path="/Graph_1" component={Graph_1}  />
+          <Route path="/Energetic" component={Energetic} /> 
           <Route  component={Error} />
+        {/* <Route path="/Graph_1" component={Graph_1}  />  */}
+         
 
         </Switch>
 

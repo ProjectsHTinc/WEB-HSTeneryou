@@ -22,8 +22,19 @@ class Graph_1 extends  Component{
                 options = {{
                     title : 'Comparison of Electrical Self Sufficiency',
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Self Sufficiency',format: '#\'%\''},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Self Sufficiency',format: '#\'%\'',titleTextStyle: {
+                        color: "#000",
+                        fontName: "Roboto",
+                        fontSize: 14,
+                      
+                        italic: false
+                    }},
+                    hAxis: {title: 'System Combination',titleTextStyle: {
+                        color: "#000",
+                        fontName: "Roboto",
+                        fontSize: 14,                      
+                        italic: false
+                    }} ,
                     seriesType: 'bars',
                     colors: ['#cba550'],
                     animation: {
@@ -31,6 +42,14 @@ class Graph_1 extends  Component{
                         duration: 1500,
                         easing: 'out',
                     },
+                    annotations: {
+                        alwaysOutside: true,
+                        textStyle: {
+                            fontSize:4
+                          
+                           
+                        }
+                    }
                 }} 
             />
             </div>

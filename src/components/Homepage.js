@@ -37,14 +37,24 @@ class Homepage extends Component {
      
       <div className="container-fluid wrapper">
     
-      <div className="row ">
-      <div className="logo">
-     <a href="/">
-     <img src={require('./images/home_logo.png')} alt="ENER YOU" className=""/>
-     </a> 
-      
-      </div>
-      </div>
+        {/* <div className="row ">
+          <div className="logo">
+            <a href="/">
+              <img src={require('./images/logo_1.png')} alt="ENER YOU" className="" />
+            </a>
+
+          </div>
+        </div> */}
+        <div className="container ">
+          <div className="row">
+            <div className="logo">
+              <a href="/">
+                <img src={require('./images/logo_1.png')} alt="ENER YOU" className="" responsive />
+              </a>
+            </div>
+          </div>
+
+        </div>
    
         <div style={{
           width: '100%',

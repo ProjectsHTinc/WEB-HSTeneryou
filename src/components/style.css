@@ -1,22 +1,53 @@
 html {
-    position: relative;
-    min-height: 100%;
+   height: 100%;
+  box-sizing: border-box;
     
   }
+  *,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
   body {
-    margin-bottom: 60px;
-   
+    position: relative;
+    margin: 0;
+    padding-bottom: 1rem;
+    min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+  
   }
+
   .wrapper{
     margin: 0px;
     padding: 0px;
 }
+.footer_section{
+    background-color: #2171b9;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+}
 
 .error_font{
-    font-size: 13px;
+    font-size: 12px;
     color:red;
     font-weight: 600;
 }
+.error_bg{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.error_page_height{
+    height: 100vh;
+    background-color: #e5e5e5;
+}
+
 .energy_demand_text{
     width: 100%;
 }
@@ -26,6 +57,9 @@ html {
 }
 .logo{
     position: absolute;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     
 }
 .home_box{
@@ -55,7 +89,7 @@ html {
 .form_heading{
     text-align: center;
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 500;
     margin-top: 20px;
     margin-bottom: 20px;
     color:#2171b9;
@@ -65,6 +99,8 @@ html {
   
     color:#000;
     margin-bottom: 15px;
+    font-weight: 300;
+    font-size: 20px;
 }
 .img_compass{
     margin-left: 75px;
@@ -78,12 +114,13 @@ html {
     width: 100%;
     border-radius:5px;
     margin-top: 10px;
+    font-size: 14px;
 
 }
 .year_label{
     color:#000;
     font-size: 14px; 
-    margin-left: 25px;
+    margin-left: 20px;
    margin-right: 25px;  
 }
 .year_box{
@@ -92,8 +129,9 @@ html {
 .house_year_drop_box{
    color:#000;
    font-size: 14px; 
-   margin-left: 12px;  
-   margin-right: 20px;  
+   margin-left: 10px;
+   margin-right: 20px;
+   padding: 3px;  
 }
 
 .radio_box{
@@ -146,6 +184,7 @@ input[type='radio']:checked:before {
     position: absolute;
     top: 5px;
     margin-left: 5px;
+    font-size: 14px;
 }
 
 /* Radio button */
@@ -167,20 +206,15 @@ input[type='radio']:checked:before {
 }
 
 .post_textbox{
-    width:100%;
-    border: none;
-    width:100px;
-    background: 
-      repeating-linear-gradient(90deg, 
-          dimgrey 0, 
-          dimgrey 1ch, 
-          transparent 0, 
-          transparent 2.1ch) 
-        0 100%/100% 2px no-repeat;
-   
-    letter-spacing: 11px;
-    margin-left: 10px;
-    font-size: 19px;
+    width: 85px;
+    letter-spacing: 8px;
+    margin-left: 0px;
+    font-size: 14px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000;
+    background-color: #fbc417;
    
 
 }
@@ -201,12 +235,13 @@ input[type='radio']:checked:before {
 
 .living_box{
     float: right;
-    margin-right: 145px;
+    margin-right: 175px;
     margin-top: 260px;
     background-color: #fff;
     padding: 20px 15px 10px 20px;
     border: 1px solid grey;
     border-radius: 10px;
+    font-size: 14px;
 }
 input::placeholder {
     font-size: 12px;
@@ -215,7 +250,7 @@ input::placeholder {
     color: #000;
     font-weight: 600;
     font-size: 14px;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-right: 20px;
 }
 
@@ -304,6 +339,7 @@ input::placeholder {
     padding: 5px 10px 5px 10px;
     color: #fff;
     font-weight: 500;
+    font-size: 14px;
     background-color: #2171b9;
 }
 .person_count{   
@@ -333,13 +369,17 @@ input::placeholder {
     width: 75px;
     font-size: 13px;
     margin-left: 20px;
-    letter-spacing: 11px;
+    letter-spacing: 9px;
     font-weight: 600;
     background-color: #000;
     color: #fff;
     border: none;
     padding-left: 3px;
     padding-right: 3px;
+    margin-top: 3px;
+}
+.power_text{
+    font-size: 14px;
 }
 .power_meter_box{
     padding: 5px;
@@ -423,10 +463,10 @@ input::placeholder {
 .energy_form{
     background-color: #fff;
     padding-top: 10px;
-    padding-bottom: 10px;
+  
     margin-left: 40px;
     margin-right: 40px;
-    margin-top: 50px;
+    margin-top: 20px;
    
     box-shadow: 0px 2px 12px 6px #d9d9d9;
 
@@ -445,7 +485,7 @@ input::placeholder {
 .label_demand{
     font-size: 14px;
     color: #000;
-    font-weight: 600;
+    font-weight: 400;
 }
 .label_demand_value_label{
     font-size: 12px;
@@ -496,8 +536,8 @@ input::placeholder {
     margin-left: 80px;
 }
 .budget_font{
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 400;
     text-align: center;
     width: 100%;
     margin-top: 10px;
@@ -540,7 +580,7 @@ input::placeholder {
 .form_btn{
     width:100%;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
 }
 .btn_submit{
@@ -548,14 +588,7 @@ input::placeholder {
     color:#fff;
 }
 
-.footer_section{
-    background-color: #2171b9;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-}
+
 .btn_next{
     background-color: #fff;
     border: 1px solid #000;
@@ -650,6 +683,8 @@ input::placeholder {
     background-color: #1554a0;
     opacity: 0.3;
     color:#fff;
+    font-size: 16px;
+    font-weight: 500;
 }
 .tab_box_2{
     padding-top: 10px;
@@ -658,6 +693,8 @@ input::placeholder {
     background-color: #1d8140;
     opacity: 0.3;
     color:#fff;
+    font-size: 16px;
+    font-weight: 500;
 }
 .tab_box_3{
     padding-top: 10px;
@@ -666,6 +703,8 @@ input::placeholder {
     background-color: #bd902d;
     opacity: 0.3;
     color:#fff;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .Graphactive .tab_box_3{
@@ -743,12 +782,14 @@ tr td{
 }
 .react-tabs__tab{
     margin-left: 100px;
+    font-size: 15px;
 }
 
 
 .footer_links a{
     color:#fff;
     margin-left: 20px;
+    font-size: 16px;
     text-decoration: none;
 }
 .copyrights a{
@@ -758,6 +799,12 @@ tr td{
 
 
 
+/* Graph Styles */
+
+.titleTextStyle{
+    color: red;
+    
+}
                   
 
 
@@ -843,7 +890,7 @@ tr td{
         display: none;
     }
     .form_1_bg{
-        background-size: contain !important;
+      
       
         }
      /* .radio_box{
@@ -898,6 +945,13 @@ tr td{
     .form_1_bg{
         background-size: contain;
     }
+    .form_1_bg_1{
+        margin-bottom: 100px;
+    }
+    .postbox_img{
+        display:none;
+        
+    }
     .living_box{
         margin-right: 100px;
         padding-top: 10px;
@@ -914,7 +968,7 @@ tr td{
         letter-spacing: 5px;
     }
     .post_text_box{
-        width:120px;
+      width:100%;
     }
     .year_label{
         margin-left: 100px;

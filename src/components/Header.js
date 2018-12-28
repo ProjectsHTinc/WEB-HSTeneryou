@@ -9,7 +9,7 @@ class Header extends Component {
         <div className="row logo_section">
         <div className="logo">
         <a href="/">
-     <img src={require('./images/logo.png')} alt="ENER YOU" className=""/>
+     <img src={require('./images/logo.png')} alt="ENER YOU" className="" responsive/>
      </a>
         </div>
         </div>
