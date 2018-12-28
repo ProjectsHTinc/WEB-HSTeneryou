@@ -17,7 +17,6 @@ class Product extends Component {
         this.state = {
             step:5,
             status: '',
-          //  logo_1:'',
             recommentations_value: [],
             systemCombinations_value: [],
             fieldViolations_value:[],
@@ -33,17 +32,18 @@ class Product extends Component {
         let local_person_count = localStorage.getItem('person_count');
 
         console.log("loading");
+
         var data = {
             "building": {
-                "postalCode": '23456',
+                "postalCode": '12345',
                 "constructionYear": "FROM1969_TO1978",
-                "livingSpace": 150,
+                "livingSpace": 300,
                 "roofAlignment": "SOUTH",
                 "roofTilt": "DEGREES_25"
             },
             "energyDemand": {
-                "personCount": 3,
-                "energyDemand": 6000,
+                "personCount": 4,
+                "energyDemand": 8000,
                 "headingDemandType": "CONSTRUCTION_YEAR"
             }
         }
@@ -216,19 +216,19 @@ class Product extends Component {
                 let j = 0;
                 let products_1 = [];
                 let componentName_1='';
-                let logo_1='';
-               
+                let logo_1="";
                 let price_1 ='';
                 let productName_1='';
                 products_1 = this.state.recommentations_value[0].products;
                 let prod_1_len = this.state.recommentations_value[0].products.length;
                 
                 for (j = 0; j < 6; j++) {
+                   
                  if(prod_1_len > j){                  
                      componentName_1 = products_1[j]['componentName'];
-                     //logo_1 = products_1[j]['logoPath'];
-                     logo_1 = '../logos/logo_01.png';
-                     price_1 = formatNumber(products_1[j]['price'], {
+                    //logo_1 = products_1[j]['logoPath'];
+                    logo_1 = "logo_01.png";
+                    price_1 = formatNumber(products_1[j]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
                                 'fraction': 2,
@@ -240,16 +240,12 @@ class Product extends Component {
                      componentName_1 = "";
                      price_1 = "";
                      productName_1 = "";
-                     logo_1 = './src/components/logos/logo_01.png';
+                     logo_1 = 'default.png';
                  }
-                    recommentations_list_1.push(<tr><td>{componentName_1}
-                     <img src={'./logos/logo_01.png'} responsive className="" id=""/> 
-                     {/* <img src="%PUBLIC_URL%/logos/logo_01.png"/> */}
-
-                     </td><td>{productName_1}</td><td>{price_1}</td></tr>);
+                    recommentations_list_1.push(<tr><td>{componentName_1}<br></br><img src={require(`./logos/${logo_1}`)} alt={componentName_1} width="100" className="" /></td><td>{productName_1}</td><td>{price_1}</td></tr>);
                 }
             }
-            
+           // console.log(logo_1);
             
             if (i === 1) {
                 //recommentations_list_2_type.push(this.state.recommentations_value[1].type);
@@ -284,6 +280,7 @@ class Product extends Component {
                 let k = 0;
                 let products_2 = [];
                 let componentName_2='';
+                let logo_2="";
                 let price_2 ='';
                 let productName_2='';
                 products_2 = this.state.recommentations_value[1].products;
@@ -292,6 +289,8 @@ class Product extends Component {
                 for (k = 0; k < 6; k++) {
                  if(prod_2_len > k){                  
                      componentName_2 = products_2[k]['componentName'];
+                     //logo_2 = products_2[k]['logoPath'];
+                    logo_2 = "logo_02.png";
                      price_2 = formatNumber(products_2[k]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
@@ -303,9 +302,10 @@ class Product extends Component {
                  }else{
                      componentName_2 = "";
                      price_2 = "";
+                     logo_2 = "default.png";
                      productName_2 = "";
                  }
-                    recommentations_list_2.push(<tr><td>{componentName_2}<img src={require('./logos/logo_02.png')} alt={componentName_2} className=""/></td><td>{productName_2}</td><td>{price_2}</td></tr>);
+                    recommentations_list_2.push(<tr><td>{componentName_2}<br></br><img src={require(`./logos/${logo_2}`)} alt={componentName_2} width="100" className="" /></td><td>{productName_2}</td><td>{price_2}</td></tr>);
                 }
             }
             
@@ -344,6 +344,7 @@ class Product extends Component {
                 let products_3 = [];
                 let componentName_3='';
                 let price_3 ='';
+                let logo_3='';
                 let productName_3='';
                 products_3 = this.state.recommentations_value[2].products;
                 let prod_3_len = this.state.recommentations_value[2].products.length;
@@ -351,6 +352,8 @@ class Product extends Component {
                 for (l = 0; l < 6; l++) {
                  if(prod_3_len > l){                  
                      componentName_3 = products_3[l]['componentName'];
+                      //logo_3 = products_3[l]['logoPath'];
+                    logo_3 = "logo_03.png";
                      price_3 = formatNumber(products_3[l]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
@@ -363,8 +366,9 @@ class Product extends Component {
                      componentName_3 = "";
                      price_3 = "";
                      productName_3 = "";
+                     logo_3 = "default.png";
                  }
-                    recommentations_list_3.push(<tr><td>{componentName_3}<img src={require('./logos/logo_03.png')} alt={componentName_3} className=""/></td><td>{productName_3}</td><td>{price_3}</td></tr>);
+                    recommentations_list_3.push(<tr><td>{componentName_3}<br></br><img src={require(`./logos/${logo_3}`)} alt={componentName_3} width="100" className="" /></td><td>{productName_3}</td><td>{price_3}</td></tr>);
                 }
             }
         }
