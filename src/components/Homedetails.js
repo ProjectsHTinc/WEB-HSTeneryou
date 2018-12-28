@@ -32,7 +32,7 @@ class Homedetails extends Component {
             roof_error:'',
             directionChange:'',
             house_con_year:'',          
-            fields: {},
+            //fields: {},
             errors: {},
            
         };
@@ -43,7 +43,7 @@ class Homedetails extends Component {
   
 
     handleValidation(){
-        let fields = this.state.fields;
+       // let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
         let post_code=this.post_code.value; 
@@ -106,7 +106,7 @@ class Homedetails extends Component {
 
 
     continue = e => {
-        let fields = this.state.fields;
+        //let fields = this.state.fields;
          e.preventDefault();   
         
         if(this.handleValidation()){          
@@ -173,7 +173,7 @@ class Homedetails extends Component {
         const { options, NormalCompass,Character } = this.state;
         const { values } = this.props      
        
-        const {roof} = this.state
+        //const {roof} = this.state
 
 
     return (
@@ -200,7 +200,7 @@ class Homedetails extends Component {
                             id ="0"
                             name="roof_inclination"  
                             onChange={this.props.handleChange('roof_inclination')} 
-                            checked={values.roof_inclination == "DEGREES_0"}
+                            checked={values.roof_inclination === "DEGREES_0"}
                            
                              /> 
                             <span className="radio_label"> 0</span>
@@ -216,7 +216,7 @@ class Homedetails extends Component {
                              name="roof_inclination"  
                              id="15"    
                              onChange={this.props.handleChange('roof_inclination')} 
-                             checked={values.roof_inclination == "DEGREES_15"}
+                             checked={values.roof_inclination === "DEGREES_15"}
                               /> 
                             <span className="radio_label">15</span>
                             <p className="radio_image">
@@ -232,7 +232,7 @@ class Homedetails extends Component {
                             refs="roof_inclination"
                             name="roof_inclination"   
                             onChange={this.props.handleChange('roof_inclination')} 
-                            checked={values.roof_inclination == "DEGREES_25"}
+                            checked={values.roof_inclination === "DEGREES_25"}
                             />
                             <span className="radio_label">25</span>
                             <p className="radio_image">
@@ -248,7 +248,7 @@ class Homedetails extends Component {
                              name="roof_inclination"  
                              onChange={this.props.handleChange('roof_inclination')}
                                              
-                             checked={values.roof_inclination == "DEGREES_30"}
+                             checked={values.roof_inclination === "DEGREES_30"}
                               />
                             <span className="radio_label">30</span>
                             <p className="radio_image">
@@ -263,7 +263,7 @@ class Homedetails extends Component {
                             id="35" 
                             name="roof_inclination"   
                             onChange={this.props.handleChange('roof_inclination')}
-                            checked={values.roof_inclination == "DEGREES_35"}
+                            checked={values.roof_inclination === "DEGREES_35"}
                             />
                              <span className="radio_label">35</span>
                             <p className="radio_image">
@@ -279,7 +279,7 @@ class Homedetails extends Component {
                              name="roof_inclination"    
                              onChange={this.props.handleChange('roof_inclination')}                              
                                                   
-                             checked={values.roof_inclination == "DEGREES_45"}
+                             checked={values.roof_inclination === "DEGREES_45"}
                               />
                             <span className="radio_label">45</span>
                             <p className="radio_image">

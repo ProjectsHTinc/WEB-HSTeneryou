@@ -17,7 +17,7 @@ class Budget extends Component {
         this.state = {
             step :3,
             budget_value:'',
-            fields: {},
+           // fields: {},
             errors: {},    
            
         };
@@ -25,7 +25,7 @@ class Budget extends Component {
    
  
     handleValidation(){
-        let fields = this.state.fields;
+      //  let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;    
       

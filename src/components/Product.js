@@ -10,99 +10,95 @@ import graph_img_2 from './images/graph_img_2.png';
 import graph_img_3 from './images/graph_img_3.png';
 
 
-
 class Product extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            step: 5,
+            step:5,
             status: '',
+          //  logo_1:'',
             recommentations_value: [],
             systemCombinations_value: [],
+            fieldViolations_value:[],
         };
     }
-
     back = e => {
         e.preventDefault();
         this.props.prevStep();
     }
 
-
-
-
     componentDidMount() {
-        const { values: { roof_inclination, living_area, post_code, directionChange, construction_year, person_count, power_consumption, energy_demand, yearlyGasDemand, yearlyEnergyDemand, yearlyEnergyDemandOnWater, budget_value } } = this.props;
+        const { values: { roof_inclination, living_area, post_code, directionChange, construction_year, power_consumption, energy_demand, yearlyGasDemand, yearlyEnergyDemand, yearlyEnergyDemandOnWater } } = this.props;
         let local_person_count = localStorage.getItem('person_count');
 
         console.log("loading");
+        var data = {
+            "building": {
+                "postalCode": '23456',
+                "constructionYear": "FROM1969_TO1978",
+                "livingSpace": 150,
+                "roofAlignment": "SOUTH",
+                "roofTilt": "DEGREES_25"
+            },
+            "energyDemand": {
+                "personCount": 3,
+                "energyDemand": 6000,
+                "headingDemandType": "CONSTRUCTION_YEAR"
+            }
+        }
 
-        // var data = {
-        //     "building": {
-        //         "postalCode": 20146,
-        //         "constructionYear": "FROM1969_TO1978",
-        //         "livingSpace": 150,
-        //         "roofAlignment": "SOUTH",
-        //         "roofTilt": "DEGREES_25"
-        //     },
-        //     "energyDemand": {
-        //         "personCount": 3,
-        //         "energyDemand": 3004,
-        //         "headingDemandType": "CONSTRUCTION_YEAR"
-        //     }
-        // }
+        //   if (energy_demand === 'CONSTRUCTION_YEAR'){
 
-          if (energy_demand === 'CONSTRUCTION_YEAR'){
+        //     var data = {
+        //         "building": {
+        //             "postalCode": post_code,
+        //             "constructionYear": construction_year,
+        //             "livingSpace": living_area,
+        //             "roofAlignment": directionChange,
+        //             "roofTilt": roof_inclination
+        //         },
+        //         "energyDemand": {
+        //             "personCount": local_person_count,
+        //             "energyDemand": power_consumption,
+        //             "headingDemandType": energy_demand
+        //         }
+        //       }
+        //   } 
 
-            var data = {
-                "building": {
-                    "postalCode": post_code,
-                    "constructionYear": construction_year,
-                    "livingSpace": living_area,
-                    "roofAlignment": directionChange,
-                    "roofTilt": roof_inclination
-                },
-                "energyDemand": {
-                    "personCount": local_person_count,
-                    "energyDemand": power_consumption,
-                    "headingDemandType": energy_demand
-                }
-              }
-          } 
+        //   if (energy_demand === 'GAS_OR_OIL_BILL'){
+        //     var data = {
+        //         "building": {
+        //             "postalCode": post_code,
+        //             "constructionYear": construction_year,
+        //             "livingSpace": living_area,
+        //             "roofAlignment": directionChange,
+        //             "roofTilt": roof_inclination
+        //         },
+        //         "energyDemand": {
+        //             "personCount": local_person_count,
+        //             "energyDemand": power_consumption,
+        //             "headingDemandType": energy_demand,
+        //             "yearlyGasDemand": yearlyGasDemand
+        //         }
+        //       }
+        //   } 
 
-          if (energy_demand === 'GAS_OR_OIL_BILL'){
-            var data = {
-                "building": {
-                    "postalCode": post_code,
-                    "constructionYear": construction_year,
-                    "livingSpace": living_area,
-                    "roofAlignment": directionChange,
-                    "roofTilt": roof_inclination
-                },
-                "energyDemand": {
-                    "personCount": local_person_count,
-                    "energyDemand": power_consumption,
-                    "headingDemandType": energy_demand,
-                    "yearlyGasDemand": yearlyGasDemand
-                }
-              }
-          } 
-
-          if (energy_demand === 'ENERGY_CERTIFICATE'){ 
-            var data = {
-                "building": {
-                    "postalCode": post_code,
-                    "roofAlignment": directionChange,
-                    "roofTilt": roof_inclination
-                },
-                "energyDemand": {
-                    "energyDemand": power_consumption,
-                    "headingDemandType": energy_demand,
-                    "yearlyEnergyDemand": yearlyEnergyDemand,
-                    "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
-                }
-              }
-          }
+        //   if (energy_demand === 'ENERGY_CERTIFICATE'){ 
+        //     var data = {
+        //         "building": {
+        //             "postalCode": post_code,
+        //             "roofAlignment": directionChange,
+        //             "roofTilt": roof_inclination
+        //         },
+        //         "energyDemand": {
+        //             "energyDemand": power_consumption,
+        //             "headingDemandType": energy_demand,
+        //             "yearlyEnergyDemand": yearlyEnergyDemand,
+        //             "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
+        //         }
+        //       }
+        //   }
 
         fetch("http://18.219.250.34:8080/eneryou/api/recommentations", {
             method: 'POST',
@@ -113,36 +109,41 @@ class Product extends Component {
             },
         })
 
-            .then(response => {
+       
+        .then(response => {
+            //console.log(response);
+            localStorage.setItem("response_status",response.status)
 
-                if (response.status === 200) {
-                    console.log("loaded");
-                    response.json().then(response_data => {
-                        this.setState({
-                            recommentations_value: response_data.recommentations,
-                            systemCombinations_value: response_data.systemCombinations,
-                            loading: true
+            if (response.status === 200) {
+                console.log("loaded");
+                response.json().then(response_data => {
+                    this.setState({ 
+                        recommentations_value: response_data.recommentations, 
+                        systemCombinations_value:response_data.systemCombinations,
+                        loading: true 
                         });
-                    });
-                } else if (response.status === 400) {
-                    response.json().then(response_data => {
-                        // console.log(response_data);
-                        this.setState({
+                });
+            } else if (response.status === 400) {
+                console.log("loaded");
+                response.json().then(response_data => {
+                    this.setState({
+                        fieldViolations_value: response_data.fieldViolations,
+                        loading: true
                         });
-                    });
-                    alert("invalid input values")
-                } else if (response.status === 500) {
-                    response.json().then(response_data => {
-                        // console.log(response_data);
-                        this.setState({
-                        });
-                    });
-                    alert("General internal problems")
-                }
-            })
+                });
+            } 
+            // else if (response.status === 500) {
+            //     console.log("loaded");
+            //     response.json().then(response_data => {
+            //         this.setState({
+                        
+            //             });
+            //     });
+            // } 
+        })
 
-            .catch((error) => {
-                console.error(error);
+        .catch((error) => {
+              console.error(error);
             })
     }
 
@@ -171,11 +172,17 @@ class Product extends Component {
         let recommentations_list_3_furthering = [];
         let recommentations_list_3_investCost = [];
         let recommentations_list_3_operatingCost = [];
-
+        let error_values_field = [];
+        let error_values_message = [];
        
-        let recommentations_value = this.state.recommentations_value.length;
-        //for (i = 0; i < this.state.recommentations_value.length; i++) {
-        for (i = 0; i < recommentations_value; i++) {
+              
+        for (i = 0; i < this.state.fieldViolations_value.length; i++) {
+            error_values_field.push(this.state.fieldViolations_value[0].field);
+            error_values_message.push(this.state.fieldViolations_value[0].message);
+        }
+
+        
+        for (i = 0; i < this.state.recommentations_value.length; i++) {
             if (i === 0) {
                 //recommentations_list_1_type.push(this.state.recommentations_value[0].type);
                 // let furthering_1 = formatNumber(this.state.recommentations_value[0].furthering,{
@@ -209,6 +216,8 @@ class Product extends Component {
                 let j = 0;
                 let products_1 = [];
                 let componentName_1='';
+                let logo_1='';
+               
                 let price_1 ='';
                 let productName_1='';
                 products_1 = this.state.recommentations_value[0].products;
@@ -217,6 +226,8 @@ class Product extends Component {
                 for (j = 0; j < 6; j++) {
                  if(prod_1_len > j){                  
                      componentName_1 = products_1[j]['componentName'];
+                     //logo_1 = products_1[j]['logoPath'];
+                     logo_1 = '../logos/logo_01.png';
                      price_1 = formatNumber(products_1[j]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
@@ -229,13 +240,18 @@ class Product extends Component {
                      componentName_1 = "";
                      price_1 = "";
                      productName_1 = "";
+                     logo_1 = './src/components/logos/logo_01.png';
                  }
-                    recommentations_list_1.push(<tr><td>{componentName_1}</td><td>{productName_1}</td><td>{price_1}</td></tr>);
+                    recommentations_list_1.push(<tr><td>{componentName_1}
+                     <img src={'./logos/logo_01.png'} responsive className="" id=""/> 
+                     {/* <img src="%PUBLIC_URL%/logos/logo_01.png"/> */}
+
+                     </td><td>{productName_1}</td><td>{price_1}</td></tr>);
                 }
             }
             
             
-            if (i == 1) {
+            if (i === 1) {
                 //recommentations_list_2_type.push(this.state.recommentations_value[1].type);
                 let furthering_2 = formatNumber(this.state.recommentations_value[1].furthering, {
                     'decimal': ',',
@@ -289,12 +305,12 @@ class Product extends Component {
                      price_2 = "";
                      productName_2 = "";
                  }
-                    recommentations_list_2.push(<tr><td>{componentName_2}</td><td>{productName_2}</td><td>{price_2}</td></tr>);
+                    recommentations_list_2.push(<tr><td>{componentName_2}<img src={require('./logos/logo_02.png')} alt={componentName_2} className=""/></td><td>{productName_2}</td><td>{price_2}</td></tr>);
                 }
             }
             
             
-            if (i == 2) {
+            if (i === 2) {
                 //recommentations_list_3_type.push(this.state.recommentations_value[2].type);
                 let furthering_3 = formatNumber(this.state.recommentations_value[2].furthering, {
                     'decimal': ',',
@@ -348,7 +364,7 @@ class Product extends Component {
                      price_3 = "";
                      productName_3 = "";
                  }
-                    recommentations_list_3.push(<tr><td>{componentName_3}</td><td>{productName_3}</td><td>{price_3}</td></tr>);
+                    recommentations_list_3.push(<tr><td>{componentName_3}<img src={require('./logos/logo_03.png')} alt={componentName_3} className=""/></td><td>{productName_3}</td><td>{price_3}</td></tr>);
                 }
             }
         }
@@ -518,31 +534,31 @@ class Product extends Component {
         let graph1_text = "";
         for (i = 0; i < graph_1.length; i++) {
             graph1_values_1 = graph_1[i][0];
-            if (graph1_values_1 == "9") {
+            if (graph1_values_1 === "9") {
                 graph1_text = "FC + PLB + TS";
             }
-            if (graph1_values_1 == "8") {
+            if (graph1_values_1 === "8") {
                 graph1_text = "CHP + PLB + TS";
             }
-            if (graph1_values_1 == "7") {
+            if (graph1_values_1 === "7") {
                 graph1_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph1_values_1 == "6") {
+            if (graph1_values_1 === "6") {
                 graph1_text = "PV + ST + CGB + TS";
             }
-            if (graph1_values_1 == "5") {
+            if (graph1_values_1 === "5") {
                 graph1_text = "PV + HR + CGB + TS";
             }
-            if (graph1_values_1 == "4") {
+            if (graph1_values_1 === "4") {
                 graph1_text = "PV + HP + TS";
             }
-            if (graph1_values_1 == "3") {
+            if (graph1_values_1 === "3") {
                 graph1_text = "PV + BS + PB + TS";
             }
-            if (graph1_values_1 == "2") {
+            if (graph1_values_1 === "2") {
                 graph1_text = "PV + PB + TS";
             }
-            if (graph1_values_1 == "1") {
+            if (graph1_values_1 === "1") {
                 graph1_text = "Reference";
             }
             graph1_values_2 = graph_1[i][1];
@@ -560,31 +576,31 @@ class Product extends Component {
         let graph2_text = "";
         for (i = 0; i < graph_2.length; i++) {
             graph2_values_1 = graph_2[i][0];
-            if (graph2_values_1 == "9") {
+            if (graph2_values_1 === "9") {
                 graph2_text = "FC + PLB + TS";
             }
-            if (graph2_values_1 == "8") {
+            if (graph2_values_1 === "8") {
                 graph2_text = "CHP + PLB + TS";
             }
-            if (graph2_values_1 == "7") {
+            if (graph2_values_1 === "7") {
                 graph2_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph2_values_1 == "6") {
+            if (graph2_values_1 === "6") {
                 graph2_text = "PV + ST + CGB + TS";
             }
-            if (graph2_values_1 == "5") {
+            if (graph2_values_1 === "5") {
                 graph2_text = "PV + HR + CGB + TS";
             }
-            if (graph2_values_1 == "4") {
+            if (graph2_values_1 === "4") {
                 graph2_text = "PV + HP + TS";
             }
-            if (graph2_values_1 == "3") {
+            if (graph2_values_1 === "3") {
                 graph2_text = "PV + BS + PB + TS";
             }
-            if (graph2_values_1 == "2") {
+            if (graph2_values_1 === "2") {
                 graph2_text = "PV + PB + TS";
             }
-            if (graph2_values_1 == "1") {
+            if (graph2_values_1 === "1") {
                 graph2_text = "Reference";
             }
             graph2_values_2 = graph_2[i][1];
@@ -602,31 +618,31 @@ class Product extends Component {
         let graph3_text = "";
         for (i = 0; i < graph_3.length; i++) {
             graph3_values_1 = graph_3[i][0];
-            if (graph3_values_1 == "9") {
+            if (graph3_values_1 === "9") {
                 graph3_text = "FC + PLB + TS";
             }
-            if (graph3_values_1 == "8") {
+            if (graph3_values_1 === "8") {
                 graph3_text = "CHP + PLB + TS";
             }
-            if (graph3_values_1 == "7") {
+            if (graph3_values_1 === "7") {
                 graph3_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph3_values_1 == "6") {
+            if (graph3_values_1 === "6") {
                 graph3_text = "PV + ST + CGB + TS";
             }
-            if (graph3_values_1 == "5") {
+            if (graph3_values_1 === "5") {
                 graph3_text = "PV + HR + CGB + TS";
             }
-            if (graph3_values_1 == "4") {
+            if (graph3_values_1 === "4") {
                 graph3_text = "PV + HP + TS";
             }
-            if (graph3_values_1 == "3") {
+            if (graph3_values_1 === "3") {
                 graph3_text = "PV + BS + PB + TS";
             }
-            if (graph3_values_1 == "2") {
+            if (graph3_values_1 === "2") {
                 graph3_text = "PV + PB + TS";
             }
-            if (graph3_values_1 == "1") {
+            if (graph3_values_1 === "1") {
                 graph3_text = "Reference";
             }
             graph3_values_2 = graph_3[i][1];
@@ -641,31 +657,31 @@ class Product extends Component {
         let graph4_text = "";
         for (i = 0; i < graph_4.length; i++) {
             graph4_values_1 = graph_4[i][0];
-            if (graph4_values_1 == "9") {
+            if (graph4_values_1 === "9") {
                 graph4_text = "FC + PLB + TS";
             }
-            if (graph4_values_1 == "8") {
+            if (graph4_values_1 === "8") {
                 graph4_text = "CHP + PLB + TS";
             }
-            if (graph4_values_1 == "7") {
+            if (graph4_values_1 === "7") {
                 graph4_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph4_values_1 == "6") {
+            if (graph4_values_1 === "6") {
                 graph4_text = "PV + ST + CGB + TS";
             }
-            if (graph4_values_1 == "5") {
+            if (graph4_values_1 === "5") {
                 graph4_text = "PV + HR + CGB + TS";
             }
-            if (graph4_values_1 == "4") {
+            if (graph4_values_1 === "4") {
                 graph4_text = "PV + HP + TS";
             }
-            if (graph4_values_1 == "3") {
+            if (graph4_values_1 === "3") {
                 graph4_text = "PV + BS + PB + TS";
             }
-            if (graph4_values_1 == "2") {
+            if (graph4_values_1 === "2") {
                 graph4_text = "PV + PB + TS";
             }
-            if (graph4_values_1 == "1") {
+            if (graph4_values_1 === "1") {
                 graph4_text = "Reference";
             }
             graph4_values_2 = graph_4[i][1];
@@ -681,31 +697,31 @@ class Product extends Component {
         let graph5_text = "";
         for (i = 0; i < graph_5.length; i++) {
             graph5_values_1 = graph_5[i][0];
-            if (graph5_values_1 == "9") {
+            if (graph5_values_1 === "9") {
                 graph5_text = "FC + PLB + TS";
             }
-            if (graph5_values_1 == "8") {
+            if (graph5_values_1 === "8") {
                 graph5_text = "CHP + PLB + TS";
             }
-            if (graph5_values_1 == "7") {
+            if (graph5_values_1 === "7") {
                 graph5_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph5_values_1 == "6") {
+            if (graph5_values_1 === "6") {
                 graph5_text = "PV + ST + CGB + TS";
             }
-            if (graph5_values_1 == "5") {
+            if (graph5_values_1 === "5") {
                 graph5_text = "PV + HR + CGB + TS";
             }
-            if (graph5_values_1 == "4") {
+            if (graph5_values_1 === "4") {
                 graph5_text = "PV + HP + TS";
             }
-            if (graph5_values_1 == "3") {
+            if (graph5_values_1 === "3") {
                 graph5_text = "PV + BS + PB + TS";
             }
-            if (graph5_values_1 == "2") {
+            if (graph5_values_1 === "2") {
                 graph5_text = "PV + PB + TS";
             }
-            if (graph5_values_1 == "1") {
+            if (graph5_values_1 === "1") {
                 graph5_text = "Reference";
             }
             graph5_values_2 = graph_5[i][1];
@@ -720,31 +736,31 @@ class Product extends Component {
         let graph6_text = "";
         for (i = 0; i < graph_6.length; i++) {
             graph6_values_1 = graph_6[i][0];
-            if (graph6_values_1 == "9") {
+            if (graph6_values_1 === "9") {
                 graph6_text = "FC + PLB + TS";
             }
-            if (graph6_values_1 == "8") {
+            if (graph6_values_1 === "8") {
                 graph6_text = "CHP + PLB + TS";
             }
-            if (graph6_values_1 == "7") {
+            if (graph6_values_1 === "7") {
                 graph6_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph6_values_1 == "6") {
+            if (graph6_values_1 === "6") {
                 graph6_text = "PV + ST + CGB + TS";
             }
-            if (graph6_values_1 == "5") {
+            if (graph6_values_1 === "5") {
                 graph6_text = "PV + HR + CGB + TS";
             }
-            if (graph6_values_1 == "4") {
+            if (graph6_values_1 === "4") {
                 graph6_text = "PV + HP + TS";
             }
-            if (graph6_values_1 == "3") {
+            if (graph6_values_1 === "3") {
                 graph6_text = "PV + BS + PB + TS";
             }
-            if (graph6_values_1 == "2") {
+            if (graph6_values_1 === "2") {
                 graph6_text = "PV + PB + TS";
             }
-            if (graph6_values_1 == "1") {
+            if (graph6_values_1 === "1") {
                 graph6_text = "Reference";
             }
             graph6_values_2 = graph_6[i][1];
@@ -759,31 +775,31 @@ class Product extends Component {
         let graph7_text = "";
         for (i = 0; i < graph_7.length; i++) {
             graph7_values_1 = graph_7[i][0];
-            if (graph7_values_1 == "9") {
+            if (graph7_values_1 === "9") {
                 graph7_text = "FC + PLB + TS";
             }
-            if (graph7_values_1 == "8") {
+            if (graph7_values_1 === "8") {
                 graph7_text = "CHP + PLB + TS";
             }
-            if (graph7_values_1 == "7") {
+            if (graph7_values_1 === "7") {
                 graph7_text = "PV + ST + BS + CGB + TS ";
             }
-            if (graph7_values_1 == "6") {
+            if (graph7_values_1 === "6") {
                 graph7_text = "PV + ST + CGB + TS";
             }
-            if (graph7_values_1 == "5") {
+            if (graph7_values_1 === "5") {
                 graph7_text = "PV + HR + CGB + TS";
             }
-            if (graph7_values_1 == "4") {
+            if (graph7_values_1 === "4") {
                 graph7_text = "PV + HP + TS";
             }
-            if (graph7_values_1 == "3") {
+            if (graph7_values_1 === "3") {
                 graph7_text = "PV + BS + PB + TS";
             }
-            if (graph7_values_1 == "2") {
+            if (graph7_values_1 === "2") {
                 graph7_text = "PV + PB + TS";
             }
-            if (graph7_values_1 == "1") {
+            if (graph7_values_1 === "1") {
                 graph7_text = "Reference";
             }
             graph7_values_2 = graph_7[i][1];
@@ -808,156 +824,189 @@ class Product extends Component {
         localStorage.setItem("google_graph6", JSON.stringify(graph_6_values));
         localStorage.setItem("google_graph7", JSON.stringify(graph_7_values));
 
+        const chk_response_status = localStorage.getItem("response_status")
 
-
-        
-
-        return (
-            <div className="container-fluid wrapper">
-                <Header />
-                <div className="container">
-                    <p>
-                        <div className="back_btn_form_2">
-                            <button onClick={this.back} className="btn btn_next pull_left">Back to Form </button>
-                        </div>
-                    </p> <h4 className="form_heading">Produktempfehlungen für Sie </h4>
-                    <div className="row product_recommendation">
-                        <div className="col-md-4 col-lg-4 col-sm-12">
-                            <div className="product_img">
-                                <img className="p_img" src={product_1} responsive />
+        if (chk_response_status === "200"){
+            
+            return (
+                <div className="container-fluid wrapper">
+                    <Header />
+                    <div className="container">
+                        <p>
+                            <div className="back_btn_form_2">
+                                <button onClick={this.back} className="btn btn_next pull_left">Back to Form </button>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-borderless" responsive>
-                                    <thead className="product_box_1_2">
-                                        <tr>
-                                            <th scope="col" className="prod_res">Komponente</th>
-                                            <th scope="col" className="prod_res">Produkt</th>
-                                            <th scope="col" className="prod_res">Preis</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="product_result_1" className="product_box_1_2">
-                                        {recommentations_list_1}
-                                    </tbody>
-                                    <tbody id="product_result_1" className="product_box_1_3">
-                                        <tr>
-                                            {/* <td></td> */}
-                                            <td colspan="2">Gesamt Förderungen</td>
-                                            <td>{recommentations_list_1_furthering}</td>
-                                        </tr>
-                                        <tr>
-                                            {/* <td></td> */}
-                                            <td colspan="2">Investitionskosten (ikl. Montage)</td>
-                                            <td>{recommentations_list_1_investCost}</td>
-                                        </tr>
-                                        <tr>
-                                            {/* <td></td> */}
-                                            <td colspan="2">Betreibskosten pro Jahr</td>
-                                            <td>{recommentations_list_1_operatingCost}</td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody className="graph_img">
-                                        <td></td>
-                                        <td>   <a href="/Economicgraph"><img className="graph_img" src={graph_img_1} circle /></a></td>
-                                        <td></td>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                        <div className="col-md-4 col-lg-4 col-sm-12">                           
+                        </p>
+                         <h4 className="form_heading">Produktempfehlungen für Sie </h4>
+                        <div className="row product_recommendation">
+                            <div className="col-md-4 col-lg-4 col-sm-12">
                                 <div className="product_img">
-                                    <img className="p_img" src={product_2} responsive />
+                                    <img className="p_img" src={product_1} responsive />
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-borderless" responsive>
-                                        <thead className="product_box_2_2">
+                                        <thead className="product_box_1_2">
                                             <tr>
                                                 <th scope="col" className="prod_res">Komponente</th>
                                                 <th scope="col" className="prod_res">Produkt</th>
                                                 <th scope="col" className="prod_res">Preis</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="product_result_1" className="product_box_2_2">
-                                            {recommentations_list_2}
+                                        <tbody id="product_result_1" className="product_box_1_2">
+                                            {recommentations_list_1}
                                         </tbody>
-                                        <tbody id="product_result_1" className="product_box_2_3">
+                                        <tbody id="product_result_1" className="product_box_1_3">
                                             <tr>
                                                 {/* <td></td> */}
                                                 <td colspan="2">Gesamt Förderungen</td>
-                                                <td>{recommentations_list_2_furthering}</td>
+                                                <td>{recommentations_list_1_furthering}</td>
                                             </tr>
                                             <tr>
                                                 {/* <td></td> */}
                                                 <td colspan="2">Investitionskosten (ikl. Montage)</td>
-                                                <td>{recommentations_list_2_investCost}</td>
+                                                <td>{recommentations_list_1_investCost}</td>
                                             </tr>
                                             <tr>
                                                 {/* <td></td> */}
                                                 <td colspan="2">Betreibskosten pro Jahr</td>
-                                                <td>{recommentations_list_2_operatingCost}</td>
+                                                <td>{recommentations_list_1_operatingCost}</td>
                                             </tr>
                                         </tbody>
-                                        <tbody className="">
+                                        <tbody className="graph_img">
                                             <td></td>
-                                            <td> <a href="/Emission"><img className="graph_img" src={graph_img_2} circle /></a></td>
+                                            <td>   <a href="/Economicgraph"><img className="graph_img" src={graph_img_1} circle /></a></td>
                                             <td></td>
                                         </tbody>
                                     </table>
                                 </div>
-                         
-
-                        </div>
-                        <div className="col-md-4 col-lg-4 col-sm-12">
-                            <div className="product_img">
-                                <img className="p_img" src={product_3} responsive />
+    
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-borderless" responsive>
-                                    <thead className="product_box_3_2">
-                                        <tr>
-                                            <th scope="col" className="prod_res">Komponente</th>
-                                            <th scope="col" className="prod_res">Produkt</th>
-                                            <th scope="col" className="prod_res">Preis</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="product_result_1" className="product_box_3_2">
-                                        {recommentations_list_3}
-                                    </tbody>
-                                    <tbody id="product_result_1" className="product_box_3_3">
-                                        <tr>
-                                            {/* <td></td> */}
-                                            <td colspan="2">Gesamt Förderungen</td>
-                                            <td>{recommentations_list_3_furthering}</td>
-                                        </tr>
-                                        <tr>
-                                            {/* <td></td> */}
-                                            <td colspan="2">Investitionskosten (ikl. Montage)</td>
-                                            <td>{recommentations_list_3_investCost}</td>
-                                        </tr>
-                                        <tr>
-                                            {/* <td></td> */}
-                                            <td colspan="2">Betreibskosten pro Jahr</td>
-                                            <td>{recommentations_list_3_operatingCost}</td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody className="graph_img">
-                                        <td></td>
-                                        <td><a href="/Energetic"><img className="graph_img" src={graph_img_3} circle /></a></td>
-                                        <td></td>
-                                    </tbody>
-                                </table>
+                            <div className="col-md-4 col-lg-4 col-sm-12">                           
+                                    <div className="product_img">
+                                        <img className="p_img" src={product_2} responsive />
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless" responsive>
+                                            <thead className="product_box_2_2">
+                                                <tr>
+                                                    <th scope="col" className="prod_res">Komponente</th>
+                                                    <th scope="col" className="prod_res">Produkt</th>
+                                                    <th scope="col" className="prod_res">Preis</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="product_result_1" className="product_box_2_2">
+                                                {recommentations_list_2}
+                                            </tbody>
+                                            <tbody id="product_result_1" className="product_box_2_3">
+                                                <tr>
+                                                    {/* <td></td> */}
+                                                    <td colspan="2">Gesamt Förderungen</td>
+                                                    <td>{recommentations_list_2_furthering}</td>
+                                                </tr>
+                                                <tr>
+                                                    {/* <td></td> */}
+                                                    <td colspan="2">Investitionskosten (ikl. Montage)</td>
+                                                    <td>{recommentations_list_2_investCost}</td>
+                                                </tr>
+                                                <tr>
+                                                    {/* <td></td> */}
+                                                    <td colspan="2">Betreibskosten pro Jahr</td>
+                                                    <td>{recommentations_list_2_operatingCost}</td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody className="">
+                                                <td></td>
+                                                <td> <a href="/Emission"><img className="graph_img" src={graph_img_2} circle /></a></td>
+                                                <td></td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                             
+    
                             </div>
+                            <div className="col-md-4 col-lg-4 col-sm-12">
+                                <div className="product_img">
+                                    <img className="p_img" src={product_3} responsive />
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-borderless" responsive>
+                                        <thead className="product_box_3_2">
+                                            <tr>
+                                                <th scope="col" className="prod_res">Komponente</th>
+                                                <th scope="col" className="prod_res">Produkt</th>
+                                                <th scope="col" className="prod_res">Preis</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="product_result_1" className="product_box_3_2">
+                                            {recommentations_list_3}
+                                        </tbody>
+                                        <tbody id="product_result_1" className="product_box_3_3">
+                                            <tr>
+                                                {/* <td></td> */}
+                                                <td colspan="2">Gesamt Förderungen</td>
+                                                <td>{recommentations_list_3_furthering}</td>
+                                            </tr>
+                                            <tr>
+                                                {/* <td></td> */}
+                                                <td colspan="2">Investitionskosten (ikl. Montage)</td>
+                                                <td>{recommentations_list_3_investCost}</td>
+                                            </tr>
+                                            <tr>
+                                                {/* <td></td> */}
+                                                <td colspan="2">Betreibskosten pro Jahr</td>
+                                                <td>{recommentations_list_3_operatingCost}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody className="graph_img">
+                                            <td></td>
+                                            <td><a href="/Energetic"><img className="graph_img" src={graph_img_3} circle /></a></td>
+                                            <td></td>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-
-
-
+                            </div>
                         </div>
                     </div>
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
-        )
-    }
+            )
+        
+        }else if (chk_response_status === "400") {
+            
+            return (
+                <div className="container-fluid wrapper">
+                    <Header />
+                    <div className="container">
+                        <div className="row product_recommendation">
+                            <div className="col-md-4 col-lg-4 col-sm-12">
+                                <p>{error_values_field}</p>
+                                <p>{error_values_message}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <Footer />
+                </div>
+            )
+        }else {
 
+            return (
+                <div className="container-fluid wrapper">
+                    <Header />
+                    <div className="container">
+                        <div className="row product_recommendation">
+                            <div className="col-md-4 col-lg-4 col-sm-12">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <Footer />
+                </div>
+            )
+        }
+        
+
+        
+    }
 }
 export default Product;

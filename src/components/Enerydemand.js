@@ -27,7 +27,7 @@ class Enerydemand extends Component {
             yearlyEnergyDemand: '',
             yearlyGasDemand: '',
             yearlyGasDemand_error: '',
-            fields: {},
+           // fields: {},
             errors: {},
 
         };
@@ -36,11 +36,11 @@ class Enerydemand extends Component {
 
 
     handleValidation() {
-        let fields = this.state.fields;
+       // let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
         const { values: { energy_demand } } = this.props;
-        if (energy_demand == 'GAS_OR_OIL_BILL') {
+        if (energy_demand === 'GAS_OR_OIL_BILL') {
             let yearlyGasDemand = this.yearlyGasDemand.value;
 
             if (!yearlyGasDemand.match(/^[1-9][0-9]*$/)) {
@@ -60,7 +60,7 @@ class Enerydemand extends Component {
                 errors["yearlyGasDemand"] = "Enter yearlyGasDemand";
             }
         }
-        if (energy_demand == 'ENERGY_CERTIFICATE') {
+        if (energy_demand === 'ENERGY_CERTIFICATE') {
             let yearlyEnergyDemand = this.yearlyEnergyDemand.value;
             let yearlyEnergyDemandOnWater = this.yearlyEnergyDemandOnWater.value;
 
@@ -140,13 +140,13 @@ class Enerydemand extends Component {
     componentDidMount() {
         const { values: { energy_demand } } = this.props;
 
-        if (energy_demand == 'CONSTRUCTION_YEAR') {
+        if (energy_demand === 'CONSTRUCTION_YEAR') {
             this.setState({ gas_section: "disable_gas" });
             this.setState({ energy_section: "disable_gas" });
-        } else if (energy_demand == 'GAS_OR_OIL_BILL') {
+        } else if (energy_demand === 'GAS_OR_OIL_BILL') {
             this.setState({ gas_section: "" });
             this.setState({ energy_section: "disable_gas" });
-        } else if (energy_demand == 'ENERGY_CERTIFICATE') {
+        } else if (energy_demand === 'ENERGY_CERTIFICATE') {
             this.setState({ energy_section: "" });
             this.setState({ gas_section: "disable_gas" });
         } else {
@@ -193,7 +193,7 @@ class Enerydemand extends Component {
                                                         name="energy_demand"
                                                         value="CONSTRUCTION_YEAR"
                                                         onChange={this.props.handleChange('energy_demand')}
-                                                        checked={values.energy_demand == "CONSTRUCTION_YEAR"}
+                                                        checked={values.energy_demand === "CONSTRUCTION_YEAR"}
                                                         onClick={this.conYear.bind(this)}
                                                     />
                                                 </div>
@@ -212,7 +212,7 @@ class Enerydemand extends Component {
                                                         name="energy_demand"
                                                         value="GAS_OR_OIL_BILL"
                                                         onChange={this.props.handleChange('energy_demand')}
-                                                        checked={values.energy_demand == "GAS_OR_OIL_BILL"}
+                                                        checked={values.energy_demand === "GAS_OR_OIL_BILL"}
                                                         onClick={this.Gasfunction.bind(this)}
                                                     />
                                                 </div>
@@ -241,7 +241,7 @@ class Enerydemand extends Component {
                                                         name="energy_demand"
                                                         value="ENERGY_CERTIFICATE"
                                                         onChange={this.props.handleChange('energy_demand')}
-                                                        checked={values.energy_demand == "ENERGY_CERTIFICATE"}
+                                                        checked={values.energy_demand === "ENERGY_CERTIFICATE"}
                                                         onClick={this.energyFunction.bind(this)}
                                                     />
                                                 </div>
