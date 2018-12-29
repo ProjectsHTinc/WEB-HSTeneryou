@@ -21,8 +21,14 @@ class Graph_7 extends  Component{
                 // Set chart options
                 options={{
                     title: 'Comparison of CO2 Emissions',
+                    titleTextStyle: {color: '#000000',fontSize : 16},
+                    fontName: "Roboto",
+                    legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    hAxis: { title: 'System Combination' },
+                    hAxis: { title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
                     seriesType: 'bars',
                     colors: ['#2fa057','#e88e00'],
                     animation: {
@@ -36,8 +42,14 @@ class Graph_7 extends  Component{
                         1: {targetAxisIndex: 1, type: 'line'},
                     },
                     vAxes: {
-                        0: {title: 'CO2 Equivalent in t/a'},
-                        1: {title: 'CO2 Abatement Costs in €/t'},
+                        0: {title: 'CO2 Equivalent in t/a',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                            fontSize: 13,
+                            italic: false
+                        }},
+                        1: {title: 'CO2 Abatement Costs in €/t',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                            fontSize: 13,
+                            italic: false
+                        }},
                     },
                 }}
             />

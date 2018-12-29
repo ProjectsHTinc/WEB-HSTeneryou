@@ -9,26 +9,26 @@ class Graph_1 extends  Component{
             <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-10">
-            <div className="container">
+            <div className="graph_example">
             <Chart id='Graph 1'
                 width={'100%'}
-                height={'405px'}
+                height={'380px'}
                 chartType="ComboChart"
                 loader={<div>Loading Chart</div>}
                 data={graph1_values}
                  // Set chart options
                 options = {{
                     title : 'Comparison of Electrical Self Sufficiency',
-                    titleTextStyle: {color: '#ff0000',fontSize : 10},
+                    titleTextStyle: {color: '#000000',fontSize : 16},
                     fontName: "Roboto",
-                    legendTextStyle: {color: '#ff0000',fontSize : 10},
+                    legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Self Sufficiency',format: '#\'%\'',textStyle:{color: '#ff0000',fontSize : 10},titleTextStyle: {
-                        fontSize: 14,
+                    vAxis: {title: 'Self Sufficiency',format: '#\'%\'',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
                         italic: false
                     }},
-                    hAxis: {title: 'System Combination',textStyle:{color: '#ff0000',fontSize : 10},titleTextStyle: {
-                        fontSize: 14,                      
+                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,                      
                         italic: false
                     }} ,
                     seriesType: 'bars',

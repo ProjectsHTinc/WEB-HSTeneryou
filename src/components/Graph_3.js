@@ -18,13 +18,20 @@ class Graph_3 extends  Component{
                 chartType="ComboChart"
                 loader={<div>Loading Chart</div>}
                 data={graph3_values}
-                
-                 // Set chart options
                 options = {{
                     title : 'Comparison of Annuity Costs',
+                    titleTextStyle: {color: '#000000',fontSize : 16},
+                    fontName: "Roboto",
+                    legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Annuity Costs in €/a'},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Annuity Costs in €/a',textStyle:{color: '#000000',fontSize: 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
+                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
                     seriesType: 'bars',
                     colors: ['#4170aa'],
                     animation: {

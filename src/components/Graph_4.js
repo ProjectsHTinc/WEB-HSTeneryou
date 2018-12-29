@@ -21,9 +21,18 @@ class Graph_4 extends  Component{
                  // Set chart options
                 options = {{
                     title : 'Comparison of Investment Costs (incl. Installation)',
+                    titleTextStyle: {color: '#000000',fontSize : 16},
+                    fontName: "Roboto",
+                    legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Investment Costs in €'},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Investment Costs in €',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
+                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
                     seriesType: 'bars',
                     colors: ['#4170aa','#000000'],
                     animation: {

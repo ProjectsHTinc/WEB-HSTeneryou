@@ -21,9 +21,18 @@ class Graph_5 extends  Component{
                  // Set chart options
                 options={{
                     title: 'Comparison of Maintenance & Fuel Costs',
+                    titleTextStyle: {color: '#000000',fontSize : 16},
+                    fontName: "Roboto",
+                    legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Maintenance & Fuel Costs in €/a'},
-                    hAxis: {title: 'System Combination'} ,
+                    vAxis: {title: 'Maintenance & Fuel Costs in €/a',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
+                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
                     isStacked: true,
                     seriesType: 'bars',
                     colors: ['#113969','#4170aa'],

@@ -21,9 +21,18 @@ class Graph_6 extends  Component{
                  // Set chart options
                 options={{
                     title: 'Comparison of Monthly Electricity & Heating Costs',
+                    titleTextStyle: {color: '#000000',fontSize : 16},
+                    fontName: "Roboto",
+                    legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: { title: 'Monthly Costs in €/Month' },
-                    hAxis: { title: 'System Combination' },
+                    vAxis: { title: 'Monthly Costs in €/Month' ,textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
+                    hAxis: { title: 'System Combination' ,textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                        fontSize: 13,
+                        italic: false
+                    }},
                     seriesType: 'bars',
                     colors: ['#113969','#4170aa'],
                     animation: {
