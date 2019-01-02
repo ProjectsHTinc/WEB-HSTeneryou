@@ -22,7 +22,7 @@ class Emission extends Component {
         return(
             <div className="container-fluid wrapper">
             <Header/>
-            <h4 className="form_heading">Product Comparsion Graph  </h4>
+            <h4 className="form_heading">Vergleich Ihrer Produktempfehlungen und Analyse  </h4>
                 <div className="container" style={ { marginTop:'40px',marginBottom:'100px', backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
@@ -35,7 +35,7 @@ class Emission extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
-                        <Tab>CO2 Analysis</Tab>
+                        <Tab>CO2 Analyse</Tab>
                     </TabList>
                         <TabPanel>
                             <Graph_7/>

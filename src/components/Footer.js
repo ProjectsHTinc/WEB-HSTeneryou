@@ -9,9 +9,9 @@ class Footer extends Component {
                 <div className="row">
                     <div className="col-md-4">
                         <div className="footer_links">
-                            <a href="">Imprint</a>
-                            <a href="">Data Secuirty</a>
-                            <a href="">Contact</a>
+                            <a href="">Impressum</a>
+                            <a href="">Datenschutzerklärung</a>
+                            <a href="">Kontakt</a>
                         </div>
                     </div>
                     <div className="col-md-4">
@@ -19,7 +19,7 @@ class Footer extends Component {
                     </div>
                     <div className="col-md-4">
                     <div className="footer_links copyrights">
-                            <a href="">ENER|YOU</a>
+                            <a href="">Ener|You</a>
                           
                         </div>
                     </div>

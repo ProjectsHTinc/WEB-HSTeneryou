@@ -8,7 +8,8 @@ import product_3 from './images/product_3.png';
 import graph_img_1 from './images/graph_img_1.png';
 import graph_img_2 from './images/graph_img_2.png';
 import graph_img_3 from './images/graph_img_3.png';
-
+import error_img from './images/error_img.png';
+import img_loading from './images/loader.gif';
 
 class Product extends Component {
 
@@ -31,74 +32,74 @@ class Product extends Component {
         const { values: { roof_inclination, living_area, post_code, directionChange, construction_year, power_consumption, energy_demand, yearlyGasDemand, yearlyEnergyDemand, yearlyEnergyDemandOnWater } } = this.props;
         let local_person_count = localStorage.getItem('person_count');
 
-        console.log("loading");
+        //console.log("loading");
 
-        var data = {
-            "building": {
-                "postalCode": '12345',
-                "constructionYear": "FROM1969_TO1978",
-                "livingSpace": 300,
-                "roofAlignment": "SOUTH",
-                "roofTilt": "DEGREES_25"
-            },
-            "energyDemand": {
-                "personCount": 4,
-                "energyDemand": 8000,
-                "headingDemandType": "CONSTRUCTION_YEAR"
-            }
-        }
+        // var data = {
+        //     "building": {
+        //         "postalCode": '12345',
+        //         "constructionYear": "FROM1969_TO1978",
+        //         "livingSpace": 300,
+        //         "roofAlignment": "SOUTH",
+        //         "roofTilt": "DEGREES_25"
+        //     },
+        //     "energyDemand": {
+        //         "personCount": 4,
+        //         "energyDemand": 8000,
+        //         "headingDemandType": "CONSTRUCTION_YEAR"
+        //     }
+        // }
 
-        //   if (energy_demand === 'CONSTRUCTION_YEAR'){
+          if (energy_demand === 'CONSTRUCTION_YEAR'){
 
-        //     var data = {
-        //         "building": {
-        //             "postalCode": post_code,
-        //             "constructionYear": construction_year,
-        //             "livingSpace": living_area,
-        //             "roofAlignment": directionChange,
-        //             "roofTilt": roof_inclination
-        //         },
-        //         "energyDemand": {
-        //             "personCount": local_person_count,
-        //             "energyDemand": power_consumption,
-        //             "headingDemandType": energy_demand
-        //         }
-        //       }
-        //   } 
+            var data = {
+                "building": {
+                    "postalCode": post_code,
+                    "constructionYear": construction_year,
+                    "livingSpace": living_area,
+                    "roofAlignment": directionChange,
+                    "roofTilt": roof_inclination
+                },
+                "energyDemand": {
+                    "personCount": local_person_count,
+                    "energyDemand": power_consumption,
+                    "headingDemandType": energy_demand
+                }
+              }
+          } 
 
-        //   if (energy_demand === 'GAS_OR_OIL_BILL'){
-        //     var data = {
-        //         "building": {
-        //             "postalCode": post_code,
-        //             "constructionYear": construction_year,
-        //             "livingSpace": living_area,
-        //             "roofAlignment": directionChange,
-        //             "roofTilt": roof_inclination
-        //         },
-        //         "energyDemand": {
-        //             "personCount": local_person_count,
-        //             "energyDemand": power_consumption,
-        //             "headingDemandType": energy_demand,
-        //             "yearlyGasDemand": yearlyGasDemand
-        //         }
-        //       }
-        //   } 
+          if (energy_demand === 'GAS_OR_OIL_BILL'){
+            var data = {
+                "building": {
+                    "postalCode": post_code,
+                    "constructionYear": construction_year,
+                    "livingSpace": living_area,
+                    "roofAlignment": directionChange,
+                    "roofTilt": roof_inclination
+                },
+                "energyDemand": {
+                    "personCount": local_person_count,
+                    "energyDemand": power_consumption,
+                    "headingDemandType": energy_demand,
+                    "yearlyGasDemand": yearlyGasDemand
+                }
+              }
+          } 
 
-        //   if (energy_demand === 'ENERGY_CERTIFICATE'){ 
-        //     var data = {
-        //         "building": {
-        //             "postalCode": post_code,
-        //             "roofAlignment": directionChange,
-        //             "roofTilt": roof_inclination
-        //         },
-        //         "energyDemand": {
-        //             "energyDemand": power_consumption,
-        //             "headingDemandType": energy_demand,
-        //             "yearlyEnergyDemand": yearlyEnergyDemand,
-        //             "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
-        //         }
-        //       }
-        //   }
+          if (energy_demand === 'ENERGY_CERTIFICATE'){ 
+            var data = {
+                "building": {
+                    "postalCode": post_code,
+                    "roofAlignment": directionChange,
+                    "roofTilt": roof_inclination
+                },
+                "energyDemand": {
+                    "energyDemand": power_consumption,
+                    "headingDemandType": energy_demand,
+                    "yearlyEnergyDemand": yearlyEnergyDemand,
+                    "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
+                }
+              }
+          }
 
         fetch("http://18.219.250.34:8080/eneryou/api/recommentations", {
             method: 'POST',
@@ -109,11 +110,11 @@ class Product extends Component {
             },
         })
 
+  
        
         .then(response => {
-            //console.log(response);
-            localStorage.setItem("response_status",response.status)
-
+             localStorage.setItem("response_status",response.status)
+            this.setState({"status":response.status})
             if (response.status === 200) {
                 console.log("loaded");
                 response.json().then(response_data => {
@@ -830,15 +831,17 @@ class Product extends Component {
 
         const chk_response_status = localStorage.getItem("response_status")
 
-        if (chk_response_status === "200"){
-            
+        // if (chk_response_status === "200"){
+            if(this.state.status=="200"){
+            console.log(this.state.status)
             return (
                 <div className="container-fluid wrapper">
                     <Header />
                     <div className="container">
                         <p>
                             <div className="back_btn_form_2">
-                                <button onClick={this.back} className="btn btn_next pull_left">Back to Form </button>
+                                <button onClick={this.back} className="btn btn_next pull_left">
+Zurück zum Formular</button>
                             </div>
                         </p>
                          <h4 className="form_heading">Produktempfehlungen für Sie </h4>
@@ -976,31 +979,65 @@ class Product extends Component {
                 </div>
             )
         
-        }else if (chk_response_status === "400") {
+        }else if (this.state.status == "400") {
             
             return (
                 <div className="container-fluid wrapper">
                     <Header />
                     <div className="container">
                         <div className="row product_recommendation">
-                            <div className="col-md-4 col-lg-4 col-sm-12">
-                                <p>{error_values_field}</p>
+                            <div className="col-md-12 col-lg-12 col-sm-12 text-center" style={{marginTop:'30px'}}>
+                                {/* <p>{error_values_field}</p> */}
                                 <p>{error_values_message}</p>
+                                <p>
+                                <img src={error_img} responsive className="" id=""/>   
+                                </p>
+                                <p className="text-center">
+                                    <div className="back_btn_form_2">
+                                        <button onClick={this.back} className="btn btn_next ">Back to Form </button>
+                                    </div>
+                                </p>
+                               
                             </div>
                         </div>
                     </div>
                     <Footer />
                 </div>
             )
-        }else {
+        }else if (this.state.status == "500") {
 
             return (
                 <div className="container-fluid wrapper">
                     <Header />
                     <div className="container">
                         <div className="row product_recommendation">
-                            <div className="col-md-4 col-lg-4 col-sm-12">
-                               
+                            <div className="col-md-12 col-lg-12 col-sm-12" style={{marginTop:'30px'}}>
+                            <p className="text-center">
+                                <img src={error_img} responsive className="" id=""/>   
+                                </p>
+                            <p className="text-center">
+                                    <div className="back_btn_form_2">
+                                        <button onClick={this.back} className="btn btn_next ">Back to Form </button>
+                                    </div>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                    <Footer />
+                </div>
+            )
+        }else{
+            return (
+                <div className="container-fluid wrapper">
+                    <Header />
+                    <div className="container">
+                        <div className="row product_recommendation">
+                            <div className="col-md-12 col-lg-12 col-sm-12">
+                            <p className="text-center"> 
+                            <img src={img_loading} responsive className="" id="" style={{width:'300px'}} />   
+                              
+                                </p>
+                          
                             </div>
                         </div>
                     </div>

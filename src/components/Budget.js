@@ -3,11 +3,13 @@ import Header from './Header';
 import Footer from './Footer';
 import { Line } from 'rc-progress';
 import 'font-awesome/css/font-awesome.min.css'
+import { Tooltip } from 'react-lightweight-tooltip';
 
 import progress_img from './images/progress_home.png';
 import character_4 from './images/character_form_4.png';
 import euro_icon from './images/euro_icon.png';
 import form_bg_3 from './images/form_3_bg.png';
+
 
 
 
@@ -32,11 +34,11 @@ class Budget extends Component {
         let budget_value=this.budget_value.value;
         if (!budget_value.match(/^[1-9][0-9]*$/)) {
             formIsValid = false;            
-            errors["budget_value"] = "Enter only numbers";
+            errors["budget_value"] = "Bitte geben Sie nur Zahlen ein";
           }
         if(!budget_value){
         formIsValid = false;
-        errors["budget_value"] = "Enter Budget";
+        errors["budget_value"] = "Bitte geben Ihre Budgetobergrenze ein";
         }
        
         if (budget_value <= 9999) {
@@ -76,7 +78,20 @@ class Budget extends Component {
     render() {
         // const { rating } = this.state;
         const { values } = this.props
-       
+        const tooltipStyle = {
+            content: {
+              backgroundColor: '',
+              color: '#fff',
+              fontSize:'12px',
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              borderRadius: '1px solid #000',  
+              textAlign: 'center',        
+            
+            },
+           
+          };
    
 
 
@@ -90,7 +105,7 @@ class Budget extends Component {
                 {/* Form section starts here */}
                 <div className="row" >
                     <div className="col-md-2 col-lg-2 hide_tab">
-                        <img src={character_4} className="character_4"/>
+                        <img src={character_4} alt="Ener You" className="character_4"/>
                     </div>
                     <div className="col-md-12 col-lg-8 text-center form_4_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
@@ -102,14 +117,14 @@ class Budget extends Component {
                     <div className="row energy_form">
                         <p className="budget_font">Budgetobergrenze (€)</p>
                         <div className="budget_icon">
-                            <img src={euro_icon} responsive className="" id=""/>   
+                            <img src={euro_icon}   alt="Ener You" responsive className="" id=""/>   
                         </div>
                         <div className="budget_box">
-                            <input type="text"  className="form-control"
+                           <Tooltip styles={tooltipStyle} content="Bitte geben Sie die Budgetobergrenze für die neu Energielösung Ihres Zuhauses ein"> <input type="text"  className="form-control"
                             name="budget_value" 
                             ref={(budget_value) => this.budget_value = budget_value}
                             onChange={this.props.handleChange('budget_value')}
-                             className="budget_price" placeholder='Price' defaultValue={values.budget_value} />
+                             className="budget_price" placeholder='Preis' defaultValue={values.budget_value} /></Tooltip>
                                <p  className="error_font">{this.state.errors["budget_value"]}</p>
                         </div>
                         <div className="form_btn">
@@ -143,7 +158,8 @@ class Budget extends Component {
                             <div className="">
                                
                                 <div className="back_btn_form_2">
-                                <button onClick={this.back} className="btn btn_next pull_right">Back  </button>
+                                <button onClick={this.back} className="btn btn_next pull_right">zurück 
+  </button>
                                 </div>
                         </div>              
 

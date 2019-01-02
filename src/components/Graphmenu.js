@@ -13,19 +13,19 @@ class Graphmenu extends Component {
                               
                                
                                 <NavLink to='/Economicgraph'   activeClassName="Graphactive">
-                                <p className="tab_box_1">Economic Analysis</p></NavLink>
+                                <p className="tab_box_1">Wirtschaftliche Analyse</p></NavLink>
                            
                         </div>
                         <div className="col-md-4">                      
                             <NavLink to='/Emission' activeClassName="Graphactive">
-                             <p className="tab_box_2">Ecological Analysis</p>
+                             <p className="tab_box_2">Ökologische Analyse</p>
                              </NavLink>
                            
                         </div>
                         <div className="col-md-4">
                                                    
                                 <NavLink to='/Energetic'  activeClassName="Graphactive">
-                                <p  className="tab_box_3">Energetic Analysis</p></NavLink>
+                                <p  className="tab_box_3">Energietechnische Analyse</p></NavLink>
                             
                         </div>
                     </div>

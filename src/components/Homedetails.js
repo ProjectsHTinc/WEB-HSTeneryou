@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Line } from 'rc-progress';
+import { Tooltip } from 'react-lightweight-tooltip';
 
 
 import compass from './images/n_compass.png';
@@ -59,12 +60,12 @@ class Homedetails extends Component {
 
         if (!post_code.match(/^[0-9]{5}$/)) {
             formIsValid = false;
-            errors["post_code"] = "*Enter only numbers";
+            errors["post_code"] = "Bitte geben Sie nur Zahlen ein";
            
         }
         if (!post_code) {
             formIsValid = false;
-            errors["post_code"] = "Enter Post Code";
+            errors["post_code"] = "Bitte geben Sie Ihre Postleitzahl ein";
             this.setState({ Character: post_code_error });
         }
 
@@ -91,19 +92,19 @@ class Homedetails extends Component {
         }
         if (!living_area) {
             formIsValid = false;
-            errors["living_area"] = "Enter living Area";
+            errors["living_area"] = "Bitte geben Sie die Wohnfläche ein";
             this.setState({ Character: living_area_error });
         }
 
 
         if (!directionChange) {
             formIsValid = false;
-            errors["directionChange"] = "Select Direction";
+            errors["directionChange"] = "Bitte wählen Sie die Dachneigung aus";
             this.setState({ Character: direction_error });
         }
         if (!house_con_year) {
             formIsValid = false;
-            errors["house_con_year"] = "Select Year";
+            errors["house_con_year"] = "Bitte wählen Sie das Baujahr aus";
             this.setState({ Character: construction_year_error });
             // this.setState({ Character: char_error });
         }
@@ -181,7 +182,20 @@ class Homedetails extends Component {
 
         const { options, NormalCompass, Character } = this.state;
         const { values } = this.props
-
+        const tooltipStyle = {
+            content: {
+              backgroundColor: '',
+              color: '#fff',
+              fontSize:'12px',
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              borderRadius: '1px solid #000',  
+              textAlign: 'center',        
+            
+            },
+           
+          };
         //const {roof} = this.state
 
 
@@ -191,7 +205,8 @@ class Homedetails extends Component {
                 <Header />
                 <div className="container">
                     <h4 className="form_heading">Meine Gebäudedaten</h4>
-                    <h4 className="text-center small_heading">Dachneigung</h4>
+                  
+                    <h4 className="text-center small_heading">  <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus">Dachneigung</Tooltip></h4>
                     <form onSubmit={this.continue}>
 
                         {/* First section start Here */}
@@ -303,7 +318,8 @@ class Homedetails extends Component {
 
                                 <p className="img_compass">
                                     {/* <img src={require('./images/n_compass.png')} alt="" className=""/> */}
-                                    <img src={NormalCompass} circle />
+                                    <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Himmelsrichtung des Daches aus, dass für die Installation von einer Photovoltaikanlage oder einer Solarthermie infrage kommt "><img src={NormalCompass} circle />
+                                    </Tooltip> 
                                     <div className="direction_box">
                                         <select className="direction_drop_box " name="directionChange"
                                             // onChange={this.direction_call} 
@@ -340,7 +356,8 @@ class Homedetails extends Component {
                                 height: '151px',
                                 backgroundRepeat: 'no-repeat'
                             }}>
-                                <div className="year_box">
+                              <Tooltip  styles={tooltipStyle} content="Bitte gegen Sie das Baujahr oder das Jahr in dem die letzte energestische Sanierung an Ihrem Haus durchgeführt wurde ein">
+                             <div className="year_box">
                                     <label className="year_label">Baujahr bzw. letztes Modernisierungsjahr
 </label>
                                     <select className="house_year_drop_box " name="construction_year"
@@ -366,19 +383,22 @@ class Homedetails extends Component {
                                     </select>
 
                                 </div>
+                                </Tooltip>
                                 <p className="error_font" style={{ textAlign: 'center' }}>{this.state.errors["house_con_year"]}</p>
 
-                                <div className="post_text_box">
+                             
+                              <div className="post_text_box">
                                     <label className="post_code_text">Postleitzahl</label>
-                                    <input type="text" name="post_code" className="post_textbox " maxlength='5' minLength='5'
+                                    <Tooltip  styles={tooltipStyle} content="Bitte geben Sie Ihre fünfstellige Postleitzahl ein"> <input type="text" name="post_code" className="post_textbox " maxlength='5' minLength='5'
                                         placeholder='' ref={(post_code) => this.post_code = post_code}
                                         onChange={this.props.handleChange('post_code')}
 
-                                        defaultValue={values.post_code} />
+                                        defaultValue={values.post_code} /></Tooltip>
                                     <p className="error_font">{this.state.errors["post_code"]}</p>
                                 </div>
+                             
                                 <div className="postbox_img">
-                                    <p> <img src={postbox} className="" circle /></p>
+                                    <p>  <img src={postbox} className="" circle /></p>
                                 </div>
 
                             </div>
@@ -391,11 +411,11 @@ class Homedetails extends Component {
                             }}>
                                 <div className="living_box">
                                     <label className="living_label">Wohnfläche</label>
-                                    <input type="text" name="living_area" className="living_textbox"
+                                    <Tooltip  styles={tooltipStyle} content="Bitte geben Sie Ihre Wohnfläche in m2 ein"> <input type="text" name="living_area" className="living_textbox"
 
                                         placeholder='Wohnfläche in m2 ein' ref={(living_area) => this.living_area = living_area}
                                         onChange={this.props.handleChange('living_area')}
-                                        defaultValue={values.living_area} />
+                                        defaultValue={values.living_area} /></Tooltip>
                                     <p className="error_font" style={{ textAlign: 'right' }}>{this.state.errors["living_area"]}</p>
                                 </div>
 
@@ -441,7 +461,7 @@ class Homedetails extends Component {
                                 <div className="next_section">
                                     <button type="submit"
                                         // onClick={this.continue} 
-                                        className="btn btn_next pull_right">Next  </button>
+                                        className="btn btn_next pull_right">weiter  </button>
 
                                 </div>
 

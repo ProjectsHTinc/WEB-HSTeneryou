@@ -23,7 +23,7 @@ class Energetic extends Component {
         return(
             <div className="container-fluid wrapper">
             <Header/>
-            <h4 className="form_heading">Product Comparsion Graph  </h4>
+            <h4 className="form_heading">Vergleich Ihrer Produktempfehlungen und Analyse  </h4>
                 <div className="container" style={ { marginTop:'40px',marginBottom:'100px', backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
@@ -36,8 +36,8 @@ class Energetic extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
-                        <Tab>Electrical Self Sufficiency</Tab>
-                        <Tab>Electricity Balance</Tab>
+                        <Tab>Elektrischer Autarkiegrad</Tab>
+                        <Tab>Stromfluss</Tab>
                     </TabList>
                         <TabPanel>
                             <Graph_1/>

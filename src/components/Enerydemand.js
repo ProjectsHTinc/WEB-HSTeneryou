@@ -45,7 +45,7 @@ class Enerydemand extends Component {
 
             if (!yearlyGasDemand.match(/^[1-9][0-9]*$/)) {
                 formIsValid = false;
-                errors["yearlyGasDemand"] = "Enter only numbers";
+                errors["yearlyGasDemand"] = "Bitte geben Sie nur Zahlen ein";
             }
             if (yearlyGasDemand <= 6999) {
                 formIsValid = false;
@@ -57,7 +57,7 @@ class Enerydemand extends Component {
             }
             if (!yearlyGasDemand) {
                 formIsValid = false;
-                errors["yearlyGasDemand"] = "Enter yearlyGasDemand";
+                errors["yearlyGasDemand"] = "Bitte geben Ihre jährliche Gas- oder Heizölmenge ein";
             }
         }
         if (energy_demand === 'ENERGY_CERTIFICATE') {
@@ -66,7 +66,7 @@ class Enerydemand extends Component {
 
             if (!yearlyEnergyDemand.match(/^[1-9][0-9]*$/)) {
                 formIsValid = false;
-                errors["yearlyEnergyDemand"] = "Enter only numbers";
+                errors["yearlyEnergyDemand"] = "Bitte geben Sie nur Zahlen ein";
             }
             if (yearlyEnergyDemand <= 6999) {
                 formIsValid = false;
@@ -78,12 +78,12 @@ class Enerydemand extends Component {
             }
             if (!yearlyEnergyDemand) {
                 formIsValid = false;
-                errors["yearlyEnergyDemand"] = "YearlyEnergyDemand";
+                errors["yearlyEnergyDemand"] = "Bitte geben Ihre Energieverbrauch ein";
             }
 
             if (!yearlyEnergyDemandOnWater.match(/^[1-9][0-9]*$/)) {
                 formIsValid = false;
-                errors["yearlyEnergyDemandOnWater"] = "Enter only numbers";
+                errors["yearlyEnergyDemandOnWater"] = "Bitte geben Sie nur Zahlen ein";
             }
             if (yearlyEnergyDemandOnWater >= 5001) {
                 formIsValid = false;
@@ -95,7 +95,7 @@ class Enerydemand extends Component {
             }
             if (!yearlyEnergyDemandOnWater) {
                 formIsValid = false;
-                errors["yearlyEnergyDemandOnWater"] = "YearlyEnergyDemandOnWater";
+                errors["yearlyEnergyDemandOnWater"] = "Bitter geben Ihre Anteil-Warmwasser ein";
             }
         }
 
@@ -297,7 +297,7 @@ class Enerydemand extends Component {
                                     <div className="">
 
                                         <div className="back_btn_form_2">
-                                            <button onClick={this.back} className="btn btn_next pull_right">Back  </button>
+                                            <button onClick={this.back} className="btn btn_next pull_right">zurück   </button>
                                         </div>
                                     </div>
 
@@ -318,7 +318,7 @@ class Enerydemand extends Component {
                             <div className="col-md-2 text-center">
                                 <div className="next_section">
                                     {/* <button onClick={this.continue} className="btn btn_next pull_right">Next  </button> */}
-                                    <button className="btn btn_next pull_right">Next  </button>
+                                    <button className="btn btn_next pull_right">weiter  </button>
                                 </div>
 
                             </div>

@@ -4,6 +4,8 @@ import Footer from './Footer';
 import { Line } from 'rc-progress';
 import StarRatingComponent from 'react-star-rating-component';
 
+
+
 import Rating  from 'react-rating';
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -19,6 +21,7 @@ import power_consumption_error from './images/power_consumption_error.png';
 
 import select from './images/select.png';
 import unselect from './images/unselect.png';
+import { Tooltip } from 'react-lightweight-tooltip';
 
 class Persondetail extends Component {
     constructor(props){
@@ -44,12 +47,12 @@ class Persondetail extends Component {
        
         if(star_val=='0' || star_val==null){
             formIsValid = false;
-            this.setState({ star_errors: "Select the Person" });     
+            this.setState({ star_errors: "Bitte wählen die Personenanzahl aus" });     
             this.setState({ character_2: number_person_error});     
          } 
          if (!power_val.match(/^[1-9][0-9]*$/)) {
             formIsValid = false;
-            this.setState({ power_error: "*Enter only numbers" });
+            this.setState({ power_error: "Bitte geben Sie nur Zahlen ein" });
           }
           if (power_val <= 1999) {
             formIsValid = false;
@@ -61,7 +64,7 @@ class Persondetail extends Component {
           }
          if(power_val==''){
             formIsValid = false;
-            this.setState({ power_error: "Power Error" }); 
+            this.setState({ power_error: "Bitte geben Sie Ihre jährlicher Strombedarf ein" }); 
             this.setState({ character_2: power_consumption_error});  
          }
         
@@ -123,6 +126,20 @@ class Persondetail extends Component {
     render() {
         const { rating_half_star,person,character_2 } = this.state;
         const { values } = this.props
+        const tooltipStyle = {
+            content: {
+              backgroundColor: '',
+              color: '#fff',
+              fontSize:'12px',
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              borderRadius: '1px solid #000',  
+              textAlign: 'center',        
+            
+            },
+           
+          };
 
     return (
         <div className="container-fluid wrapper">
@@ -144,23 +161,25 @@ class Persondetail extends Component {
                  height:'417px',
                  backgroundRepeat: 'no-repeat' } }>
 
-                    <div className="p_box">
-                        <div className="p_form_label">
+
+                       <div className="p_box">
+                     <div className="p_form_label">
                         Personenanzahl
                         
                         </div>
                         <span className="p_icon"> 
-                       
+                        <Tooltip styles={tooltipStyle} content="Bitte wählen Sie die Anzahl an Personen aus die in Ihrem Haus wohnen">                   
 <Rating name="person"  stop={6} initialRating={localStorage.getItem('person_count')}
  emptySymbol={<img src={unselect} className="icon" />}
  fullSymbol={<img src={select} className="icon" />}
   onChange={rate => this.handleRate(rate)}
-/>
+/> </Tooltip>
                     
                                         </span>
                     <div className="p_form_label" style={{borderLeft:'3px solid #2171b9'}}>{person}</div>
                     
                     </div>
+                   
                     <p style={{marginTop:'20px'}} className="error_font">{this.state.star_errors}</p>
 
 
@@ -176,10 +195,10 @@ class Persondetail extends Component {
                  backgroundRepeat: 'no-repeat' }}>
                  
                  <div className="power_meter_box">
-                        <input type="text" name="power_consumption" id="power_consumption" className="power_consumption" minLength="5" maxLength='5'
+                 <Tooltip styles={tooltipStyle} content="Bitte geben Sie Ihren jährlichen Stormbedarf in kWh an ">    <input type="text" name="power_consumption" id="power_consumption" className="power_consumption" minLength="5" maxLength='5'
                          placeholder='power_consumption' ref={(power_consumption) => this.power_consumption = power_consumption}
                          onBlur={this.props.handleChange('power_consumption')}
-                         defaultValue={values.power_consumption} />                                
+                         defaultValue={values.power_consumption} />    </Tooltip>                            
                     </div>
                    
                    
@@ -204,7 +223,7 @@ class Persondetail extends Component {
                             <div className="">
                                
                                 <div className="back_btn_form_2">
-                                <button onClick={this.back} className="btn btn_next pull_right">Back  </button>
+                                <button onClick={this.back} className="btn btn_next pull_right">zurück   </button>
                                 </div>
                         </div>              
 
@@ -224,7 +243,7 @@ class Persondetail extends Component {
                 </div>
                 <div className="col-md-2  col-sm-2 text-center">    
                 <div className="next_section">
-                        <button onClick={this.continue} className="btn btn_next pull_right">Next  </button>
+                        <button onClick={this.continue} className="btn btn_next pull_right">weiter  </button>
                 </div>                 
                
                 </div> 

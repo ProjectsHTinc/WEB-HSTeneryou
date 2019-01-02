@@ -25,7 +25,7 @@ class Economicgraph extends Component {
         return(
             <div className="container-fluid wrapper">
             <Header/>
-            <h4 className="form_heading">Product Comparsion Graph  </h4>
+            <h4 className="form_heading">Vergleich Ihrer Produktempfehlungen und Analyse  </h4>
                 <div className="container" style={ { marginTop:'40px',marginBottom:'100px', backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
@@ -38,10 +38,10 @@ class Economicgraph extends Component {
                     <div className="graph_pic">
                     <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
-                        <Tab>Annuity Costs</Tab>
-                        <Tab>Investment Costs</Tab>
-                        <Tab>Operational Costs</Tab>
-                        <Tab>Monthly Costs</Tab>
+                        <Tab>Annuitätskosten</Tab>
+                        <Tab>Investitionskosten</Tab>
+                        <Tab>Betriebskosten</Tab>
+                        <Tab>Monatliche Kosten</Tab>
                     </TabList>
                         <TabPanel>
                                 <Graph_3/>

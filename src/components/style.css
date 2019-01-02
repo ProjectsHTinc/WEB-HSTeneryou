@@ -28,7 +28,8 @@ html {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .error_font{
@@ -276,6 +277,7 @@ input::placeholder {
 
 .progress_section{
     margin-top:10px;
+    margin-bottom: 10px;
 }
 .character_img{
     margin-top: 120px;
@@ -592,6 +594,7 @@ input::placeholder {
 .btn_next{
     background-color: #fff;
     border: 1px solid #000;
+    box-shadow: 0 2px 12px 5px #d9d9d9;
 }
 .pull_right{
     float: right;
@@ -628,7 +631,7 @@ input::placeholder {
 }
 .product_box_1_3{
     background-color: #9cccee;
-    font-weight: 600;
+    font-weight: 500;
 
 }
 
@@ -644,7 +647,7 @@ input::placeholder {
 }
 .product_box_2_3{
     background-color: #a8d7b0;
-    font-weight: 600;
+    font-weight: 500;
   
 }
 
@@ -659,7 +662,7 @@ input::placeholder {
 }
 .product_box_3_3{
     background-color: #e3d0a7;
-    font-weight: 600;
+    font-weight: 500;
  
 }
 .table thead th{
@@ -789,7 +792,7 @@ tr td{
 .footer_links a{
     color:#fff;
     margin-left: 20px;
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
 }
 .copyrights a{
@@ -820,6 +823,9 @@ tr td{
         background-image: none !important;
         margin-top: 66px !important;
       
+    }
+    .form_1_bg_1{
+        background-image: none !important;
     }
     .living_box{
         margin-right: 0px;
@@ -893,9 +899,7 @@ tr td{
       
       
         }
-     /* .radio_box{
-        border: none;
-    } */
+      
     .character_img{
         display: none;
     }
@@ -912,7 +916,7 @@ tr td{
     }
     .house_year_drop_box{
         margin-left: -10px;
-        font-size: 10px;
+        font-size: 14px;
     }
     .power_meter_box{
         top: 76px;
@@ -1001,6 +1005,13 @@ tr td{
     }
     .footer_section{
         display: none;
+    }
+    .form_1_bg {
+        margin-top: 120px;
+        
+    }
+    .form_1_bg_1{
+        background-image: none !important;
     }
 }
 
