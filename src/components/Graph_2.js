@@ -20,7 +20,7 @@ class Graph_2 extends  Component{
                 data={graph2_values}            
                  // Set chart options
                 options={{
-                    title: 'Comparison of Self Consumption, Feed-In and Grid Consumption',
+                    title: 'Vergleich des Eigenverbrauchs, Einspeisung und Netzbezug',
                     titleTextStyle: {color: '#000000',fontSize : 16},
                     fontName: "Roboto",
                     legendTextStyle: {color: '#000000',fontSize : 10},
@@ -34,12 +34,12 @@ class Graph_2 extends  Component{
                         easing: 'out',
                     },
                     hAxis: {
-                    title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    title: 'Anlagenkombinationen',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},
                     vAxis: {
-                    title: 'Electricity in kWh',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    title: 'Strom in kWh',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},

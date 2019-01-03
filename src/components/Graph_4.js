@@ -20,16 +20,16 @@ class Graph_4 extends  Component{
                 data={graph4_values}
                  // Set chart options
                 options = {{
-                    title : 'Comparison of Investment Costs (incl. Installation)',
+                    title : 'Vergleich der Investitionskosten (inkl. Monatage)',
                     titleTextStyle: {color: '#000000',fontSize : 16},
                     fontName: "Roboto",
                     legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Investment Costs in €',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    vAxis: {title: 'Investitionskosten in €',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},
-                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    hAxis: {title: 'Anlagenkombinationen',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},

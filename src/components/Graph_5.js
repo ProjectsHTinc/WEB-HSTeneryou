@@ -20,16 +20,16 @@ class Graph_5 extends  Component{
                 data={graph5_values}
                  // Set chart options
                 options={{
-                    title: 'Comparison of Maintenance & Fuel Costs',
+                    title: 'Vergleich der Energie- und Instandhaltungskosten',
                     titleTextStyle: {color: '#000000',fontSize : 16},
                     fontName: "Roboto",
                     legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Maintenance & Fuel Costs in €/a',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    vAxis: {title: 'Betriebskosten und Brennstoffkosten in €/a',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},
-                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    hAxis: {title: 'Anlagenkombinationen',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},

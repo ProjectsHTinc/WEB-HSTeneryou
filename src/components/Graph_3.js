@@ -19,16 +19,16 @@ class Graph_3 extends  Component{
                 loader={<div>Loading Chart</div>}
                 data={graph3_values}
                 options = {{
-                    title : 'Comparison of Annuity Costs',
+                    title : 'Vergleich der Annuitätskosten',
                     titleTextStyle: {color: '#000000',fontSize : 16},
                     fontName: "Roboto",
                     legendTextStyle: {color: '#000000',fontSize : 10},
                     chartArea: { width: '60%' },
-                    vAxis: {title: 'Annuity Costs in €/a',textStyle:{color: '#000000',fontSize: 13},titleTextStyle: {
+                    vAxis: {title: 'Annuitätische Kosten in €/a',textStyle:{color: '#000000',fontSize: 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},
-                    hAxis: {title: 'System Combination',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
+                    hAxis: {title: 'Anlagenkombinationen',textStyle:{color: '#000000',fontSize : 13},titleTextStyle: {
                         fontSize: 13,
                         italic: false
                     }},

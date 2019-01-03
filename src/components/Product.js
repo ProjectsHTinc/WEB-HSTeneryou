@@ -34,72 +34,72 @@ class Product extends Component {
 
         //console.log("loading");
 
-        // var data = {
-        //     "building": {
-        //         "postalCode": '12345',
-        //         "constructionYear": "FROM1969_TO1978",
-        //         "livingSpace": 300,
-        //         "roofAlignment": "SOUTH",
-        //         "roofTilt": "DEGREES_25"
-        //     },
-        //     "energyDemand": {
-        //         "personCount": 4,
-        //         "energyDemand": 8000,
-        //         "headingDemandType": "CONSTRUCTION_YEAR"
-        //     }
-        // }
+        var data = {
+            "building": {
+                "postalCode": '12345',
+                "constructionYear": "FROM1969_TO1978",
+                "livingSpace": 300,
+                "roofAlignment": "SOUTH",
+                "roofTilt": "DEGREES_25"
+            },
+            "energyDemand": {
+                "personCount": 4,
+                "energyDemand": 8000,
+                "headingDemandType": "CONSTRUCTION_YEAR"
+            }
+        }
 
-          if (energy_demand === 'CONSTRUCTION_YEAR'){
+        //   if (energy_demand === 'CONSTRUCTION_YEAR'){
 
-            var data = {
-                "building": {
-                    "postalCode": post_code,
-                    "constructionYear": construction_year,
-                    "livingSpace": living_area,
-                    "roofAlignment": directionChange,
-                    "roofTilt": roof_inclination
-                },
-                "energyDemand": {
-                    "personCount": local_person_count,
-                    "energyDemand": power_consumption,
-                    "headingDemandType": energy_demand
-                }
-              }
-          } 
+        //     var data = {
+        //         "building": {
+        //             "postalCode": post_code,
+        //             "constructionYear": construction_year,
+        //             "livingSpace": living_area,
+        //             "roofAlignment": directionChange,
+        //             "roofTilt": roof_inclination
+        //         },
+        //         "energyDemand": {
+        //             "personCount": local_person_count,
+        //             "energyDemand": power_consumption,
+        //             "headingDemandType": energy_demand
+        //         }
+        //       }
+        //   } 
 
-          if (energy_demand === 'GAS_OR_OIL_BILL'){
-            var data = {
-                "building": {
-                    "postalCode": post_code,
-                    "constructionYear": construction_year,
-                    "livingSpace": living_area,
-                    "roofAlignment": directionChange,
-                    "roofTilt": roof_inclination
-                },
-                "energyDemand": {
-                    "personCount": local_person_count,
-                    "energyDemand": power_consumption,
-                    "headingDemandType": energy_demand,
-                    "yearlyGasDemand": yearlyGasDemand
-                }
-              }
-          } 
+        //   if (energy_demand === 'GAS_OR_OIL_BILL'){
+        //     var data = {
+        //         "building": {
+        //             "postalCode": post_code,
+        //             "constructionYear": construction_year,
+        //             "livingSpace": living_area,
+        //             "roofAlignment": directionChange,
+        //             "roofTilt": roof_inclination
+        //         },
+        //         "energyDemand": {
+        //             "personCount": local_person_count,
+        //             "energyDemand": power_consumption,
+        //             "headingDemandType": energy_demand,
+        //             "yearlyGasDemand": yearlyGasDemand
+        //         }
+        //       }
+        //   } 
 
-          if (energy_demand === 'ENERGY_CERTIFICATE'){ 
-            var data = {
-                "building": {
-                    "postalCode": post_code,
-                    "roofAlignment": directionChange,
-                    "roofTilt": roof_inclination
-                },
-                "energyDemand": {
-                    "energyDemand": power_consumption,
-                    "headingDemandType": energy_demand,
-                    "yearlyEnergyDemand": yearlyEnergyDemand,
-                    "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
-                }
-              }
-          }
+        //   if (energy_demand === 'ENERGY_CERTIFICATE'){ 
+        //     var data = {
+        //         "building": {
+        //             "postalCode": post_code,
+        //             "roofAlignment": directionChange,
+        //             "roofTilt": roof_inclination
+        //         },
+        //         "energyDemand": {
+        //             "energyDemand": power_consumption,
+        //             "headingDemandType": energy_demand,
+        //             "yearlyEnergyDemand": yearlyEnergyDemand,
+        //             "yearlyEnergyDemandOnWater": yearlyEnergyDemandOnWater
+        //         }
+        //       }
+        //   }
 
         fetch("http://18.219.250.34:8080/eneryou/api/recommentations", {
             method: 'POST',
@@ -388,7 +388,7 @@ class Product extends Component {
         let graph_7_1 = [];
         let graph_7_2 = [];
 
-        graph_1.push(['', 'Self Sufficiency']);
+        graph_1.push(['', 'Autarkiegrad']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let energeticValues = this.state.systemCombinations_value[i].energeticValues;
@@ -396,7 +396,7 @@ class Product extends Component {
             graph_1.push([systemCombinationPosition, energeticSelfSufficiency]);
         }
 
-        graph_2.push(['', 'Self Sufficiency', 'Grid Consumption', 'Self Consumption-PV', 'Self Consumption-BHKW', 'Feed-In-PV', 'Feed-In-BHKW']);
+        graph_2.push(['', 'Self Sufficiency', 'Netzbezug', 'Eigenverbrauch-PV', 'Eigenverbrauch-BHKW', 'Einspeisung-PV', 'Einspeisung-BHKW']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let energeticValues = this.state.systemCombinations_value[i].energeticValues;
@@ -414,7 +414,7 @@ class Product extends Component {
             graph_2.push([systemCombinationPosition, energeticSelfSufficiency, energeticNetConsumption, energeticOwnConsumptionPV, energeticOwnConsumptionBHKW, energeticPowerSupplyPV, energeticPowerSupplyBHKW]);
         }
 
-        graph_3_1.push(['', 'Annuity Costs']);
+        graph_3_1.push(['', 'Annuitätskosten']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
             let economicValues = this.state.systemCombinations_value[0].economicValues;
@@ -430,7 +430,7 @@ class Product extends Component {
         }
 
 
-        graph_4.push(['', 'annuityCost', 'Investment Costs', 'Budget']);
+        graph_4.push(['', 'annuityCost', 'Investitionskosten', 'Budgetobergrenze (€)']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let budget_value_amount = Number(localStorage.getItem('budget_value'));
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
@@ -441,7 +441,7 @@ class Product extends Component {
         }
 
 
-        graph_5.push(['', 'annuityCost', 'Fuel Costs', 'Maintenance Costs']);
+        graph_5.push(['', 'annuityCost', 'Betriebskosten', 'Brennstoffkosten']);
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let economicValues = this.state.systemCombinations_value[i].economicValues;
@@ -451,14 +451,14 @@ class Product extends Component {
             graph_5.push([systemCombinationPosition, annuityCost, operatingCost, yearlyFuelCost]);
         }
 
-        graph_6_1.push(['', 'annuityCost', 'Electricity Costs', 'Heating Costs']);
+        graph_6_1.push(['', 'annuityCost', 'Stromkosten', 'Heizkosten']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[i].systemCombinationPosition);
             let economicValues = this.state.systemCombinations_value[i].economicValues;
             let annuityCost = economicValues['annuityCost'];
             let monthlyHeadingCost = economicValues['monthlyHeadingCost'];
             let monthlyEnergyCost = economicValues['monthlyEnergyCost'];
-            graph_6_1.push([systemCombinationPosition, annuityCost, monthlyHeadingCost, monthlyEnergyCost]);
+            graph_6_1.push([systemCombinationPosition, annuityCost, monthlyEnergyCost, monthlyHeadingCost]);
             break;
         }
         for (i = 1; i < this.state.systemCombinations_value.length; i++) {
@@ -471,7 +471,7 @@ class Product extends Component {
         }
 
 
-        graph_7_1.push(['', 'CO2 Equivalent in t/a', 'CO2 Abatement Costs']);
+        graph_7_1.push(['', 'CO2-Äquivalent in t/a', 'CO2-Vermeidungskosten']);
         for (i = 0; i < this.state.systemCombinations_value.length; i++) {
             let systemCombinationPosition = String(this.state.systemCombinations_value[0].systemCombinationPosition);
             let ecologicValues = this.state.systemCombinations_value[0].ecologicValues;
