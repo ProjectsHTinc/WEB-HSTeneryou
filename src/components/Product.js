@@ -467,7 +467,7 @@ class Product extends Component {
             let annuityCost = economicValues['annuityCost'];
             let monthlyHeadingCost = economicValues['monthlyHeadingCost'];
             let monthlyEnergyCost = economicValues['monthlyEnergyCost'];
-            graph_6_2.push([systemCombinationPosition, annuityCost, monthlyHeadingCost, monthlyEnergyCost]);
+            graph_6_2.push([systemCombinationPosition, annuityCost, monthlyEnergyCost, monthlyHeadingCost]);
         }
 
 
