@@ -49,11 +49,11 @@ class Enerydemand extends Component {
             }
             if (yearlyGasDemand <= 6999) {
                 formIsValid = false;
-                errors["yearlyGasDemand"] = "*Greater Than Equal to 7000";
+                errors["yearlyGasDemand"] = "Größer als gleich 7000";
             }
             if (yearlyGasDemand >= 52001) {
                 formIsValid = false;
-                errors["yearlyGasDemand"] = "*Not more  Than 52000";
+                errors["yearlyGasDemand"] = "Nicht mehr als 52000";
             }
             if (!yearlyGasDemand) {
                 formIsValid = false;
@@ -70,11 +70,11 @@ class Enerydemand extends Component {
             }
             if (yearlyEnergyDemand <= 6999) {
                 formIsValid = false;
-                errors["yearlyEnergyDemand"] = "*Greater Than Equal to 7000";
+                errors["yearlyEnergyDemand"] = "Größer als gleich 7000";
             }
             if (yearlyEnergyDemand >= 52001) {
                 formIsValid = false;
-                errors["yearlyEnergyDemand"] = "*Not more  Than 52000";
+                errors["yearlyEnergyDemand"] = "Nicht mehr als 52000";
             }
             if (!yearlyEnergyDemand) {
                 formIsValid = false;
@@ -87,11 +87,11 @@ class Enerydemand extends Component {
             }
             if (yearlyEnergyDemandOnWater >= 5001) {
                 formIsValid = false;
-                errors["yearlyEnergyDemandOnWater"] = "*Not more  Than 5000";
+                errors["yearlyEnergyDemandOnWater"] = "Nicht mehr als 5000";
             }
             if (yearlyEnergyDemandOnWater <= 99) {
                 formIsValid = false;
-                errors["yearlyEnergyDemandOnWater"] = "*Greater Than Equal to 100";
+                errors["yearlyEnergyDemandOnWater"] = "Größer als gleich 100";
             }
             if (!yearlyEnergyDemandOnWater) {
                 formIsValid = false;

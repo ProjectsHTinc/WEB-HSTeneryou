@@ -43,12 +43,12 @@ class Budget extends Component {
        
         if (budget_value <= 9999) {
             formIsValid = false;
-            errors["budget_value"] = "*Greater Than Equal to 10000";
+            errors["budget_value"] = "Größer als gleich 10000";
           }
        
           if (budget_value >= 50001) {
             formIsValid = false;
-            errors["budget_value"] = "*Not more  Than 50000";
+            errors["budget_value"] = "Nicht mehr als 50000";
           }
         
       

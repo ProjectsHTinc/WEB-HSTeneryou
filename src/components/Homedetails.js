@@ -71,24 +71,24 @@ class Homedetails extends Component {
 
         if (living_area.length <= 1) {
             formIsValid = false;
-            errors["living_area"] = "*Numbers with  Max 2 Characters";
+            errors["living_area"] = "Zahlen mit maximal 2 Zeichen";
         }
 
         if (living_area <= 49) {
             formIsValid = false;
-            errors["living_area"] = "*Greater Than 50";
+            errors["living_area"] = "Größer als 50";
         }
         if (living_area >= 301) {
             formIsValid = false;
-            errors["living_area"] = "*Not more  Than 300";
+            errors["living_area"] = "Nicht mehr als 300";
         }
         if (living_area.length > 3) {
             formIsValid = false;
-            errors["living_area"] = "*Numbers with  Max 3 Characters";
+            errors["living_area"] = "Zahlen mit maximal 3 Zeichen";
         }
         if (!living_area.match(/^[1-9][0-9]*$/)) {
             formIsValid = false;
-            errors["living_area"] = "*Numbers ";
+            errors["living_area"] = "Bitte nur Nummern eingeben";
         }
         if (!living_area) {
             formIsValid = false;

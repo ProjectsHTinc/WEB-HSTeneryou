@@ -56,11 +56,11 @@ class Persondetail extends Component {
           }
           if (power_val <= 1999) {
             formIsValid = false;
-            this.setState({ power_error: "*Greater  Than 2000" });
+            this.setState({ power_error: "Größer als 2000"});
           }
           if (power_val >= 8001) {
             formIsValid = false;          
-            this.setState({ power_error: "*Not more  Than 8000" });
+            this.setState({ power_error: "Nicht mehr als 8000"});
           }
          if(power_val==''){
             formIsValid = false;
