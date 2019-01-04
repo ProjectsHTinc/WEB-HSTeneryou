@@ -4,7 +4,9 @@ import  VideoCover  from 'react-video-cover';
 
 // import sample_video from 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4';
 
-
+const body_header = {
+  margin: "0px 0px"
+}
 
 class Homepage extends Component {
   state = {
@@ -38,7 +40,7 @@ class Homepage extends Component {
     return (
      
       <div className="container-fluid wrapper">
-    
+   
         {/* <div className="row ">
           <div className="logo">
             <a href="/">
