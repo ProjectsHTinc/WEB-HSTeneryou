@@ -6,6 +6,7 @@ import StarRatingComponent from 'react-star-rating-component';
 
 
 
+
 import Rating  from 'react-rating';
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -76,22 +77,31 @@ class Persondetail extends Component {
     }
 
 
-      continue = e => {
+  
+
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
+
+    continue = e => {
         e.preventDefault();       
         if(this.handleValidation()){        
-            this.props.nextStep();         
+            this.props.nextStep();        
            
         }else{
             
         }
         
     }
+ 
+    handleKeyPress = event => {
+        if (event.key == 'Enter') {
+            this.refs.but.click()
+        }
+      };
 
-    back = e => {
-        e.preventDefault();
-        this.props.prevStep();
-    }
-   
+
     handleRate (rate) {
         this.setState({ person: rate });
         localStorage.setItem("person_count",rate);
@@ -123,6 +133,7 @@ class Persondetail extends Component {
   
 
     }
+
     render() {
         const { rating_half_star,person,character_2 } = this.state;
         const { values } = this.props
@@ -198,7 +209,7 @@ class Persondetail extends Component {
                  <Tooltip styles={tooltipStyle} content="Bitte geben Sie Ihren jährlichen Stormbedarf in kWh an ">    <input type="text" name="power_consumption" id="power_consumption" className="power_consumption" minLength="5" maxLength='5'
                          placeholder='power_consumption' ref={(power_consumption) => this.power_consumption = power_consumption}
                          onBlur={this.props.handleChange('power_consumption')}
-                         defaultValue={values.power_consumption} />    </Tooltip>                            
+                         defaultValue={values.power_consumption} onKeyPress={this.handleKeyPress} />    </Tooltip>                            
                     </div>
                    
                    
@@ -243,7 +254,7 @@ class Persondetail extends Component {
                 </div>
                 <div className="col-md-2  col-sm-2 text-center">    
                 <div className="next_section">
-                        <button onClick={this.continue} className="btn btn_next pull_right">weiter  </button>
+                        <button onClick={this.continue}  ref="but" className="btn btn_next pull_right">weiter  </button>
                 </div>                 
                
                 </div> 

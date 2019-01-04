@@ -121,6 +121,12 @@ class Enerydemand extends Component {
         this.props.prevStep();
     }
 
+    handleKeyPress = event => {
+        if (event.key == 'Enter') {
+            this.refs.but.click()
+        }
+      };
+
     Gasfunction() {
 
         this.setState({ gas_section: "" });
@@ -229,7 +235,7 @@ class Enerydemand extends Component {
                                                         name="yearlyGasDemand"
                                                         ref={(yearlyGasDemand) => this.yearlyGasDemand = yearlyGasDemand}
                                                         onChange={this.props.handleChange('yearlyGasDemand')}
-                                                        defaultValue={values.yearlyGasDemand} /></p>
+                                                        defaultValue={values.yearlyGasDemand} onKeyPress={this.handleKeyPress} /></p>
                                                 </div>
                                                 <p className="error_font">{this.state.errors["yearlyGasDemand"]}</p>
                                             </div>
@@ -242,7 +248,7 @@ class Enerydemand extends Component {
                                                         value="ENERGY_CERTIFICATE"
                                                         onChange={this.props.handleChange('energy_demand')}
                                                         checked={values.energy_demand === "ENERGY_CERTIFICATE"}
-                                                        onClick={this.energyFunction.bind(this)}
+                                                        onClick={this.energyFunction.bind(this)} 
                                                     />
                                                 </div>
                                                 <div className="enery_icon">
@@ -257,7 +263,7 @@ class Enerydemand extends Component {
                                                         name="yearlyEnergyDemand"
                                                         onChange={this.props.handleChange('yearlyEnergyDemand')}
                                                         defaultValue={values.yearlyEnergyDemand}
-                                                        ref={(yearlyEnergyDemand) => this.yearlyEnergyDemand = yearlyEnergyDemand}
+                                                        ref={(yearlyEnergyDemand) => this.yearlyEnergyDemand = yearlyEnergyDemand} onKeyPress={this.handleKeyPress}
                                                     /></p>
                                                     <p className="error_font">{this.state.errors["yearlyEnergyDemand"]}</p>
                                                     <p className="label_demand_value_label">Anteil Warmwasser
@@ -266,7 +272,7 @@ class Enerydemand extends Component {
                                                         name="yearlyEnergyDemandOnWater"
                                                         ref={(yearlyEnergyDemandOnWater) => this.yearlyEnergyDemandOnWater = yearlyEnergyDemandOnWater}
                                                         onChange={this.props.handleChange('yearlyEnergyDemandOnWater')}
-                                                        defaultValue={values.yearlyEnergyDemandOnWater}
+                                                        defaultValue={values.yearlyEnergyDemandOnWater} onKeyPress={this.handleKeyPress}
                                                     /></p>
                                                     <p className="error_font">{this.state.errors["yearlyEnergyDemandOnWater"]}</p>
                                                 </div>
@@ -317,8 +323,8 @@ class Enerydemand extends Component {
                             </div>
                             <div className="col-md-2 text-center">
                                 <div className="next_section">
-                                    {/* <button onClick={this.continue} className="btn btn_next pull_right">Next  </button> */}
-                                    <button className="btn btn_next pull_right">weiter  </button>
+                                    <button onClick={this.continue}  ref="but" className="btn btn_next pull_right">weiter  </button>
+                                    {/* <button className="btn btn_next pull_right">weiter  </button> */}
                                 </div>
 
                             </div>

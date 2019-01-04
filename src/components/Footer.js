@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import footer_logo from './images/footer_logo.png';
 
 
 class Footer extends Component {
@@ -19,7 +20,7 @@ class Footer extends Component {
                     </div>
                     <div className="col-md-4">
                     <div className="footer_links copyrights">
-                            <a href="">Ener|You</a>
+                            <a href=""><img src={footer_logo} responsive className="" id="" /></a>
                           
                         </div>
                     </div>

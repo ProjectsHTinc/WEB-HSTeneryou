@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import  VideoCover  from 'react-video-cover';
+// import sample_video from './images/sample.mp4';
 
+// import sample_video from 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4';
 
 
 
