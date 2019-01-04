@@ -105,7 +105,7 @@ html {
 }
 .img_compass{
     margin-left: 75px;
-    margin-top: -10px;
+    margin-top: 0px;
 
 }
 .direction_drop_box{
@@ -204,6 +204,8 @@ input[type='radio']:checked:before {
     margin-top: 70px;
     margin-bottom: 40px;
     border-radius: 5px;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .post_textbox{
@@ -280,7 +282,7 @@ input::placeholder {
     margin-bottom: 10px;
 }
 .character_img{
-    margin-top: 120px;
+    margin-top: 60px;
     margin-left: 0px;
 }
 
@@ -382,6 +384,7 @@ input::placeholder {
 }
 .power_text{
     font-size: 14px;
+    margin-bottom: 6px;
 }
 .power_meter_box{
     padding: 5px;
@@ -456,10 +459,10 @@ input::placeholder {
     }
 } 
 .blink-image {
-    -moz-animation: blink normal 3s infinite ease-in-out; /* Firefox */
-    -webkit-animation: blink normal 3s infinite ease-in-out; /* Webkit */
-    -ms-animation: blink normal 3s infinite ease-in-out; /* IE */
-    animation: blink normal 3s infinite ease-in-out; /* Opera and prob css3 final iteration */
+    -moz-animation: blink normal 2s infinite ease-in-out; /* Firefox */
+    -webkit-animation: blink normal 2s infinite ease-in-out; /* Webkit */
+    -ms-animation: blink normal 2s infinite ease-in-out; /* IE */
+    animation: blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
 }
 
 .energy_form{
@@ -752,6 +755,7 @@ tr td{
 }
 .table-borderless{
     margin-top: -1px;
+   
 }
 .table td, .table th{
     border-top: 1px solid #e0eefd59;
@@ -836,6 +840,8 @@ tr td{
     .post_text_box{
         width: 100%;
         text-align: center;
+        margin-left:0px;
+        margin-right:0px;
 
     }
     .year_label{
@@ -942,9 +948,12 @@ tr td{
 } 
 
 .rc-progress-line {
-    height: 8px;
+    
  }
 
+ .form_1_bg{
+     margin-top: -12px;
+ }
  @media (min-width: 768px) and (max-width: 991px) { 
     .form_1_bg{
         background-size: contain;

@@ -310,9 +310,9 @@ class Enerydemand extends Component {
                             <div className="col-md-8">
                                 <div className="progress_bar">
                                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                                    <img src={progress_img} className="" circle style={{ position: 'relative', top: '-15px', left: '63%' }} />
+                                    <img src={progress_img} className="" circle style={{ position: 'relative', top: '9px', left: '72%' }} />
                                     <Line percent="75" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line" />
-                                    <p style={{ color: '#000', marginLeft: '65%' }}>75%</p>
+                                    <p style={{ color: '#000', marginLeft: '72%' }}>75%</p>
                                 </div>
                             </div>
                             <div className="col-md-2 text-center">

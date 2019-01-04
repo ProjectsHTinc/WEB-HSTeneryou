@@ -206,13 +206,13 @@ class Homedetails extends Component {
                 <div className="container">
                     <h4 className="form_heading">Meine Gebäudedaten</h4>
                   
-                    <h4 className="text-center small_heading">  <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus">Dachneigung</Tooltip></h4>
+                    {/* <h4 className="text-center small_heading">  Dachneigung</h4> */}
                     <form onSubmit={this.continue}>
 
                         {/* First section start Here */}
                         <div className="row">
-                            <div className="col-md-1 hide_tab"></div>
-                            <div className="col-md-12 col-lg-8">
+                           
+                            <div className="col-md-12 col-lg-9">
 
                                 <div className="row radio-toolbar">
 
@@ -229,7 +229,7 @@ class Homedetails extends Component {
                                             />
                                             <span className="radio_label"> 0</span>
                                             <p className="radio_image">
-                                                <img src={require('./images/0.png')} alt="" className="" />
+                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"> <img src={require('./images/0.png')} alt="" className="" /></Tooltip>
                                             </p>
                                         </div>
                                     </div>
@@ -244,7 +244,7 @@ class Homedetails extends Component {
                                             />
                                             <span className="radio_label">15</span>
                                             <p className="radio_image">
-                                                <img src={require('./images/15.png')} alt="" className="" />
+                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"><img src={require('./images/15.png')} alt="" className="" /></Tooltip>
                                             </p>
                                         </div>
                                     </div>
@@ -260,7 +260,7 @@ class Homedetails extends Component {
                                             />
                                             <span className="radio_label">25</span>
                                             <p className="radio_image">
-                                                <img src={require('./images/25.png')} alt="" className="" />
+                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus">  <img src={require('./images/25.png')} alt="" className="" /></Tooltip>
                                             </p>
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@ class Homedetails extends Component {
                                             />
                                             <span className="radio_label">30</span>
                                             <p className="radio_image">
-                                                <img src={require('./images/30.png')} alt="" className="" />
+                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"> <img src={require('./images/30.png')} alt="" className="" /></Tooltip>
                                             </p>
                                         </div>
                                     </div>
@@ -291,7 +291,7 @@ class Homedetails extends Component {
                                             />
                                             <span className="radio_label">35</span>
                                             <p className="radio_image">
-                                                <img src={require('./images/35.png')} alt="" className="" />
+                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"><img src={require('./images/35.png')} alt="" className="" /></Tooltip>
                                             </p>
                                         </div>
                                     </div>
@@ -307,7 +307,7 @@ class Homedetails extends Component {
                                             />
                                             <span className="radio_label">45</span>
                                             <p className="radio_image">
-                                                <img src={require('./images/45.png')} alt="" className="" />
+                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"> <img src={require('./images/45.png')} alt="" className="" /></Tooltip>
                                             </p>
                                         </div>
                                     </div>
@@ -356,11 +356,11 @@ class Homedetails extends Component {
                                 height: '151px',
                                 backgroundRepeat: 'no-repeat'
                             }}>
-                              <Tooltip  styles={tooltipStyle} content="Bitte gegen Sie das Baujahr oder das Jahr in dem die letzte energestische Sanierung an Ihrem Haus durchgeführt wurde ein">
+                            
                              <div className="year_box">
                                     <label className="year_label">Baujahr bzw. letztes Modernisierungsjahr
 </label>
-                                    <select className="house_year_drop_box " name="construction_year"
+<Tooltip  styles={tooltipStyle} content="Bitte gegen Sie das Baujahr oder das Jahr in dem die letzte energestische Sanierung an Ihrem Haus durchgeführt wurde ein"><select className="house_year_drop_box " name="construction_year"
                                         //    onChange={this.construction_year} 
                                         //    onClick={this.props.handleChange('construction_year')}  
                                         onClick={this.construction_year}
@@ -380,10 +380,10 @@ class Homedetails extends Component {
                                         <option value="FROM1995_TO2001">von 1995 bis 2001</option>
                                         <option value="FROM2002_TONOW">seit 2002</option>
 
-                                    </select>
+                                    </select></Tooltip>
 
                                 </div>
-                                </Tooltip>
+                                
                                 <p className="error_font" style={{ textAlign: 'center' }}>{this.state.errors["house_con_year"]}</p>
 
                              
@@ -452,7 +452,7 @@ class Homedetails extends Component {
                             <div className="col-md-8">
                                 <div className="progress_bar">
                                     {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                                    <img src={progress_img} className="" circle style={{ position: 'relative', top: '-15px', left: '25%' }} />
+                                    <img src={progress_img} className="" circle style={{ position: 'relative', top: '9px', left: '26%' }} />
                                     <Line percent="29" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line" />
                                     <p style={{ color: '#000', marginLeft: '25%' }}>25%</p>
                                 </div>
