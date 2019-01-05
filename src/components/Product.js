@@ -101,7 +101,7 @@ class Product extends Component {
               }
           }
 
-        fetch("http://18.219.250.34:8080/eneryou/api/recommentations", {
+        fetch("http://18.224.214.182:8080/eneryou/api/recommentations", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -110,7 +110,6 @@ class Product extends Component {
             },
         })
 
-  
        
         .then(response => {
              localStorage.setItem("response_status",response.status)
