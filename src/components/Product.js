@@ -185,14 +185,14 @@ class Product extends Component {
         for (i = 0; i < this.state.recommentations_value.length; i++) {
             if (i === 0) {
                 //recommentations_list_1_type.push(this.state.recommentations_value[0].type);
-                // let furthering_1 = formatNumber(this.state.recommentations_value[0].furthering,{
-                //     'decimal': ',',
-                //     'grouping': '.',
-                //     'fraction': 2,
-                //     'prefix': '',
-                //     'suffix': ' €'
-                //    });
-                // recommentations_list_1_furthering.push(furthering_1);
+                let furthering_1 = formatNumber(this.state.recommentations_value[0].furthering,{
+                    'decimal': ',',
+                    'grouping': '.',
+                    'fraction': 2,
+                    'prefix': '',
+                    'suffix': ' €'
+                   });
+                recommentations_list_1_furthering.push(furthering_1);
 
                 let investCost_1 = formatNumber(this.state.recommentations_value[0].investCost, {
                     'decimal': ',',
