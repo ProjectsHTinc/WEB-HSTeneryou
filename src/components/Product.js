@@ -32,19 +32,18 @@ class Product extends Component {
         const { values: { roof_inclination, living_area, post_code, directionChange, construction_year, power_consumption, energy_demand, yearlyGasDemand, yearlyEnergyDemand, yearlyEnergyDemandOnWater } } = this.props;
         let local_person_count = localStorage.getItem('person_count');
 
-        //console.log("loading");
 
         // var data = {
         //     "building": {
-        //         "postalCode": '12345',
+        //         "postalCode": '20146',
         //         "constructionYear": "FROM1969_TO1978",
-        //         "livingSpace": 300,
+        //         "livingSpace": 150,
         //         "roofAlignment": "SOUTH",
         //         "roofTilt": "DEGREES_25"
         //     },
         //     "energyDemand": {
-        //         "personCount": 4,
-        //         "energyDemand": 8000,
+        //         "personCount": 3,
+        //         "energyDemand": 3004,
         //         "headingDemandType": "CONSTRUCTION_YEAR"
         //     }
         // }
@@ -101,7 +100,8 @@ class Product extends Component {
               }
           }
 
-        fetch("http://18.224.214.182:8080/eneryou/api/recommentations", {
+
+        fetch("http://52.15.238.228:8080/eneryou/api/recommentations", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -109,7 +109,6 @@ class Product extends Component {
                 'Access-Control-Allow-Origin': '*',
             },
         })
-
        
         .then(response => {
              localStorage.setItem("response_status",response.status)
@@ -226,8 +225,8 @@ class Product extends Component {
                    
                  if(prod_1_len > j){                  
                      componentName_1 = products_1[j]['componentName'];
-                    //logo_1 = products_1[j]['logoPath'];
-                    logo_1 = "logo_01.png";
+                    logo_1 = products_1[j]['logoPath'];
+                    //logo_1 = "logo_01.png";
                     price_1 = formatNumber(products_1[j]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
@@ -289,8 +288,8 @@ class Product extends Component {
                 for (k = 0; k < 6; k++) {
                  if(prod_2_len > k){                  
                      componentName_2 = products_2[k]['componentName'];
-                     //logo_2 = products_2[k]['logoPath'];
-                    logo_2 = "logo_02.png";
+                     logo_2 = products_2[k]['logoPath'];
+                    //logo_2 = "logo_02.png";
                      price_2 = formatNumber(products_2[k]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
@@ -352,8 +351,8 @@ class Product extends Component {
                 for (l = 0; l < 6; l++) {
                  if(prod_3_len > l){                  
                      componentName_3 = products_3[l]['componentName'];
-                      //logo_3 = products_3[l]['logoPath'];
-                    logo_3 = "logo_03.png";
+                      logo_3 = products_3[l]['logoPath'];
+                    //logo_3 = "logo_03.png";
                      price_3 = formatNumber(products_3[l]['price'], {
                                 'decimal': ',',
                                 'grouping': '.',
