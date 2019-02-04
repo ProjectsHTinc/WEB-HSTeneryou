@@ -25,6 +25,7 @@ class Graph_3 extends Component {
                                     legendTextStyle: { color: '#000000', fontSize: 10 },
                                     chartArea: { width: '60%' },
                                     vAxis: {
+                                        format: '\u20AC#.##',
                                         title: 'Annuitätische Kosten in €/a', textStyle: { color: '#000000', fontSize: 13 }, titleTextStyle: {
                                             fontSize: 13,
                                             italic: false
@@ -49,9 +50,9 @@ class Graph_3 extends Component {
                         
                     </div>
                     <div className="col-md-1"></div>
-
                 </div>
-            </div>
+   
+               </div>
 
         )
     }

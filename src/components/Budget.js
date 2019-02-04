@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { Line } from 'rc-progress';
+import Stepper from 'react-stepper-horizontal';
 import 'font-awesome/css/font-awesome.min.css'
 import { Tooltip } from 'react-lightweight-tooltip';
 
 import progress_img from './images/progress_home.png';
-import character_4 from './images/character_form_4.png';
+
 import euro_icon from './images/euro_icon.png';
 import form_bg_3 from './images/form_3_bg.png';
 
@@ -99,32 +99,41 @@ class Budget extends Component {
         <div className="container-fluid wrapper">
         <Header/>
         <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-9">
+                        <Stepper activeStep={ 3 }  titleFontSize={'14px'} completeColor={'#2171b9' } activeColor={'#2171b9'} completeBarColor={'#5096ff'} steps={ [{title: 'Meine Gebäudedaten '}, {title: 'Mein Strombedarf'}, {title: 'Mein Wärmebedarf'}, {title: 'Meine Präferenz'}] } />
+                        </div>
+                        
+                    </div>            
+                </div>
+        <div className="container">
         <h4 className="form_heading">Meine persönliche Präferenz </h4>
         <form>
 
                 {/* Form section starts here */}
                 <div className="row" >
-                    <div className="col-md-2 col-lg-2 hide_tab">
-                        <img src={character_4} alt="Ener You" className="character_4"/>
+                    <div className="col-1 hide_tab">
+                       
                     </div>
-                    <div className="col-md-12 col-lg-8 text-center form_4_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
+                    <div className="col-lg-10 col-sm-12 col-md-10 text-center form_4_bg" style={ { backgroundImage: 'url(' + form_bg_3 + ')',
                  backgroundPosition: 'center',
-                 backgroundSize: 'cover',
-                 height:'417px',
+                 backgroundSize: 'contain',
+                height: '450px',
                  backgroundRepeat: 'no-repeat' } }>
 
                   <div className="">
+                  <p className="label_question " style={{textAlign:'left'}}>Wie hoch ist Ihr Budgetlimit?</p>
                     <div className="row energy_form">
                         <p className="budget_font">Budgetobergrenze (€)</p>
                         <div className="budget_icon">
                             <img src={euro_icon}   alt="Ener You" responsive className="" id=""/>   
                         </div>
                         <div className="budget_box">
-                           <Tooltip styles={tooltipStyle} content="Bitte geben Sie die Budgetobergrenze für die neu Energielösung Ihres Zuhauses ein"> <input type="text"  className="form-control"
+                        <input type="text"  className="form-control"
                             name="budget_value" 
                             ref={(budget_value) => this.budget_value = budget_value}
                             onChange={this.props.handleChange('budget_value')}
-                             className="budget_price" placeholder='Preis' defaultValue={values.budget_value} /></Tooltip>
+                             className="budget_price" placeholder='Preis' defaultValue={values.budget_value} />
                                <p  className="error_font">{this.state.errors["budget_value"]}</p>
                         </div>
                         <div className="form_btn">
@@ -141,7 +150,7 @@ class Budget extends Component {
                        
                             
                     </div>
-                    <div className="col-md-2 col-lg-2 hide_tab">
+                    <div className="col-1 hide_tab">
                  
                     
                    
@@ -158,8 +167,7 @@ class Budget extends Component {
                             <div className="">
                                
                                 <div className="back_btn_form_2">
-                                <button onClick={this.back} className="btn btn_next pull_right">zurück 
-  </button>
+                                <button onClick={this.back} className="btn btn_next pull_left"><i class="fa fa-angle-left fa-1x" aria-hidden="true"></i>  &nbsp; zurück  </button>
                                 </div>
                         </div>              
 
@@ -170,12 +178,7 @@ class Budget extends Component {
                         
                 </div>
                 <div className="col-md-8">
-                <div className="progress_bar">                   
-                    {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                    <img src={progress_img} className="" circle  style={ { position:'relative',top:'9px',left:'96%'}} />
-                     <Line percent="100" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line"/>
-                     <p style={{color:'#000',marginLeft:'96%'}}>100%</p>
-                </div>
+               
                 </div>
                 <div className="col-md-2 text-center">    
                 <div className="next_section">

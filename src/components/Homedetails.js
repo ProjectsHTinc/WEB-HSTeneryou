@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
+import $ from "jquery";
 import Header from './Header';
 import Footer from './Footer';
-import { Line } from 'rc-progress';
-import { Tooltip } from 'react-lightweight-tooltip';
+import Stepper from 'react-stepper-horizontal';
 
-
-import compass from './images/n_compass.png';
-import east from './images/east.png';
-import west from './images/west.png';
-import south from './images/south.png';
-import south_west from './images/south_west.png';
-import south_east from './images/south_east.png';
 import imgUrl from './images/house_1.png';
 import house_year from './images/house_year.png';
-import postbox from './images/postbox.png';
-import Character from './images/character_fields.png';
 import progress_img from './images/progress_home.png';
-import char_error from './images/char_error.png';
-import char_error_1 from './images/char_error_1.png';
-import post_code_error from './images/post_code_error.png';
-import living_area_error from './images/living_area_error.png';
-import direction_error from './images/direction_error.png';
-import construction_year_error from './images/construction_year_error.png';
+
 
 class Homedetails extends Component {
 
@@ -29,8 +15,6 @@ class Homedetails extends Component {
         super(props)    
         this.state = {
             step: 1,
-            NormalCompass: east,
-            Character: Character,
             roof_inclination: '',
             living_area: '',
             post_code: '',
@@ -66,7 +50,7 @@ class Homedetails extends Component {
         if (!post_code) {
             formIsValid = false;
             errors["post_code"] = "Bitte geben Sie Ihre Postleitzahl ein";
-            this.setState({ Character: post_code_error });
+           
         }
 
         if (living_area.length <= 1) {
@@ -93,22 +77,20 @@ class Homedetails extends Component {
         if (!living_area) {
             formIsValid = false;
             errors["living_area"] = "Bitte geben Sie die Wohnfläche ein";
-            this.setState({ Character: living_area_error });
+           
         }
 
 
         if (!directionChange) {
             formIsValid = false;
             errors["directionChange"] = "Bitte wählen Sie die Dachneigung aus";
-            this.setState({ Character: direction_error });
+            
         }
         if (!house_con_year) {
             formIsValid = false;
             errors["house_con_year"] = "Bitte wählen Sie das Baujahr aus";
-            this.setState({ Character: construction_year_error });
-            // this.setState({ Character: char_error });
+          
         }
-
 
         this.setState({ errors: errors });
         return formIsValid;
@@ -118,12 +100,11 @@ class Homedetails extends Component {
     continue = e => {
         //let fields = this.state.fields;
         e.preventDefault();
-
+        // this.props.nextStep();
         if (this.handleValidation()) {
             this.props.nextStep();
         } else {
-            // this.setState({ Character: char_error });
-            //alert("error");
+          
         }
     }
 
@@ -134,42 +115,24 @@ class Homedetails extends Component {
     direction_call = (event) => {
         let directionval = event.target.value;
         localStorage.setItem('direct', directionval)
-        if (directionval === 'EAST') {
-            this.setState({ NormalCompass: east });
-        } else if (directionval === 'WEST') {
-            this.setState({ NormalCompass: west });
-        } else if (directionval === 'SOUTHWEST') {
-            this.setState({ NormalCompass: south_west });
-        } else if (directionval === 'SOUTHEAST') {
-            this.setState({ NormalCompass: south_east });
-        } else if (directionval === 'SOUTH') {
-            this.setState({ NormalCompass: south });
-        } else {
-
-            this.setState({ NormalCompass: compass });
-        }
-
-
+     
     };
 
     componentDidMount() {
 
+        $('input:radio').change(function(){
+            var $this = $(this);
+            $this.closest('.radio-toolbar').find('div.highlight').removeClass('highlight');
+            $this.closest('.inputGroup').addClass('highlight');
+            // $this.closest('.radio_house').addClass('radio_image_house');
+            $(this).find('.radio_image').addClass('radio_image_house');
+        });
+        
         const { values: { directionChange } } = this.props;
         let directionval = directionChange;
-        if (directionval === 'EAST') {
-            this.setState({ NormalCompass: east });
-        } else if (directionval === 'WEST ') {
-            this.setState({ NormalCompass: west });
-        } else if (directionval === 'SOUTHWEST') {
-            this.setState({ NormalCompass: south_west });
-        } else if (directionval === 'SOUTHEAST') {
-            this.setState({ NormalCompass: south_east });
-        } else if (directionval === 'SOUTH') {
-            this.setState({ NormalCompass: south });
-        } else {
-            this.setState({ NormalCompass: compass });
-        }
-
+        
+       
+      
     }
 
 
@@ -182,20 +145,7 @@ class Homedetails extends Component {
 
         const { options, NormalCompass, Character } = this.state;
         const { values } = this.props
-        const tooltipStyle = {
-            content: {
-              backgroundColor: '',
-              color: '#fff',
-              fontSize:'12px',
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              borderRadius: '1px solid #000',  
-              textAlign: 'center',        
-            
-            },
-           
-          };
+   
         //const {roof} = this.state
 
 
@@ -203,6 +153,14 @@ class Homedetails extends Component {
 
             <div className="container-fluid wrapper">
                 <Header />
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-9 col-sm-12">
+                        <Stepper activeStep={ 0 }  titleFontSize={'14px'} completeColor={'#2171b9' } activeColor={'#2171b9'} completeBarColor={'#5096ff'} steps={ [{title: 'Meine Gebäudedaten '}, {title: 'Mein Strombedarf'}, {title: 'Mein Wärmebedarf'}, {title: 'Meine Präferenz'}] } />
+                        </div>
+                        
+                    </div>            
+                </div>
                 <div className="container">
                     <h4 className="form_heading">Meine Gebäudedaten</h4>
                   
@@ -212,8 +170,15 @@ class Homedetails extends Component {
                         {/* First section start Here */}
                         <div className="row">
                            
-                            <div className="col-md-12 col-lg-9">
-
+                            <div className="col-md-12 col-lg-12">
+                            <div className="row">
+                                <div className="col-md-4"><p className="label_question">Welchen Neigungswinkel hat das Dach?</p>
+                                </div>
+                                <div className="col-md-4 text-center">
+                                <span className="label_heading">Dachneigung</span>
+                                </div>
+                            </div>
+                     
                                 <div className="row radio-toolbar">
 
                                     <div className="col-md-2 col-sm-6">
@@ -227,9 +192,9 @@ class Homedetails extends Component {
                                                 checked={values.roof_inclination === "DEGREES_0"}
 
                                             />
-                                            <span className="radio_label"> 0</span>
+                                            <span className="radio_label"> 0 &#176; </span>
                                             <p className="radio_image">
-                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"> <img src={require('./images/0.png')} alt="" className="" /></Tooltip>
+                                            <img src={require('./images/0.png')} alt="" className="radio_house" />
                                             </p>
                                         </div>
                                     </div>
@@ -242,9 +207,9 @@ class Homedetails extends Component {
                                                 onChange={this.props.handleChange('roof_inclination')}
                                                 checked={values.roof_inclination === "DEGREES_15"}
                                             />
-                                            <span className="radio_label">15</span>
+                                            <span className="radio_label">15 &#176; </span>
                                             <p className="radio_image">
-                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"><img src={require('./images/15.png')} alt="" className="" /></Tooltip>
+                                            <img src={require('./images/15.png')} alt="" className="radio_house" />
                                             </p>
                                         </div>
                                     </div>
@@ -258,9 +223,9 @@ class Homedetails extends Component {
                                                 onChange={this.props.handleChange('roof_inclination')}
                                                 checked={values.roof_inclination === "DEGREES_25"}
                                             />
-                                            <span className="radio_label">25</span>
+                                            <span className="radio_label">25 &#176; </span>
                                             <p className="radio_image">
-                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus">  <img src={require('./images/25.png')} alt="" className="" /></Tooltip>
+                                            <img src={require('./images/25.png')} alt="" className="radio_house" />
                                             </p>
                                         </div>
                                     </div>
@@ -274,9 +239,9 @@ class Homedetails extends Component {
 
                                                 checked={values.roof_inclination === "DEGREES_30"}
                                             />
-                                            <span className="radio_label">30</span>
+                                            <span className="radio_label">30 &#176; </span>
                                             <p className="radio_image">
-                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"> <img src={require('./images/30.png')} alt="" className="" /></Tooltip>
+                                            <img src={require('./images/30.png')} alt="" className="radio_house" />
                                             </p>
                                         </div>
                                     </div>
@@ -289,9 +254,9 @@ class Homedetails extends Component {
                                                 onChange={this.props.handleChange('roof_inclination')}
                                                 checked={values.roof_inclination === "DEGREES_35"}
                                             />
-                                            <span className="radio_label">35</span>
+                                            <span className="radio_label">35 &#176; </span>
                                             <p className="radio_image">
-                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"><img src={require('./images/35.png')} alt="" className="" /></Tooltip>
+                                            <img src={require('./images/35.png')} alt="" className="radio_house" />
                                             </p>
                                         </div>
                                     </div>
@@ -305,25 +270,22 @@ class Homedetails extends Component {
 
                                                 checked={values.roof_inclination === "DEGREES_45"}
                                             />
-                                            <span className="radio_label">45</span>
+                                            <span className="radio_label">45 &#176; </span>
                                             <p className="radio_image">
-                                            <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Neigung des Daches Ihres Hauses aus"> <img src={require('./images/45.png')} alt="" className="" /></Tooltip>
+                                        <img src={require('./images/45.png')} alt="" className="radio_house" />
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <p className="error_font" style={{ textAlign: 'right' }}>{this.state.errors["roof_error"]}</p>
                             </div>
-                            <div className="col-md-12 col-lg-3">
+                            {/* <div className="col-md-12 col-lg-3">
 
                                 <p className="img_compass">
-                                    {/* <img src={require('./images/n_compass.png')} alt="" className=""/> */}
-                                    <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Himmelsrichtung des Daches aus, dass für die Installation von einer Photovoltaikanlage oder einer Solarthermie infrage kommt "><img src={NormalCompass} circle />
+                                  <Tooltip  styles={tooltipStyle} content="Bitte wählen Sie die Himmelsrichtung des Daches aus, dass für die Installation von einer Photovoltaikanlage oder einer Solarthermie infrage kommt "><img src={NormalCompass} circle />
                                     </Tooltip> 
                                     <div className="direction_box">
                                         <select className="direction_drop_box " name="directionChange"
-                                            // onChange={this.direction_call} 
-                                            // onClick={this.props.handleChange('directionChange')}
                                             onClick={this.direction_call}
                                             onChange={this.props.handleChange('directionChange')}
                                             defaultValue={values.directionChange}
@@ -341,7 +303,7 @@ class Homedetails extends Component {
                                     </div>
                                 </p>
 
-                            </div>
+                            </div> */}
 
                         </div>
                         {/* First section Ends Here */}
@@ -349,20 +311,19 @@ class Homedetails extends Component {
                         {/* Second Section Starts Here */}
 
                         <div className="row">
-                            <div className="col-md-6 col-lg-2 form_1_bg_1" style={{
+                            <div className="col-md-12 col-lg-3 "> 
+                            <p className="label_question">Wie alt ist das Gebäude?</p>
+                             <div className="year_box form_1_bg_1" style={{
                                 backgroundImage: 'url(' + house_year + ')',
-                                backgroundPosition: 'center',
+                                backgroundSize:'contain',
                                 marginTop: '0px',
                                 height: '151px',
                                 backgroundRepeat: 'no-repeat'
-                            }}>
-                            
-                             <div className="year_box">
-                                    <label className="year_label">Baujahr bzw. letztes Modernisierungsjahr
-</label>
-<Tooltip  styles={tooltipStyle} content="Bitte gegen Sie das Baujahr oder das Jahr in dem die letzte energestische Sanierung an Ihrem Haus durchgeführt wurde ein"><select className="house_year_drop_box " name="construction_year"
-                                        //    onChange={this.construction_year} 
-                                        //    onClick={this.props.handleChange('construction_year')}  
+                            }}  >
+                           
+                            <div className="construction_year">
+                            <p className="c_label">Baujahr bzw. letztes Modernisierungsjahr</p>
+                            <select className="house_year_drop_box " name="construction_year"
                                         onClick={this.construction_year}
                                         onChange={this.props.handleChange('construction_year')}
                                         defaultValue={values.construction_year}
@@ -379,63 +340,132 @@ class Homedetails extends Component {
                                         <option value="FROM1984_TO1994">von 1984 bis 1994</option>
                                         <option value="FROM1995_TO2001">von 1995 bis 2001</option>
                                         <option value="FROM2002_TONOW">seit 2002</option>
+                                    </select>
+                            </div>
+                                  
 
-                                    </select></Tooltip>
+
 
                                 </div>
+                                <p className="error_msg"> <p className="error_font" style={{ textAlign: 'left' }}>{this.state.errors["house_con_year"]}</p></p>
                                 
-                                <p className="error_font" style={{ textAlign: 'center' }}>{this.state.errors["house_con_year"]}</p>
 
                              
-                              <div className="post_text_box">
+                              {/* <div className="post_text_box">
                                     <label className="post_code_text">Postleitzahl</label>
-                                    <Tooltip  styles={tooltipStyle} content="Bitte geben Sie Ihre fünfstellige Postleitzahl ein"> <input type="text" name="post_code" className="post_textbox " maxlength='5' minLength='5'
+                                     <input type="text" name="post_code" className="post_textbox " maxlength='5' minLength='5'
                                         placeholder='' ref={(post_code) => this.post_code = post_code}
                                         onChange={this.props.handleChange('post_code')}
 
-                                        defaultValue={values.post_code} /></Tooltip>
+                                        defaultValue={values.post_code} />
                                     <p className="error_font">{this.state.errors["post_code"]}</p>
+                                </div> */}
+                                <p className="label_question"> Wo steht das Gebäude?</p>
+                                <div className="p_text_box">
+                                    <p className="p_label">Postleitzahl</p>
+                                        <input type="text" name="post_code" className="post_code_text_box" maxlength='5' minLength='5'
+                                        placeholder='' ref={(post_code) => this.post_code = post_code}
+                                        onChange={this.props.handleChange('post_code')}
+                                        defaultValue={values.post_code} />
+                                        
+                                
                                 </div>
+                                <p className="error_msg"> <p className="error_font">{this.state.errors["post_code"]}</p></p>
+                                
+                                <p className="label_question" style={{marginTop:'30px'}}> Welche Ausrichtung hat das Dach?</p>
+                                <div className="d_direction_div">
+                                <p className="p_label">Dachausrichtung</p>
+                                <select className="direction_drop_box " name="directionChange"
+                                            onClick={this.direction_call}
+                                            onChange={this.props.handleChange('directionChange')}
+                                            defaultValue={values.directionChange}
+                                            ref="direction_compass"
+                                        >
+                                            <option value="">Dachausrichtung</option>
+                                            <option value="EAST">Ost</option>
+                                            <option value="WEST">West</option>
+                                            <option value="SOUTH">Süd</option>
+                                            <option value="SOUTHEAST">Süd-Ost</option>
+                                            <option value="SOUTHWEST">Süd-West</option>
+                                        </select>
+                                        
+                                
+                                </div>
+                                <p className="error_msg"> <p className="error_font">{this.state.errors["directionChange"]}</p></p>
+                                
+
+{/* 
+                                <div className="direction_div">
+                                <p className="img_compass">
+                                  
+                                    <div className="direction_box">
+                                        <select className="direction_drop_box " name="directionChange"
+                                            onClick={this.direction_call}
+                                            onChange={this.props.handleChange('directionChange')}
+                                            defaultValue={values.directionChange}
+                                            ref="direction_compass"
+                                        >
+                                            <option value="">Dachausrichtung</option>
+                                            <option value="EAST">Ost</option>
+                                            <option value="WEST">West</option>
+                                            <option value="SOUTH">Süd</option>
+                                            <option value="SOUTHEAST">Süd-Ost</option>
+                                            <option value="SOUTHWEST">Süd-West</option>
+                                        </select>
+                                        <p className="error_font">{this.state.errors["directionChange"]}</p>
+
+                                    </div>
+                                </p>
+                                </div> */}
                              
-                                <div className="postbox_img">
-                                    <p>  <img src={postbox} className="" circle /></p>
-                                </div>
+                               
 
                             </div>
-                            <div className="col-lg-8 col-md-10 form_1_bg" style={{
+                            <div className="col-lg-9 col-md-11 form_1_bg">
+                            <div className="living_area_box"  style={{
                                 backgroundImage: 'url(' + imgUrl + ')',
                                 backgroundPosition: 'center',
-                                backgroundSize: 'cover',
-                                height: '400px',
+                                backgroundSize: 'contain',
+                                height: '450px',
                                 backgroundRepeat: 'no-repeat'
                             }}>
-                                <div className="living_box">
-                                    <label className="living_label">Wohnfläche</label>
-                                    <Tooltip  styles={tooltipStyle} content="Bitte geben Sie Ihre Wohnfläche in m2 ein"> <input type="text" name="living_area" className="living_textbox"
+                            {/* <div className="living_box">
+                                    <p className="living_label">Wohnfläche</p>
+                                    <input type="text" name="living_area" className="living_textbox"
 
                                         placeholder='Wohnfläche in m2 ein' ref={(living_area) => this.living_area = living_area}
                                         onChange={this.props.handleChange('living_area')}
-                                        defaultValue={values.living_area} /></Tooltip>
+                                        defaultValue={values.living_area} />
                                     <p className="error_font" style={{ textAlign: 'right' }}>{this.state.errors["living_area"]}</p>
+                            </div> */}
+
+                            <div className="l_living_box">
+                              
+                                <div class="row justify-content-center">
+                                
+                                    <div class="col-6">
+                                    <p className="label_question living_area_question"> Wie groß ist die Wohnfläche?</p>
+                                        <div className="living_box_house">
+                                        
+                                             <p className="l_living_label">Wohnfläche</p>
+                                             <input type="text" name="living_area" className="living_text_box"
+
+                                        placeholder='Wohnfläche in m2 ein' ref={(living_area) => this.living_area = living_area}
+                                        onChange={this.props.handleChange('living_area')}
+                                        defaultValue={values.living_area} />
+                                        <p><small>in qm eingeben</small></p>
+                                         
+                                        </div> 
+                                        <p className="error_font" style={{ textAlign: 'center' }}>{this.state.errors["living_area"]}</p>                                       
+                                   
+                                    </div>
                                 </div>
 
-
-
-
-
-
-
-
                             </div>
-                            <div className="col-md-2 col-lg-2 hide_tab">
 
-
-                                <div className="character_img">
-                                    <p> <img src={Character} className="" circle /></p>
-                                </div>
-
-
+                            </div>    
                             </div>
+                            
 
 
                         </div>
@@ -443,32 +473,19 @@ class Homedetails extends Component {
                         {/* Second Section Ends Here */}
 
 
-                        {/* Progress Bar section Starts here */}
+                     
                         <div className="row progress_section">
-                            <div className="col-md-1">
-                            </div>
-                            <div className="col-md-1">
-                            </div>
-                            <div className="col-md-8">
-                                <div className="progress_bar">
-                                    {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                                    <img src={progress_img} className="" circle style={{ position: 'relative', top: '9px', left: '26%' }} />
-                                    <Line percent="29" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line" />
-                                    <p style={{ color: '#000', marginLeft: '25%' }}>25%</p>
-                                </div>
-                            </div>
-                            <div className="col-md-2 text-center">
+                            <div className="col-10">
+                            </div>                          
+                         
+                            <div className="col-2 pull-right">
                                 <div className="next_section">
-                                    <button type="submit"
-                                        // onClick={this.continue} 
-                                        className="btn btn_next pull_right">weiter  </button>
-
+<button type="submit" className="btn btn_next pull_right">weiter &nbsp; <i class="fa fa-angle-right fa-1x" aria-hidden="true"></i> </button>
                                 </div>
-
                             </div>
                         </div>
 
-                        {/* Progress Bar section Ends here */}
+                    
 
 
 

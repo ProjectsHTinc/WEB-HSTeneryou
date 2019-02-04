@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { Line } from 'rc-progress';
+import Stepper from 'react-stepper-horizontal';
 import 'font-awesome/css/font-awesome.min.css'
 
 import progress_img from './images/progress_home.png';
-import character_3 from './images/character_form_3.png';
+
 import con_year from './images/con_year.png';
 import gas_bill from './images/gas_bill.png';
 import certificate from './images/certificate.png';
@@ -169,20 +169,30 @@ class Enerydemand extends Component {
             <div className="container-fluid wrapper">
                 <Header />
                 <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-9">
+                        <Stepper activeStep={ 2 }  titleFontSize={'14px'} completeColor={'#2171b9' } activeColor={'#2171b9'} completeBarColor={'#5096ff'} steps={ [{title: 'Meine Gebäudedaten '}, {title: 'Mein Strombedarf'}, {title: 'Mein Wärmebedarf'}, {title: 'Meine Präferenz'}] } />
+                        </div>
+                        
+                    </div>            
+                </div>
+
+                <div className="container">
                     <h4 className="form_heading">Mein Wärmebedarf </h4>
 
                     <form onSubmit={this.continue}>
 
                         {/* Form section starts here */}
                         <div className="row" >
-                            <div className="col-lg-2 col-md-2 hide_tab">
-                                <img src={character_3} className="character_3" />
+                            <div className="col-1 hide_tab">
+                               
                             </div>
-                            <div className="col-md-12 col-lg-8 col-sm-12 text-center form_3_bg" style={{
+                            
+                            <div className="col-md-12 col-lg-10 col-sm-12 text-center form_3_bg" style={{
                                 backgroundImage: 'url(' + form_bg_3 + ')',
                                 backgroundPosition: 'center',
-                                backgroundSize: 'cover',
-                                height: '417px',
+                                backgroundSize: 'contain',
+                                height: '450px',
                                 backgroundRepeat: 'no-repeat'
                             }}>
 
@@ -190,8 +200,9 @@ class Enerydemand extends Component {
                                     <div className="row">
 
                                     </div>
+                                    <p className="label_question" style={{textAlign:'left'}}>Wie hoch ist Ihr Wärmebedarf?</p>
                                     <div className="row energy_form" >
-                                        <p className="enery_heading">Zur Bestimmung Ihres Wärmebedarfs wählen Sie bitte eine der unten angezeigten Optionen abhängig von den Daten die Sie zur Hand haben aus</p>
+                                        <p className="enery_heading">Bestimmen Sie Ihren Wärmebedarf anhand einer der drei Möglichkeiten</p>
                                         <div className="col-md-4">
                                             <div className="enery_group">
                                                 <div className="radio_value">
@@ -286,7 +297,7 @@ class Enerydemand extends Component {
 
 
                             </div>
-                            <div className="col-md-2 col-lg-2 hide_tab">
+                            <div className="col-1 hide_tab">
 
 
 
@@ -297,13 +308,13 @@ class Enerydemand extends Component {
 
 
                         {/* Progress Bar section Starts here */}
-                        <div className="row progress_section" style={{ marginTop: '120px' }}>
+                        <div className="row progress_section" style={{ marginTop: '30px' }}>
                             <div className="col-md-2">
                                 <div className="char_next_btn_section">
                                     <div className="">
 
                                         <div className="back_btn_form_2">
-                                            <button onClick={this.back} className="btn btn_next pull_right">zurück   </button>
+                                        <button onClick={this.back} className="btn btn_next pull_left"><i class="fa fa-angle-left fa-1x" aria-hidden="true"></i>  &nbsp; zurück  </button>
                                         </div>
                                     </div>
 
@@ -314,17 +325,11 @@ class Enerydemand extends Component {
 
                             </div>
                             <div className="col-md-8">
-                                <div className="progress_bar">
-                                    {/* <button onClick={this.continue} className="btn  btn_next pull_left">Back   </button> */}
-                                    <img src={progress_img} className="" circle style={{ position: 'relative', top: '9px', left: '72%' }} />
-                                    <Line percent="75" strokeWidth="1" trailColor="" strokeColor="#2171b9" strokeLinecap="square" className="progress_bar_line" />
-                                    <p style={{ color: '#000', marginLeft: '72%' }}>75%</p>
-                                </div>
+                               
                             </div>
                             <div className="col-md-2 text-center">
                                 <div className="next_section">
-                                    <button onClick={this.continue}  ref="but" className="btn btn_next pull_right">weiter  </button>
-                                    {/* <button className="btn btn_next pull_right">weiter  </button> */}
+                                <button onClick={this.continue}  ref="but" className="btn btn_next pull_left">weiter  &nbsp; <i class="fa fa-angle-right fa-1x" aria-hidden="true"></i> </button>
                                 </div>
 
                             </div>
